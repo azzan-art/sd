@@ -27,12 +27,18 @@
     <meta name="twitter:image" content="https://__DOMAIN__/logo.png" />
 
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!-- Alex Brush (script) for the S & D wordmark -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet" />
+
     <link rel="stylesheet" href="./css/output.css" />
   </head>
   <body class="min-h-screen bg-neutral-950 text-neutral-100 antialiased">
     <!-- Hero background video (fixed, so it only shows through the hero;
          the content sections below sit on top of it). -->
-    <video class="slideshow" autoplay muted loop playsinline preload="auto" poster="images/slide-1.jpg" aria-hidden="true">
+    <video class="slideshow" autoplay muted loop playsinline preload="auto" poster="https://picsum.photos/seed/sd-hero/1600/900" aria-hidden="true">
       <source src="./hero.mp4" type="video/mp4" />
     </video>
 
@@ -75,8 +81,12 @@
     </div>
 
     <main class="relative z-20 mx-auto flex min-h-screen max-w-2xl flex-col items-center justify-center gap-8 px-6 text-center">
-      <h1 class="drop-shadow-lg">
+      <h1 class="flex flex-col items-center gap-2 drop-shadow-lg">
         <img src="./logo.png" alt="S&D Beach House and Cottages" class="h-32 w-auto sm:h-44" />
+        <span class="text-6xl leading-none sm:text-7xl" style="font-family: 'Alex Brush', cursive">
+          S <span class="text-4xl sm:text-5xl">&amp;</span> D
+        </span>
+        <span class="text-xl leading-none text-white/90 sm:text-2xl" style="font-family: 'Brittany Signature', cursive">Beach Resort</span>
       </h1>
 
       <nav class="flex flex-wrap items-center justify-center gap-3">
@@ -137,7 +147,7 @@
         </div>
       </div>
 
-      <!-- Explore more cue at the bottom of the hero -->
+      <!-- Explore more cue at the bottom of the hero (scrolls to the content) -->
       <a href="#explore" class="absolute bottom-8 flex flex-col items-center gap-2 text-sm font-medium text-white/80 transition hover:text-white">
         Explore more
         <svg class="h-5 w-5 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -156,7 +166,10 @@
       </div>
       <div class="mx-auto max-w-5xl px-6 py-24">
         <div class="reveal">
-          <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Discover S&D Beach</h2>
+          <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">
+            <span class="mb-1 block text-3xl font-normal leading-none text-[#0e7490b3] sm:text-4xl" style="font-family: 'Alex Brush', cursive">Discover</span>
+            S&amp;D Beachex
+          </h2>
           <p class="mt-4 text-lg text-neutral-600">
             Nestled along the serene shores of San Fabian, <strong>S&D Beach House and Cottages</strong> offers a peaceful escape where <strong>fine sand</strong> meets the calming waves of the sea. Whether you're unwinding by the beach or creating lasting memories with loved ones, every visit is filled with the beauty and charm of the coast.
           </p>
@@ -165,12 +178,12 @@
         <div class="reveal mt-12 grid gap-8 sm:grid-cols-2" style="--reveal-delay: 0.1s">
           <!-- Photo-stack: rotated "prints" behind; only the top card is clickable -->
           <div class="photo-stack">
-          <a href="#" data-modal="modal-facilities" class="group relative block aspect-[4/3] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('images/facilities.jpg'), linear-gradient(135deg, #164e63, #0e7490);">
+          <a href="#" data-explore class="group relative block aspect-[4/3] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('https://picsum.photos/seed/sd-property/800/600'), linear-gradient(135deg, #164e63, #0e7490);">
             <span class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition group-hover:from-black/80"></span>
             <span class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-6">
               <span class="text-2xl font-semibold text-white drop-shadow">The Property</span>
               <span class="inline-flex items-center gap-1 rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-neutral-900 shadow transition group-hover:bg-white">
-                Explore
+                View
                 <svg class="h-4 w-4 transition group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
               </span>
             </span>
@@ -178,13 +191,13 @@
           </div>
 
           <!-- Photo-stack: rotated "prints" behind; only the top card is clickable -->
-          <div class="photo-stack">
-          <a href="#" data-modal="modal-activities" class="group relative block aspect-[4/3] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('images/activities.jpg'), linear-gradient(135deg, #713f12, #a16207);">
+          <div class="photo-stack" style="--print-a: url('https://picsum.photos/seed/sd-print3/500/380'); --print-b: url('https://picsum.photos/seed/sd-print4/500/380'); --rot-a: 3deg; --rot-b: -2.5deg;">
+          <a href="#" data-modal="modal-activities" class="group relative block aspect-[4/3] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('https://picsum.photos/seed/sd-activities/800/600'), linear-gradient(135deg, #713f12, #a16207);">
             <span class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition group-hover:from-black/80"></span>
             <span class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-6">
               <span class="text-2xl font-semibold text-white drop-shadow">Activities</span>
               <span class="inline-flex items-center gap-1 rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-neutral-900 shadow transition group-hover:bg-white">
-                Explore
+                View
                 <svg class="h-4 w-4 transition group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
               </span>
             </span>
@@ -198,12 +211,12 @@
     <section class="section-fade relative z-20 bg-white text-neutral-900">
       <div class="relative z-10 mx-auto grid max-w-6xl gap-12 px-6 py-24 lg:grid-cols-2">
 
-        <!-- Book your stay -->
-        <div id="book" class="reveal">
-          <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Book your stay</h2>
+        <!-- What's nearby (the signpost of local landmarks & distances) -->
+        <div id="nearby" class="reveal">
+          <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Where Guests Go</h2>
           <div>
             <p class="mt-4 text-neutral-600">
-              Reserve S&D Beach House and Cottages on your favorite platform.
+              The spots our guests head to most — each just a short trip from your cottage.
             </p>
 
             <!-- Fun facts as a directional signpost: two signs spin around a
@@ -228,7 +241,7 @@
 
         <!-- Find us -->
         <div id="location" class="reveal" style="--reveal-delay: 0.12s">
-          <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Find us</h2>
+          <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Find Us</h2>
           <div>
             <p class="mt-4 text-neutral-600">
               Drop by S&D Beach House and Cottages — here's where you'll find us.
@@ -244,14 +257,6 @@
                 allowfullscreen
               ></iframe>
             </div>
-            <a
-              href="https://www.google.com/maps/place/S%26D+BEACH+HOUSE+AND+COTTAGES/@16.121176,120.3843668,17z/data=!4m6!3m5!1s0x33916f00018f7d5d:0x932e7df3fb436750!8m2!3d16.1209699!4d120.3867486!16s%2Fg%2F11vrb10vwf"
-              target="_blank"
-              rel="noopener"
-              class="mt-4 inline-block text-sm font-medium text-neutral-900 underline underline-offset-4 hover:no-underline"
-            >
-              Open in Google Maps →
-            </a>
           </div>
         </div>
 
@@ -266,7 +271,7 @@
         <span class="bubble" style="--size: 160px; --left: 46%; --dur: 26s; --delay: -20s; --sway: 45px; --sway-dur: 7s;"><span></span></span>
         <span class="bubble" style="--size: 300px; --left: 80%; --dur: 40s; --delay: -3s;  --sway: 85px; --sway-dur: 13s;"><span></span></span>
       </div>
-      <div class="mx-auto max-w-5xl px-6 py-24 text-center">
+      <div class="mx-auto max-w-5xl px-6 py-16 text-center">
         <div class="reveal">
           <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Gallery</h2>
           <p class="mx-auto mt-4 max-w-2xl text-lg text-neutral-600">
@@ -275,12 +280,12 @@
         </div>
 
         <div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3">
-          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="images/gallery-1.jpg" style="background-image: url('images/gallery-1.jpg'), linear-gradient(135deg, #0f172a, #334155);"></div>
-          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="images/gallery-2.jpg" style="background-image: url('images/gallery-2.jpg'), linear-gradient(135deg, #431407, #7c2d12);"></div>
-          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="images/gallery-3.jpg" style="background-image: url('images/gallery-3.jpg'), linear-gradient(135deg, #052e16, #14532d);"></div>
-          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="images/gallery-4.jpg" style="background-image: url('images/gallery-4.jpg'), linear-gradient(135deg, #1e1b4b, #4c1d95);"></div>
-          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="images/gallery-5.jpg" style="background-image: url('images/gallery-5.jpg'), linear-gradient(135deg, #164e63, #0e7490);"></div>
-          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="images/gallery-6.jpg" style="background-image: url('images/gallery-6.jpg'), linear-gradient(135deg, #713f12, #a16207);"></div>
+          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="https://picsum.photos/seed/sd-g1/1200/900" style="background-image: url('https://picsum.photos/seed/sd-g1/800/600'), linear-gradient(135deg, #0f172a, #334155);"></div>
+          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="https://picsum.photos/seed/sd-g2/1200/900" style="background-image: url('https://picsum.photos/seed/sd-g2/800/600'), linear-gradient(135deg, #431407, #7c2d12);"></div>
+          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="https://picsum.photos/seed/sd-g3/1200/900" style="background-image: url('https://picsum.photos/seed/sd-g3/800/600'), linear-gradient(135deg, #052e16, #14532d);"></div>
+          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="https://picsum.photos/seed/sd-g4/1200/900" style="background-image: url('https://picsum.photos/seed/sd-g4/800/600'), linear-gradient(135deg, #1e1b4b, #4c1d95);"></div>
+          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="https://picsum.photos/seed/sd-g5/1200/900" style="background-image: url('https://picsum.photos/seed/sd-g5/800/600'), linear-gradient(135deg, #164e63, #0e7490);"></div>
+          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="https://picsum.photos/seed/sd-g6/1200/900" style="background-image: url('https://picsum.photos/seed/sd-g6/800/600'), linear-gradient(135deg, #713f12, #a16207);"></div>
         </div>
       </div>
     </section>
@@ -293,28 +298,60 @@
 
     <!-- Facilities modal -->
     <div id="modal-facilities" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-facilities-title">
-      <div class="modal-box relative max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white text-neutral-900 shadow-2xl">
-        <div class="h-44 bg-cover bg-center sm:h-52" style="background-image: url('images/facilities.jpg'), linear-gradient(135deg, #164e63, #0e7490);"></div>
+      <div class="modal-box relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white text-neutral-900 shadow-2xl sm:max-w-2xl lg:max-w-3xl">
+        <div class="h-44 bg-cover bg-center sm:h-52" style="background-image: url('https://picsum.photos/seed/sd-property/800/600'), linear-gradient(135deg, #164e63, #0e7490);"></div>
         <button type="button" data-close class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-2xl leading-none text-neutral-700 shadow transition hover:bg-white" aria-label="Close">&times;</button>
         <div class="modal-content p-8">
           <h3 id="modal-facilities-title" class="text-3xl font-semibold tracking-tight">The Property</h3>
           <p class="mt-2 text-neutral-600">Everything you need for a comfortable, relaxing stay.</p>
-          <ul class="mt-6 grid grid-cols-2 gap-3 text-sm text-neutral-700">
-            <li class="rounded-lg bg-neutral-100 px-3 py-2">Beachfront cottages</li>
-            <li class="rounded-lg bg-neutral-100 px-3 py-2">Free parking</li>
-            <li class="rounded-lg bg-neutral-100 px-3 py-2">Clean restrooms</li>
-            <li class="rounded-lg bg-neutral-100 px-3 py-2">Open cottages &amp; tables</li>
-            <li class="rounded-lg bg-neutral-100 px-3 py-2">Videoke &amp; sound system</li>
-            <li class="rounded-lg bg-neutral-100 px-3 py-2">Grilling area</li>
-          </ul>
+          <div class="mt-6 space-y-3">
+            <!-- Accommodation (open by default) -->
+            <div class="acc is-open overflow-hidden rounded-xl border border-neutral-200">
+              <button type="button" class="acc__head flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-base font-semibold text-neutral-900" aria-expanded="true">
+                Accommodation
+                <svg class="acc__chev h-5 w-5 shrink-0 text-neutral-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+              </button>
+              <div class="acc__panel">
+                <div>
+                  <ul class="grid grid-cols-2 gap-3 px-4 pb-4 text-sm text-neutral-700">
+                    <li class="rounded-lg bg-neutral-100 px-3 py-2">Small rooms</li>
+                    <li class="rounded-lg bg-neutral-100 px-3 py-2">Family rooms</li>
+                    <li class="rounded-lg bg-neutral-100 px-3 py-2">Beachfront cottages</li>
+                    <li class="rounded-lg bg-neutral-100 px-3 py-2">Kitchen with utensils</li>
+                    <li class="rounded-lg bg-neutral-100 px-3 py-2">Grilling area</li>
+                    <li class="rounded-lg bg-neutral-100 px-3 py-2">Pool</li>
+                    <li class="rounded-lg bg-neutral-100 px-3 py-2">Open cottages &amp; tables</li>
+                    <li class="rounded-lg bg-neutral-100 px-3 py-2">Clean restrooms</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Amenities (collapsed) -->
+            <div class="acc overflow-hidden rounded-xl border border-neutral-200">
+              <button type="button" class="acc__head flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-base font-semibold text-neutral-900" aria-expanded="false">
+                Amenities
+                <svg class="acc__chev h-5 w-5 shrink-0 text-neutral-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+              </button>
+              <div class="acc__panel">
+                <div>
+                  <ul class="grid grid-cols-2 gap-3 px-4 pb-4 text-sm text-neutral-700">
+                    <li class="rounded-lg bg-neutral-100 px-3 py-2">Air-conditioning</li>
+                    <li class="rounded-lg bg-neutral-100 px-3 py-2">Videoke &amp; sound system</li>
+                    <li class="rounded-lg bg-neutral-100 px-3 py-2">Free parking</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Activities modal -->
     <div id="modal-activities" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-activities-title">
-      <div class="modal-box relative max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white text-neutral-900 shadow-2xl">
-        <div class="h-44 bg-cover bg-center sm:h-52" style="background-image: url('images/activities.jpg'), linear-gradient(135deg, #713f12, #a16207);"></div>
+      <div class="modal-box relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white text-neutral-900 shadow-2xl sm:max-w-2xl lg:max-w-3xl">
+        <div class="h-44 bg-cover bg-center sm:h-52" style="background-image: url('https://picsum.photos/seed/sd-activities/800/600'), linear-gradient(135deg, #713f12, #a16207);"></div>
         <button type="button" data-close class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-2xl leading-none text-neutral-700 shadow transition hover:bg-white" aria-label="Close">&times;</button>
         <div class="modal-content p-8">
           <h3 id="modal-activities-title" class="text-3xl font-semibold tracking-tight">Activities</h3>
@@ -329,6 +366,127 @@
         </div>
       </div>
     </div>
+
+    <!-- Full-screen "Explore" panel: text (left, animates in) + property photos (right) -->
+    <div id="modal-explore" class="modal-full" role="dialog" aria-modal="true" aria-labelledby="modal-explore-title">
+      <button type="button" data-close class="absolute right-5 top-5 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-neutral-900/5 text-3xl leading-none text-neutral-600 transition hover:bg-neutral-900/10" aria-label="Close">&times;</button>
+
+      <div class="grid min-h-full lg:grid-cols-2">
+        <!-- Left: text -->
+        <div class="flex flex-col justify-center gap-5 px-8 py-16 sm:px-14 lg:px-16 xl:px-24">
+          <p class="ef-item text-2xl text-[#0e7490]/70" style="--ef: 0; font-family: 'Alex Brush', cursive">Welcome to</p>
+          <h2 id="modal-explore-title" class="ef-item text-4xl font-semibold tracking-tight text-neutral-900 sm:text-5xl" style="--ef: 1">S&amp;D Beach Resort</h2>
+          <p class="ef-item max-w-md text-lg leading-relaxed text-neutral-600" style="--ef: 2">
+            Tucked along the fine-sand shores of San Fabian, S&amp;D is a laid-back escape built for slowing down — cottages by the water, a pool for the kids, and easy waves just steps away.
+          </p>
+          <ul class="ef-item flex flex-col gap-2 text-neutral-700" style="--ef: 3">
+            <li class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-[#0e7490]"></span>Beachfront cottages &amp; air-conditioned rooms</li>
+            <li class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-[#0e7490]"></span>Pool, grilling area &amp; free parking</li>
+            <li class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-[#0e7490]"></span>Kitchen with utensils — free to use</li>
+          </ul>
+          <div class="ef-item mt-2 flex flex-wrap items-center gap-4" style="--ef: 4">
+            <a href="https://www.facebook.com/p/SD-Beach-House-and-Cottages-100094234307971/" target="_blank" rel="noopener" class="inline-flex items-center rounded-full bg-[#F48E26] px-7 py-3 text-base font-bold text-white shadow-lg transition hover:bg-[#f7a24d]">Book Now</a>
+            <a href="#gallery" data-close class="text-sm font-medium text-neutral-900 underline underline-offset-4 hover:no-underline">See the gallery →</a>
+          </div>
+        </div>
+
+        <!-- Right: property photos -->
+        <div class="ef-item grid grid-cols-2 grid-rows-2 gap-2 bg-neutral-100 p-2 sm:gap-3 sm:p-3 lg:h-[100dvh]" style="--ef: 2">
+          <img src="https://picsum.photos/seed/sd-prop-a/700/900" alt="S&D Beach Resort" class="h-full min-h-[42vw] w-full rounded-xl object-cover lg:min-h-0" loading="lazy" />
+          <img src="https://picsum.photos/seed/sd-prop-b/700/900" alt="S&D Beach Resort" class="h-full min-h-[42vw] w-full rounded-xl object-cover lg:min-h-0" loading="lazy" />
+          <img src="https://picsum.photos/seed/sd-prop-c/700/900" alt="S&D Beach Resort" class="h-full min-h-[42vw] w-full rounded-xl object-cover lg:min-h-0" loading="lazy" />
+          <img src="https://picsum.photos/seed/sd-prop-d/700/900" alt="S&D Beach Resort" class="h-full min-h-[42vw] w-full rounded-xl object-cover lg:min-h-0" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Closing call-to-action: a nudge, the Google rating, and Book Now. -->
+    <section id="visit" class="relative z-20 overflow-hidden bg-gradient-to-b from-[#0e7490] to-[#0b3a63] text-white">
+      <!-- Sunset: white→sunset sky up top, with the big orange sun cut flat at the
+           horizon (the wrapper's overflow-hidden bottom edge = the waterline). -->
+      <div class="pointer-events-none relative h-96 overflow-hidden sm:h-[28rem]" aria-hidden="true">
+        <div class="sunset-sky"></div>
+        <div class="sunset-sun"></div>
+        <div class="sunset-sea"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-6 pb-24 pt-8 text-center">
+        <div class="reveal">
+          <h2 class="text-5xl tracking-tight sm:text-6xl" style="font-family: 'Alex Brush', cursive">Your spot by the sea is waiting</h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-white/85">
+            Guests keep coming back to S&D — come find out why. Reserve your stay today and start counting down to the coast.
+          </p>
+        </div>
+
+        <!-- Google reviews badge → opens the real listing where reviews live.
+             The stars are decorative; add your live rating number when ready. -->
+        <div class="reveal mt-10 flex justify-center" style="--reveal-delay: 0.1s">
+          <a
+            href="https://www.google.com/maps/place/S%26D+BEACH+HOUSE+AND+COTTAGES/@16.121176,120.3843668,17z/data=!4m6!3m5!1s0x33916f00018f7d5d:0x932e7df3fb436750!8m2!3d16.1209699!4d120.3867486!16s%2Fg%2F11vrb10vwf"
+            target="_blank"
+            rel="noopener"
+            class="group inline-flex items-center gap-4 rounded-2xl bg-white px-6 py-4 text-left text-neutral-900 shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+            aria-label="Read our reviews on Google"
+          >
+            <svg viewBox="0 0 48 48" class="h-8 w-8 shrink-0" aria-hidden="true">
+              <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" />
+              <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z" />
+              <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z" />
+              <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z" />
+            </svg>
+            <span>
+              <span class="flex items-center gap-1 text-[#FBBC04]" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z" /></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z" /></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z" /></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z" /></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z" /></svg>
+              </span>
+              <span class="mt-0.5 block text-sm font-medium text-neutral-600">
+                Loved by our guests · <span class="text-neutral-900 underline underline-offset-2 group-hover:no-underline">Read our reviews on Google</span>
+              </span>
+            </span>
+          </a>
+        </div>
+
+        <!-- Book Now (same palm-pill as the hero) + direct contact line. -->
+        <div class="reveal mt-12 flex flex-col items-center gap-5" style="--reveal-delay: 0.2s">
+          <span class="book-wrap">
+            <span class="book-palm book-palm--alt" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="currentColor">
+                <path d="M31,62 C31.5,50 32,40 33,30 L36,30 C36,40 34,52 34,62 Z" />
+                <path d="M34,29 Q20,15 5,19 Q19,19 34,31 Z" />
+                <path d="M34,29 Q15,25 7,37 Q21,28 35,31 Z" />
+                <path d="M34,29 Q34,12 30,3 Q41,11 37,30 Z" />
+                <path d="M34,29 Q48,15 63,19 Q49,19 35,31 Z" />
+                <path d="M34,29 Q53,25 61,37 Q47,28 35,31 Z" />
+                <circle cx="31" cy="31" r="2.2" />
+                <circle cx="37" cy="32" r="2" />
+              </svg>
+            </span>
+            <a href="https://www.facebook.com/p/SD-Beach-House-and-Cottages-100094234307971/" target="_blank" rel="noopener" class="book-btn inline-flex font-bold items-center rounded-full bg-[#F48E26] px-8 py-3.5 text-lg text-white shadow-lg transition hover:bg-[#f7a24d]">
+              <span class="book-palm" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="currentColor">
+                  <path d="M31,62 C31.5,50 32,40 33,30 L36,30 C36,40 34,52 34,62 Z" />
+                  <path d="M34,29 Q20,15 5,19 Q19,19 34,31 Z" />
+                  <path d="M34,29 Q15,25 7,37 Q21,28 35,31 Z" />
+                  <path d="M34,29 Q34,12 30,3 Q41,11 37,30 Z" />
+                  <path d="M34,29 Q48,15 63,19 Q49,19 35,31 Z" />
+                  <path d="M34,29 Q53,25 61,37 Q47,28 35,31 Z" />
+                  <circle cx="31" cy="31" r="2.2" />
+                  <circle cx="37" cy="32" r="2" />
+                </svg>
+              </span>
+              Book Now
+            </a>
+          </span>
+          <div class="flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-white/85">
+            <a href="tel:+639175570003" class="transition hover:text-white">+63 917 557 0003</a>
+            <span class="text-white/40">|</span>
+            <a href="mailto:decenaalayon@gmail.com" class="transition hover:text-white">decenaalayon@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Footer -->
     <footer class="relative z-20 border-t border-neutral-200 bg-white text-neutral-600">
@@ -473,11 +631,46 @@
         });
       });
 
+      // Accordions (Accommodation / Amenities): click a header to expand its
+      // panel — the CSS animates the height (grid 0fr→1fr) and flips the chevron.
+      document.querySelectorAll(".acc__head").forEach((head) => {
+        head.addEventListener("click", () => {
+          const acc = head.closest(".acc");
+          const open = acc.classList.toggle("is-open");
+          head.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+      });
+
+      // Full-screen Explore panel: open from the hero cue; close via [data-close].
+      const explore = document.getElementById("modal-explore");
+      function openExplore() {
+        if (!explore) return;
+        explore.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeExplore() {
+        if (!explore) return;
+        explore.classList.remove("is-open");
+        document.body.style.overflow = "";
+      }
+      document.querySelectorAll("[data-explore]").forEach((t) => {
+        t.addEventListener("click", (e) => {
+          e.preventDefault();
+          openExplore();
+        });
+      });
+      if (explore) {
+        explore.addEventListener("click", (e) => {
+          if (e.target.closest("[data-close]")) closeExplore();
+        });
+      }
+
       // Esc closes lightbox and any open modal.
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
           closeLightbox();
           closeModals();
+          closeExplore();
         }
       });
 
@@ -516,6 +709,11 @@
           const screenY = currentDocY - window.scrollY;      // back to viewport coords
           const bob = reduce ? 0 : Math.sin(t / 1400) * 4;   // slight up/down
           shore.style.transform = `translateY(${screenY + bob}px)`;
+
+          // Only show the waves on the hero: fade them out over the first ~60%
+          // of a viewport of scroll so they're gone by the time content shows.
+          shore.style.opacity = Math.max(0, 1 - window.scrollY / (vh * 0.6));
+
           requestAnimationFrame(frame);
         }
         requestAnimationFrame(frame);

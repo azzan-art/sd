@@ -1,5 +1,24 @@
 @import "tailwindcss";
 
+/* Signature script for the "Beach Resort" line under the S & D wordmark.
+   output.css lives in /css, so the TTF at the project root is one level up. */
+@font-face {
+  font-family: "Brittany Signature";
+  src: url("../BrittanySignature.ttf") format("truetype");
+  font-display: swap;
+}
+
+html,
+body {
+  /* Decorative bleeds (the Book-Now palm's overflow:visible fronds, the
+     rotated photo-stack "prints", the signpost signs) can poke a few px past
+     the right edge on narrow screens. That inflates the document width and,
+     because the video/overlay/shore are position:fixed, lets every section
+     scroll sideways to reveal them — the "gap on the right". Clip it. Safe
+     here: nothing uses position:sticky, which is the one thing this breaks. */
+  overflow-x: hidden;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -143,10 +162,13 @@ html {
 
 /* Three layers: staggered depth, colour and drift speed/direction. Each also
    deepens downward (--c → --c2), and stacking piles the alpha at the base. */
-.shore__wave--back  { top: 0;    --c: rgba(56, 150, 246, 0.10); --c2: rgba(56, 150, 246, 0.95); }
-.shore__wave--mid   { top: 16px; --c: rgba(56, 150, 246, 0.13); --c2: rgba(37, 99, 235, 0.95); }
-.shore__wave--front { top: 30px; --c: rgba(37, 99, 235, 0.16); --c2: rgba(29, 78, 216, 0.96); }
-.shore__wave--deep  { top: 44px; --c: rgba(37, 99, 235, 0.18); --c2: rgba(29, 78, 216, 0.98); }
+/* Cyan theme: crest fades from a light cyan (cyan-400/500) down to the page's
+   accent cyans — cyan-600 #0891b2 → cyan-700 #0e7490 → cyan-800 #155e75 →
+   cyan-900 #164e63 (the same tones used in the cards, signpost, and CTA). */
+.shore__wave--back  { top: 0;    --c: rgba(34, 211, 238, 0.10); --c2: rgba(8, 145, 178, 0.95); }
+.shore__wave--mid   { top: 16px; --c: rgba(34, 211, 238, 0.13); --c2: rgba(14, 116, 144, 0.95); }
+.shore__wave--front { top: 30px; --c: rgba(6, 182, 212, 0.16);  --c2: rgba(21, 94, 117, 0.96); }
+.shore__wave--deep  { top: 44px; --c: rgba(6, 182, 212, 0.18);  --c2: rgba(22, 78, 99, 0.98); }
 .shore__wave--back  .shore__crest { animation: shore-drift 21s linear infinite; }
 .shore__wave--mid   .shore__crest { animation: shore-drift 15s linear infinite reverse; }
 .shore__wave--front .shore__crest { animation: shore-drift 9s  linear infinite; }
@@ -320,6 +342,30 @@ html {
   background: linear-gradient(180deg, #c2410c, #9a3412);
   clip-path: polygon(12% 0, 100% 0, 100% 100%, 12% 100%, 0 50%);
   padding-left: 40px;
+  justify-content: flex-end;   /* arrow points left → text hugs the flat right edge */
+  text-align: right;
+}
+/* Cluster the distance pill with the text on the right instead of floating it
+   left, so the whole label reads toward the right (away from the left point). */
+.sign--bottom .sign__dist {
+  margin-left: 0;
+}
+/* On narrow phones the sign shrinks (min(320px, 88%)) until the distance pill
+   collides with the arrow's clip-path and gets clipped — let it wrap onto its
+   own line below the place name instead of dropping the info. */
+@media (max-width: 480px) {
+  .sign {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 60px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    row-gap: 4px;
+    align-content: center;
+  }
+  .sign__dist {
+    margin-left: 0;   /* drop the push-right so it sits at the start of line 2 */
+  }
 }
 
 /* Reveal: spin each sign in, the bottom one slightly after the top. */
@@ -353,12 +399,28 @@ html {
   inset: 0;
   z-index: -1;
   border-radius: 1rem;      /* match the card's rounded-2xl */
-  background: #fff;
+  background-color: #e2e8f0;      /* soft tint while the photo loads */
+  background-size: cover;
+  background-position: center;
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+  /* Blur the peeking prints so they read as out-of-focus photos behind the
+     sharp top card; scale up a touch so the blur's soft edge stays hidden
+     under the card instead of fading to transparent at the rim. Depth cue:
+     the deeper the print, the more blurred (see per-layer filters below). */
 }
-.photo-stack::before { transform: rotate(-5deg) translate(-9px, 6px); }
-.photo-stack::after  { transform: rotate(4deg)  translate(9px, 9px); }
+/* Per-stack images come from --print-a/--print-b (set inline); fall back to
+   these seeds if a stack doesn't override them. */
+.photo-stack::before {   /* deepest print → blurriest */
+  background-image: var(--print-a, url("https://picsum.photos/seed/sd-print1/500/380"));
+  transform: rotate(var(--rot-a, -2deg)) translate(-4px, 3px) scale(1.02);
+  filter: blur(2.5px);
+}
+.photo-stack::after {    /* middle print → lighter blur */
+  background-image: var(--print-b, url("https://picsum.photos/seed/sd-print2/500/380"));
+  transform: rotate(var(--rot-b, 2deg)) translate(4px, 4px) scale(1.02);
+  filter: blur(1px);
+}
 
 /* ---- Scroll reveal (fade + translate up) ---- */
 /* Any .reveal element starts lowered & transparent, then eases up into place
@@ -476,4 +538,122 @@ html {
     transform: none;
     transition: none;
   }
+}
+
+/* ---- Accordion (Accommodation / Amenities inside the Property modal) ---- */
+/* Click the header to expand its panel. The panel animates its height via the
+   grid 0fr → 1fr trick (smooth, no JS height measuring); the chevron flips. */
+.acc__head {
+  cursor: pointer;
+}
+.acc__chev {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.acc.is-open .acc__chev {
+  transform: rotate(180deg);
+}
+.acc__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.acc.is-open .acc__panel {
+  grid-template-rows: 1fr;
+}
+.acc__panel > div {
+  overflow: hidden;          /* clip the contents while the row collapses */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .acc__panel,
+  .acc__chev {
+    transition: none;
+  }
+}
+
+/* ---- Full-screen "Explore" panel ---- */
+/* A plain-white full-viewport takeover (text left, photos right). Above every
+   other layer. Fades in; its .ef-item children slide up in a stagger. */
+.modal-full {
+  position: fixed;
+  inset: 0;
+  z-index: 70;                /* above shore (30), modals (60), lightbox (50) */
+  background: #fff;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.modal-full.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+/* GSAP-style entrance: each item rises + fades, staggered by its --ef index. */
+.ef-item {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--ef, 0) * 0.09s + 0.1s);
+}
+.modal-full.is-open .ef-item {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ef-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---- Sunset finish (top of the closing #visit "water" section) ---- */
+/* A white → sunset sky melts down into the blue section below; a big orange
+   sun (the Book Now orange) dips into the water at the horizon. */
+/* Sky: a fully OPAQUE white → sunset gradient. No transparency — fading to
+   transparent over the blue section is what muddied into grey beside the sun. */
+.sunset-sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #ffffff 20%,
+    #fff1de 40%,      /* white ↔ sunset */
+    #ffcf95 58%,
+    #ffa863 74%,
+    #ff8a45 100%      /* warm horizon — meets the sea, not a muddy fade */
+  );
+}
+/* Sun sits just above the horizon (the sea's top edge) and dips behind it. */
+.sunset-sun {
+  position: absolute;
+  left: 50%;
+  bottom: 24%;                       /* bottom edge meets the horizon */
+  transform: translate(-50%, 42%);   /* then dips down, submerged behind the sea */
+  width: min(64vw, 340px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #F48E26 0%, #F48E26 78%, rgba(244, 142, 38, 0) 100%);
+  filter: blur(5px);
+}
+/* Sea: an OPAQUE blue band whose top edge is the horizon; it covers the sun's
+   lower half and continues seamlessly into the blue section below. */
+/* Sea: warm at the horizon (the sun's glow on the water) fading down into the
+   blue. The orange fades to transparent so the blue below stays clean. */
+.sunset-sea {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30%;
+  background:
+    linear-gradient(
+      to bottom,
+      #ff8a45 0%,
+      rgba(255, 138, 69, 0.55) 22%,
+      rgba(255, 138, 69, 0) 62%
+    ),
+    #074151;                         /* matches the section's top blue */
 }
