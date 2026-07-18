@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>S&D</title>
+    <meta name="description" content="A clean static site, styled with Tailwind CSS v4." />
+    <link rel="canonical" href="https://__DOMAIN__/" />
+
+    <!-- Favicon / touch icon -->
+    <link rel="icon" type="image/png" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://__DOMAIN__/" />
+    <meta property="og:title" content="S&D" />
+    <meta property="og:description" content="A clean static site, styled with Tailwind CSS v4." />
+    <meta property="og:image" content="https://__DOMAIN__/logo.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="S&D" />
+    <meta name="twitter:description" content="A clean static site, styled with Tailwind CSS v4." />
+    <meta name="twitter:image" content="https://__DOMAIN__/logo.png" />
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/output.css" />
+  </head>
+  <body class="min-h-screen bg-neutral-950 text-neutral-100 antialiased">
+    <!-- Hero background video (fixed, so it only shows through the hero;
+         the content sections below sit on top of it). -->
+    <video class="slideshow" autoplay muted loop playsinline preload="auto" poster="images/slide-1.jpg" aria-hidden="true">
+      <source src="./hero.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Dark overlay keeps the logo & links legible over any image -->
+    <div class="fixed inset-0 z-10 bg-black/50" aria-hidden="true"></div>
+
+    <!-- Shore wave: three layers, each a drifting wavy crest on top of a body
+         that runs all the way to the bottom (no clipped fill). JS drives the
+         vertical position (chases the viewport bottom, with lag); CSS drives
+         the horizontal drift. Overlapping bodies get denser toward the base. -->
+    <div id="shore" class="shore" aria-hidden="true">
+      <div class="shore__wave shore__wave--back">
+        <div class="shore__crest">
+          <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,30 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 L1440,90 L0,90 Z" /></svg>
+          <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,30 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 L1440,90 L0,90 Z" /></svg>
+        </div>
+        <div class="shore__body"></div>
+      </div>
+      <div class="shore__wave shore__wave--mid">
+        <div class="shore__crest">
+          <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,30 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 L1440,90 L0,90 Z" /></svg>
+          <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,30 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 L1440,90 L0,90 Z" /></svg>
+        </div>
+        <div class="shore__body"></div>
+      </div>
+      <div class="shore__wave shore__wave--front">
+        <div class="shore__crest">
+          <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,30 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 L1440,90 L0,90 Z" /></svg>
+          <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,30 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 L1440,90 L0,90 Z" /></svg>
+        </div>
+        <div class="shore__body"></div>
+      </div>
+      <div class="shore__wave shore__wave--deep">
+        <div class="shore__crest">
+          <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,30 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 L1440,90 L0,90 Z" /></svg>
+          <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,30 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 L1440,90 L0,90 Z" /></svg>
+        </div>
+        <div class="shore__body"></div>
+      </div>
+    </div>
+
+    <main class="relative z-20 mx-auto flex min-h-screen max-w-2xl flex-col items-center justify-center gap-8 px-6 text-center">
+      <h1 class="drop-shadow-lg">
+        <img src="./logo.png" alt="S&D Beach House and Cottages" class="h-32 w-auto sm:h-44" />
+      </h1>
+
+      <nav class="flex flex-wrap items-center justify-center gap-3">
+        <a href="#explore" class="rounded-full border border-white/30 bg-white/10 px-3 py-0.5 text-sm font-medium text-white backdrop-blur transition hover:bg-white/20">
+          Discover
+        </a>
+        <a href="#location" class="rounded-full border border-white/30 bg-white/10 px-3 py-0.5 text-sm font-medium text-white backdrop-blur transition hover:bg-white/20">
+          Location
+        </a>
+        <a href="#gallery" class="rounded-full border border-white/30 bg-white/10 px-3 py-0.5 text-sm font-medium text-white backdrop-blur transition hover:bg-white/20">
+          Gallery
+        </a>
+      </nav>
+
+      <!-- Book Now button, with a contact line (Facebook · phone · email) below -->
+      <div class="flex flex-col items-center gap-5">
+        <div class="flex items-center gap-3">
+          <a href="https://www.facebook.com/p/SD-Beach-House-and-Cottages-100094234307971/" target="_blank" rel="noopener" class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#1877F2] shadow-lg transition hover:bg-white/90" aria-label="S&D Beach House and Cottages on Facebook">
+            <i class="ri-facebook-fill text-xl leading-none" aria-hidden="true"></i>
+          </a>
+          <span class="book-wrap">
+          <!-- Behind the pill (sibling, lower z-index): the darker mirrored palm -->
+          <span class="book-palm book-palm--alt" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="currentColor">
+              <path d="M31,62 C31.5,50 32,40 33,30 L36,30 C36,40 34,52 34,62 Z" />
+              <path d="M34,29 Q20,15 5,19 Q19,19 34,31 Z" />
+              <path d="M34,29 Q15,25 7,37 Q21,28 35,31 Z" />
+              <path d="M34,29 Q34,12 30,3 Q41,11 37,30 Z" />
+              <path d="M34,29 Q48,15 63,19 Q49,19 35,31 Z" />
+              <path d="M34,29 Q53,25 61,37 Q47,28 35,31 Z" />
+              <circle cx="31" cy="31" r="2.2" />
+              <circle cx="37" cy="32" r="2" />
+            </svg>
+          </span>
+          <a href="#" target="_blank" rel="noopener" class="book-btn inline-flex font-bold items-center rounded-full bg-[#F48E26] px-7 py-3 text-base text-white shadow-lg transition hover:bg-[#f7a24d]">
+            <span class="book-palm" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="currentColor">
+                <path d="M31,62 C31.5,50 32,40 33,30 L36,30 C36,40 34,52 34,62 Z" />
+                <path d="M34,29 Q20,15 5,19 Q19,19 34,31 Z" />
+                <path d="M34,29 Q15,25 7,37 Q21,28 35,31 Z" />
+                <path d="M34,29 Q34,12 30,3 Q41,11 37,30 Z" />
+                <path d="M34,29 Q48,15 63,19 Q49,19 35,31 Z" />
+                <path d="M34,29 Q53,25 61,37 Q47,28 35,31 Z" />
+                <circle cx="31" cy="31" r="2.2" />
+                <circle cx="37" cy="32" r="2" />
+              </svg>
+            </span>
+            Book Now
+          </a>
+          </span>
+        </div>
+
+        <!-- Contact line: phone · email (not clickable) -->
+        <div class="flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-white/85">
+          <span>+63 917 557 0003</span>
+          <span class="text-white/40">|</span>
+          <span>decenaalayon@gmail.com</span>
+        </div>
+      </div>
+
+      <!-- Explore more cue at the bottom of the hero -->
+      <a href="#explore" class="absolute bottom-8 flex flex-col items-center gap-2 text-sm font-medium text-white/80 transition hover:text-white">
+        Explore more
+        <svg class="h-5 w-5 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 5v14M19 12l-7 7-7-7" />
+        </svg>
+      </a>
+    </main>
+
+    <!-- White content section -->
+    <section id="explore" class="relative z-20 bg-white text-neutral-900">
+      <div class="bubbles" aria-hidden="true">
+        <span class="bubble" style="--size: 240px; --left: 12%; --dur: 30s; --delay: -6s;  --sway: 60px; --sway-dur: 9s;"><span></span></span>
+        <span class="bubble" style="--size: 160px; --left: 40%; --dur: 26s; --delay: -18s; --sway: 45px; --sway-dur: 7s;"><span></span></span>
+        <span class="bubble" style="--size: 300px; --left: 72%; --dur: 38s; --delay: -2s;  --sway: 80px; --sway-dur: 12s;"><span></span></span>
+        <span class="bubble" style="--size: 130px; --left: 88%; --dur: 24s; --delay: -12s; --sway: 40px; --sway-dur: 6s;"><span></span></span>
+      </div>
+      <div class="mx-auto max-w-5xl px-6 py-24">
+        <div class="reveal">
+          <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Discover S&D Beach</h2>
+          <p class="mt-4 text-lg text-neutral-600">
+            Nestled along the serene shores of San Fabian, <strong>S&D Beach House and Cottages</strong> offers a peaceful escape where <strong>fine sand</strong> meets the calming waves of the sea. Whether you're unwinding by the beach or creating lasting memories with loved ones, every visit is filled with the beauty and charm of the coast.
+          </p>
+        </div>
+
+        <div class="reveal mt-12 grid gap-8 sm:grid-cols-2" style="--reveal-delay: 0.1s">
+          <!-- Photo-stack: rotated "prints" behind; only the top card is clickable -->
+          <div class="photo-stack">
+          <a href="#" data-modal="modal-facilities" class="group relative block aspect-[4/3] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('images/facilities.jpg'), linear-gradient(135deg, #164e63, #0e7490);">
+            <span class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition group-hover:from-black/80"></span>
+            <span class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-6">
+              <span class="text-2xl font-semibold text-white drop-shadow">The Property</span>
+              <span class="inline-flex items-center gap-1 rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-neutral-900 shadow transition group-hover:bg-white">
+                Explore
+                <svg class="h-4 w-4 transition group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </span>
+            </span>
+          </a>
+          </div>
+
+          <!-- Photo-stack: rotated "prints" behind; only the top card is clickable -->
+          <div class="photo-stack">
+          <a href="#" data-modal="modal-activities" class="group relative block aspect-[4/3] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('images/activities.jpg'), linear-gradient(135deg, #713f12, #a16207);">
+            <span class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition group-hover:from-black/80"></span>
+            <span class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-6">
+              <span class="text-2xl font-semibold text-white drop-shadow">Activities</span>
+              <span class="inline-flex items-center gap-1 rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-neutral-900 shadow transition group-hover:bg-white">
+                Explore
+                <svg class="h-4 w-4 transition group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </span>
+            </span>
+          </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Book (left) + Find us (right), plain blocks on the section background. -->
+    <section class="section-fade relative z-20 bg-white text-neutral-900">
+      <div class="relative z-10 mx-auto grid max-w-6xl gap-12 px-6 py-24 lg:grid-cols-2">
+
+        <!-- Book your stay -->
+        <div id="book" class="reveal">
+          <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Book your stay</h2>
+          <div>
+            <p class="mt-4 text-neutral-600">
+              Reserve S&D Beach House and Cottages on your favorite platform.
+            </p>
+
+            <!-- Fun facts as a directional signpost: two signs spin around a
+                 central pole and fade in when scrolled into view. -->
+            <div class="mt-8">
+              <div class="signpost" aria-label="Nearby places and how far they are">
+                <div class="signpost__pole"></div>
+                <div class="sign sign--top">
+                  <span class="sign__emoji">⛪</span>
+                  <span class="sign__label">Manaoag Basilica</span>
+                  <span class="sign__dist">30 min drive</span>
+                </div>
+                <div class="sign sign--bottom">
+                  <span class="sign__emoji">🛒</span>
+                  <span class="sign__label">San Fabian Market</span>
+                  <span class="sign__dist">5 min</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Find us -->
+        <div id="location" class="reveal" style="--reveal-delay: 0.12s">
+          <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Find us</h2>
+          <div>
+            <p class="mt-4 text-neutral-600">
+              Drop by S&D Beach House and Cottages — here's where you'll find us.
+            </p>
+            <div class="mt-6 overflow-hidden rounded-xl border border-neutral-200 shadow-sm">
+              <iframe
+                title="S&D Beach House and Cottages on Google Maps"
+                src="https://www.google.com/maps?q=S%26D+BEACH+HOUSE+AND+COTTAGES&ll=16.1209699,120.3867486&z=17&output=embed"
+                class="h-[320px] w-full"
+                style="border: 0"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <a
+              href="https://www.google.com/maps/place/S%26D+BEACH+HOUSE+AND+COTTAGES/@16.121176,120.3843668,17z/data=!4m6!3m5!1s0x33916f00018f7d5d:0x932e7df3fb436750!8m2!3d16.1209699!4d120.3867486!16s%2Fg%2F11vrb10vwf"
+              target="_blank"
+              rel="noopener"
+              class="mt-4 inline-block text-sm font-medium text-neutral-900 underline underline-offset-4 hover:no-underline"
+            >
+              Open in Google Maps →
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Gallery. Thumbnails fade in on scroll; click one to open the lightbox.
+         Swap the data-img url / gradient fallbacks for real photos in images/. -->
+    <section id="gallery" class="relative z-20 bg-white text-neutral-900">
+      <div class="bubbles" aria-hidden="true">
+        <span class="bubble" style="--size: 250px; --left: 10%; --dur: 32s; --delay: -8s;  --sway: 65px; --sway-dur: 11s;"><span></span></span>
+        <span class="bubble" style="--size: 160px; --left: 46%; --dur: 26s; --delay: -20s; --sway: 45px; --sway-dur: 7s;"><span></span></span>
+        <span class="bubble" style="--size: 300px; --left: 80%; --dur: 40s; --delay: -3s;  --sway: 85px; --sway-dur: 13s;"><span></span></span>
+      </div>
+      <div class="mx-auto max-w-5xl px-6 py-24 text-center">
+        <div class="reveal">
+          <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Gallery</h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-neutral-600">
+            A look around S&D Beach House and Cottages. Tap any photo to enlarge.
+          </p>
+        </div>
+
+        <div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3">
+          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="images/gallery-1.jpg" style="background-image: url('images/gallery-1.jpg'), linear-gradient(135deg, #0f172a, #334155);"></div>
+          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="images/gallery-2.jpg" style="background-image: url('images/gallery-2.jpg'), linear-gradient(135deg, #431407, #7c2d12);"></div>
+          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="images/gallery-3.jpg" style="background-image: url('images/gallery-3.jpg'), linear-gradient(135deg, #052e16, #14532d);"></div>
+          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="images/gallery-4.jpg" style="background-image: url('images/gallery-4.jpg'), linear-gradient(135deg, #1e1b4b, #4c1d95);"></div>
+          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="images/gallery-5.jpg" style="background-image: url('images/gallery-5.jpg'), linear-gradient(135deg, #164e63, #0e7490);"></div>
+          <div class="gallery-item aspect-[4/3] rounded-2xl bg-cover bg-center shadow-sm" data-img="images/gallery-6.jpg" style="background-image: url('images/gallery-6.jpg'), linear-gradient(135deg, #713f12, #a16207);"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox overlay (populated on click) -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged photo">
+      <button type="button" id="lightbox-close" aria-label="Close" class="absolute right-6 top-6 text-3xl leading-none text-white/80 transition hover:text-white">&times;</button>
+      <div id="lightbox-img" class="lightbox-img"></div>
+    </div>
+
+    <!-- Facilities modal -->
+    <div id="modal-facilities" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-facilities-title">
+      <div class="modal-box relative max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white text-neutral-900 shadow-2xl">
+        <div class="h-44 bg-cover bg-center sm:h-52" style="background-image: url('images/facilities.jpg'), linear-gradient(135deg, #164e63, #0e7490);"></div>
+        <button type="button" data-close class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-2xl leading-none text-neutral-700 shadow transition hover:bg-white" aria-label="Close">&times;</button>
+        <div class="modal-content p-8">
+          <h3 id="modal-facilities-title" class="text-3xl font-semibold tracking-tight">The Property</h3>
+          <p class="mt-2 text-neutral-600">Everything you need for a comfortable, relaxing stay.</p>
+          <ul class="mt-6 grid grid-cols-2 gap-3 text-sm text-neutral-700">
+            <li class="rounded-lg bg-neutral-100 px-3 py-2">Beachfront cottages</li>
+            <li class="rounded-lg bg-neutral-100 px-3 py-2">Free parking</li>
+            <li class="rounded-lg bg-neutral-100 px-3 py-2">Clean restrooms</li>
+            <li class="rounded-lg bg-neutral-100 px-3 py-2">Open cottages &amp; tables</li>
+            <li class="rounded-lg bg-neutral-100 px-3 py-2">Videoke &amp; sound system</li>
+            <li class="rounded-lg bg-neutral-100 px-3 py-2">Grilling area</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activities modal -->
+    <div id="modal-activities" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-activities-title">
+      <div class="modal-box relative max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white text-neutral-900 shadow-2xl">
+        <div class="h-44 bg-cover bg-center sm:h-52" style="background-image: url('images/activities.jpg'), linear-gradient(135deg, #713f12, #a16207);"></div>
+        <button type="button" data-close class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-2xl leading-none text-neutral-700 shadow transition hover:bg-white" aria-label="Close">&times;</button>
+        <div class="modal-content p-8">
+          <h3 id="modal-activities-title" class="text-3xl font-semibold tracking-tight">Activities</h3>
+          <p class="mt-2 text-neutral-600">Make the most of the sun, sand, and sea.</p>
+          <ul class="mt-6 grid grid-cols-2 gap-3 text-sm text-neutral-700">
+            <li class="rounded-lg bg-neutral-100 px-3 py-2">Banana Boat Rides</li>
+            <li class="rounded-lg bg-neutral-100 px-3 py-2">Beach Swimming</li>
+            <li class="rounded-lg bg-neutral-100 px-3 py-2">Pool Swimming</li>
+            <li class="rounded-lg bg-neutral-100 px-3 py-2">Beach Volleyball</li>
+            <li class="rounded-lg bg-neutral-100 px-3 py-2">Shoreline Walks</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="relative z-20 border-t border-neutral-200 bg-white text-neutral-600">
+      <div class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row">
+        <p class="text-sm">&copy; 2026 S&D. All rights reserved.</p>
+        <nav class="flex gap-6 text-sm">
+          <a href="#" class="transition hover:text-neutral-900">About</a>
+          <a href="#" class="transition hover:text-neutral-900">Gallery</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      // Fade gallery items in as they scroll into view.
+      const items = document.querySelectorAll(".gallery-item");
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      items.forEach((item) => io.observe(item));
+
+      // Fade + translate-up any .reveal element as it scrolls into view.
+      // Keeps watching: when an element leaves BELOW the viewport it resets so
+      // it re-animates next time; when it leaves ABOVE (already read) it stays
+      // put. So only things still coming up from below re-fade in.
+      const revealIO = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            } else if (entry.boundingClientRect.top >= window.innerHeight) {
+              // Left below the viewport → reset for a fresh reveal.
+              entry.target.classList.remove("is-visible");
+            }
+            // Left above the viewport → leave it visible ("stuck").
+          });
+        },
+        { threshold: [0, 0.12] }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => revealIO.observe(el));
+
+      // Spin the signpost's signs in when it scrolls into view.
+      const signpost = document.querySelector(".signpost");
+      if (signpost) {
+        const signIO = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                signIO.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.4 }
+        );
+        signIO.observe(signpost);
+      }
+
+      // Lightbox: clicking a thumbnail opens it, rising upward into view.
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const closeBtn = document.getElementById("lightbox-close");
+
+      function openLightbox(bg) {
+        lightboxImg.style.backgroundImage = bg;
+        lightbox.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeLightbox() {
+        lightbox.classList.remove("is-open");
+        document.body.style.overflow = "";
+      }
+
+      items.forEach((item) => {
+        item.addEventListener("click", () => openLightbox(item.style.backgroundImage));
+      });
+      closeBtn.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      // Facilities / Activities modals: the clicked image tile expands
+      // (FLIP) to fill the big panel, then the data fades in.
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function openModal(modal, trigger) {
+        const box = modal.querySelector(".modal-box");
+        modal.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+        box.scrollTop = 0;
+
+        if (!trigger || reduceMotion) return;
+
+        // FLIP: measure the tile (first) and the panel's final spot (last),
+        // then start the panel scaled/positioned onto the tile and let it grow.
+        const first = trigger.getBoundingClientRect();
+        box.style.transition = "none";
+        box.style.transform = "";
+        const last = box.getBoundingClientRect();
+
+        const dx = first.left - last.left;
+        const dy = first.top - last.top;
+        const sx = first.width / last.width;
+        const sy = first.height / last.height;
+
+        box.style.transformOrigin = "top left";
+        box.style.transform = `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})`;
+        box.getBoundingClientRect(); // force reflow so the next change animates
+        box.style.transition = "transform 0.55s cubic-bezier(0.22, 1, 0.36, 1)";
+        box.style.transform = "translate(0, 0) scale(1)";
+
+        box.addEventListener("transitionend", function done(e) {
+          if (e.target !== box || e.propertyName !== "transform") return;
+          box.style.transition = "";
+          box.style.transform = "";
+          box.style.transformOrigin = "";
+          box.removeEventListener("transitionend", done);
+        });
+      }
+      function closeModals() {
+        document.querySelectorAll(".modal.is-open").forEach((m) => m.classList.remove("is-open"));
+        document.body.style.overflow = "";
+      }
+
+      document.querySelectorAll("[data-modal]").forEach((trigger) => {
+        trigger.addEventListener("click", (e) => {
+          e.preventDefault();
+          const modal = document.getElementById(trigger.dataset.modal);
+          if (modal) openModal(modal, trigger);
+        });
+      });
+      document.querySelectorAll(".modal").forEach((modal) => {
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal || e.target.closest("[data-close]")) closeModals();
+        });
+      });
+
+      // Esc closes lightbox and any open modal.
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeLightbox();
+          closeModals();
+        }
+      });
+
+      // ---- Shore wave tide ----
+      // The wave wants to peek at the BOTTOM of the viewport, but it chases
+      // that spot in PAGE coordinates with a lag. Scroll fast and the wave is
+      // left behind: on the way down the crest rides up and the water covers
+      // the screen, then it eases back down to the bottom; scroll up fast and
+      // it dips below the edge, then eases back up. It bobs slightly too.
+      (function () {
+        const shore = document.getElementById("shore");
+        if (!shore) return;
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        const EASE = reduce ? 1 : 0.06;    // higher = snappier, lower = laggier
+        let currentDocY = null; // wave crest position in page coordinates
+
+        function frame(t) {
+          const vh = window.innerHeight;
+          // Peek scales with viewport height (capped), so short phone screens
+          // don't get a proportionally taller wave creeping up the page.
+          const PEEK = Math.min(80, Math.round(vh * 0.1));
+
+          // Hero keeps its position; once you scroll past it the wave sinks
+          // lower and lower — exponentially (fast to start, easing off) and a
+          // bit gently — so it's calm and out of the way in the content.
+          const past = Math.max(0, window.scrollY - vh * 0.8);
+          const MAX_SINK = vh * 0.32;                        // how far it drops away
+          const sink = MAX_SINK * (1 - Math.exp(-past / (vh * 1.6)));
+
+          const rest = vh - PEEK + sink;                     // bottom-peek + section sink
+          const targetDocY = window.scrollY + rest;          // that spot, in page coords
+          if (currentDocY === null) currentDocY = targetDocY;
+          currentDocY += (targetDocY - currentDocY) * EASE;  // delayed chase
+
+          const screenY = currentDocY - window.scrollY;      // back to viewport coords
+          const bob = reduce ? 0 : Math.sin(t / 1400) * 4;   // slight up/down
+          shore.style.transform = `translateY(${screenY + bob}px)`;
+          requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      })();
+    </script>
+  </body>
+</html>

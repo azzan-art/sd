@@ -1,0 +1,479 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---- Hero background video ---- */
+/* Fixed, full-viewport, cover-fit — only visible through the hero since the
+   content sections scroll over it. */
+.slideshow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---- Floating blue bubbles (background decoration) ---- */
+/* A .bubbles layer is dropped INTO each section as its first child, so the
+   bubbles sit above that section's own background but behind its content
+   (the content wrapper gets `relative z-10`). Container-relative rise (top:
+   100% -> -30%) means the same markup works in the tall hero and in short
+   sections alike. Two clocks: the outer .bubble rises, the inner dot sways
+   left/right on its own timing so the drift never looks mechanical. */
+.bubbles {
+  position: absolute;
+  inset: 0;
+  z-index: -1;              /* above the section bg, below its content */
+  overflow: hidden;
+  pointer-events: none;
+  /* Fade the bubbles near the top & bottom edges so they dissolve into the
+     next section instead of being hard-clipped on the section seam. */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 110px,
+    #000 calc(100% - 110px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 110px,
+    #000 calc(100% - 110px),
+    transparent 100%
+  );
+}
+
+.bubble {
+  position: absolute;
+  top: 100%;                /* start at the bottom of the section */
+  left: var(--left);
+  width: var(--size);
+  height: var(--size);
+  margin-left: calc(var(--size) / -2);   /* center on --left */
+  opacity: 0;
+  animation: bubble-rise var(--dur) linear var(--delay, 0s) infinite;
+}
+
+.bubble > span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 32% 30%,
+    rgba(147, 197, 253, 0.9),
+    rgba(59, 130, 246, 0.55) 55%,
+    rgba(37, 99, 235, 0) 72%
+  );
+  filter: blur(34px);
+  animation: bubble-sway var(--sway-dur) ease-in-out infinite alternate;
+}
+
+@keyframes bubble-rise {
+  0%   { top: 100%;   opacity: 0; }
+  12%  { opacity: 0.55; }
+  88%  { opacity: 0.55; }
+  100% { top: -30%;   opacity: 0; }
+}
+
+@keyframes bubble-sway {
+  from { transform: translateX(calc(var(--sway) * -1)); }
+  to   { transform: translateX(var(--sway)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubbles { display: none; }
+}
+
+/* ---- Shore wave (whole-page tide) ---- */
+/* Fixed layer taller than the viewport: a wavy crest on top of a water fill
+   that extends well below it, so when JS drags the crest upward (a fast
+   scroll leaving the wave behind) the water can cover the whole screen.
+   JS drives translateY (chases the viewport bottom, with lag); the inner
+   .shore__waves drifts sideways forever. Two crest copies sit edge-to-edge
+   (200% wide) and slide by one full copy for a seamless horizontal loop. */
+.shore {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 200vh;            /* tall enough to blanket the screen on a surge */
+  z-index: 30;              /* above content, below modals/lightbox */
+  pointer-events: none;
+  overflow: hidden;         /* clip the 200%-wide drifting crests */
+  will-change: transform;
+}
+/* Each layer is its own full-height column: a wavy crest whose fill continues,
+   seamless, into a body that runs to the very bottom — nothing gets clipped.
+   Crest and body share one colour (--c); stacking the three translucent
+   layers makes the water denser toward the base. */
+.shore__wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+.shore__crest {
+  flex: 0 0 90px;
+  display: flex;
+  width: 200%;              /* two copies side by side for a seamless loop */
+}
+.shore__crest svg {
+  width: 50%;               /* each copy = one viewport width */
+  height: 100%;
+  display: block;
+}
+.shore__crest path { fill: var(--c); }
+/* Body starts at the crest colour and deepens toward the bottom (--c2). */
+.shore__body {
+  flex: 1 1 auto;
+  background: linear-gradient(to bottom, var(--c), var(--c2));
+}
+
+/* Three layers: staggered depth, colour and drift speed/direction. Each also
+   deepens downward (--c → --c2), and stacking piles the alpha at the base. */
+.shore__wave--back  { top: 0;    --c: rgba(56, 150, 246, 0.10); --c2: rgba(56, 150, 246, 0.95); }
+.shore__wave--mid   { top: 16px; --c: rgba(56, 150, 246, 0.13); --c2: rgba(37, 99, 235, 0.95); }
+.shore__wave--front { top: 30px; --c: rgba(37, 99, 235, 0.16); --c2: rgba(29, 78, 216, 0.96); }
+.shore__wave--deep  { top: 44px; --c: rgba(37, 99, 235, 0.18); --c2: rgba(29, 78, 216, 0.98); }
+.shore__wave--back  .shore__crest { animation: shore-drift 21s linear infinite; }
+.shore__wave--mid   .shore__crest { animation: shore-drift 15s linear infinite reverse; }
+.shore__wave--front .shore__crest { animation: shore-drift 9s  linear infinite; }
+.shore__wave--deep  .shore__crest { animation: shore-drift 12s linear infinite reverse; }
+
+/* On narrow phones the crest is stretched horizontally, which makes it look
+   much taller — shrink it (and the layer offsets) so it doesn't creep up. */
+@media (max-width: 640px) {
+  .shore__crest { flex-basis: 54px; }
+  .shore__wave--mid { top: 11px; }
+  .shore__wave--front { top: 20px; }
+  .shore__wave--deep { top: 29px; }
+}
+
+@keyframes shore-drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shore__crest { animation: none; }
+}
+
+/* ---- Book now button: yellow palm-tree silhouette poking out ---- */
+/* A same-yellow palm sits just behind the pill so its crown sticks out the
+   top; the trunk is hidden behind the button. */
+.book-wrap {
+  position: relative;
+  display: inline-flex;     /* wraps the pill tightly → alt palm keeps its spot */
+}
+.book-btn {
+  position: relative;
+  z-index: 1;               /* pill paints ABOVE the alt palm sibling */
+  isolation: isolate;       /* keep the main palm (-1) behind the button, above page */
+}
+.book-palm {
+  position: absolute;
+  top: -32px;
+  right: -20px;
+  width: 56px;
+  height: 56px;
+  z-index: -1;              /* behind the button */
+  color: #F48E26;          /* logo orange (matches the button) */
+  transform: rotate(14deg);
+  transition: transform 0.25s ease;
+}
+.book-palm svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;        /* let the fattened fronds spill past the viewBox */
+}
+/* Same-colour stroke fattens the trunk & fronds → a bolder tree, same size. */
+.book-palm svg path,
+.book-palm svg circle {
+  stroke: currentColor;
+  stroke-width: 3.2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.book-btn:hover .book-palm:not(.book-palm--alt) {
+  transform: rotate(14deg) translateY(-3px);
+}
+/* Second palm: smaller, darker off-yellow, mirrored. Now a sibling of the
+   button (inside .book-wrap) at z-index 0, so the pill paints over it and it
+   reads as being BEHIND the button — while keeping the same spot. */
+.book-palm--alt {
+  top: auto;
+  bottom: 15px;
+  right: -25px;
+  width: 40px;
+  height: 40px;
+  z-index: 0;              /* below the pill (z-index 1), above the page */
+  color: #b45309;          /* darker amber, off the yellow-400 */
+  transform: scaleX(-1) rotate(-40deg);   /* inverted */
+}
+.book-wrap:hover .book-palm--alt {
+  transform: scaleX(-1) rotate(-35deg) translateY(3px);
+}
+
+/* ---- Section with feathered edges ---- */
+/* A tinted layer over a white base, masked so it fades to transparent at the
+   top and bottom — the tint blends into the neighbouring white sections
+   instead of stopping on a hard line. Content sits above it (z-10). */
+.section-fade::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: #f4f6f8;      /* soft tint, a touch deeper than the page white */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 120px,
+    #000 calc(100% - 120px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 120px,
+    #000 calc(100% - 120px),
+    transparent 100%
+  );
+}
+
+/* ---- Directional signpost ---- */
+/* A central pole with an arrow sign above and below. On scroll-in each sign
+   spins around the pole (rotateY) while fading in — like a rotating road sign
+   settling to face you. The pole sits at the horizontal centre; each sign is
+   centred on it (translateX(-50%)) so rotateY turns it around the pole. */
+.signpost {
+  position: relative;
+  margin-top: 1.5rem;
+  height: 240px;
+  perspective: 900px;
+  overflow: visible;        /* let the long pole run past the signpost box */
+}
+/* Long pole: extends far below the signs and feathers out at both ends with
+   its own mask, so it never hard-stops (echoing the section's edge fade). */
+.signpost__pole {
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  bottom: -90px;            /* just a short tail below the lower sign */
+  width: 14px;
+  margin-left: -7px;
+  border-radius: 7px;
+  background: linear-gradient(to right, #6b3410, #a1591f 45%, #6b3410);
+  /* Solid through both signs (~to 185px), then feather out the tail. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 185px, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0, #000 185px, transparent 100%);
+}
+.sign {
+  position: absolute;
+  left: 50%;
+  width: min(320px, 88%);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 24px;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 7px;
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.2);
+  transform-origin: center;
+  opacity: 0;
+  transform: translateX(-50%) rotateY(-540deg);
+}
+.sign__emoji { font-size: 1.4rem; line-height: 1; }
+.sign__label { font-size: 0.95rem; white-space: nowrap; }
+.sign__dist {
+  margin-left: auto;
+  font-size: 0.78rem;
+  background: rgba(255, 255, 255, 0.22);
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+/* Top sign points right; bottom sign points left. */
+.sign--top {
+  top: 22px;
+  background: linear-gradient(180deg, #0e7490, #0b5468);
+  clip-path: polygon(0 0, 88% 0, 100% 50%, 88% 100%, 0 100%);
+  padding-right: 40px;
+}
+.sign--bottom {
+  top: 112px;
+  background: linear-gradient(180deg, #c2410c, #9a3412);
+  clip-path: polygon(12% 0, 100% 0, 100% 100%, 12% 100%, 0 50%);
+  padding-left: 40px;
+}
+
+/* Reveal: spin each sign in, the bottom one slightly after the top. */
+.signpost.is-visible .sign--top {
+  animation: sign-spin 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.signpost.is-visible .sign--bottom {
+  animation: sign-spin 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.28s forwards;
+}
+@keyframes sign-spin {
+  from { opacity: 0; transform: translateX(-50%) rotateY(-540deg); }
+  55%  { opacity: 1; }
+  to   { opacity: 1; transform: translateX(-50%) rotateY(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sign { opacity: 1; transform: translateX(-50%); animation: none; }
+}
+
+/* ---- Photo-stack tile ---- */
+/* The clickable card stays straight on top; two blank "prints" sit behind it,
+   rotated & nudged so their corners peek out like a pile of photos. */
+.photo-stack {
+  position: relative;
+  z-index: 0;               /* contain the -1 layers above the section bg */
+}
+.photo-stack::before,
+.photo-stack::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 1rem;      /* match the card's rounded-2xl */
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+.photo-stack::before { transform: rotate(-5deg) translate(-9px, 6px); }
+.photo-stack::after  { transform: rotate(4deg)  translate(9px, 9px); }
+
+/* ---- Scroll reveal (fade + translate up) ---- */
+/* Any .reveal element starts lowered & transparent, then eases up into place
+   when it scrolls into view (JS toggles .is-visible). Stagger grouped items
+   with an inline --reveal-delay. */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.95s ease, transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0s);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---- Gallery ---- */
+/* Thumbnails fade + rise into view when scrolled to (toggled by JS). */
+.gallery-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  cursor: pointer;
+}
+.gallery-item.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.gallery-item:hover {
+  transform: scale(1.02);
+}
+
+/* Lightbox: dim the page, then the image rises upward into place. */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+.lightbox-img {
+  width: min(900px, 90vw);
+  height: min(70vh, 600px);
+  background-size: cover;
+  background-position: center;
+  border-radius: 1rem;
+  transform: translateY(80px);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.lightbox.is-open .lightbox-img {
+  transform: translateY(0); /* rises upward */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .lightbox-img {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---- Modal (Facilities / Activities pop-up) ---- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+/* The box itself is moved by JS (FLIP: it expands from the clicked image).
+   Only the inner content fades/rises in, once the panel has grown. */
+.modal-content {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.4s ease 0.18s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.18s;
+}
+.modal.is-open .modal-content {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-content {
+    transform: none;
+    transition: none;
+  }
+}
