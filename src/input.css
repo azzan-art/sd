@@ -498,27 +498,71 @@ html {
   .sea-waves svg { animation: none; }
 }
 
-/* ---- Gallery ---- */
-/* Thumbnails fade + rise into view when scrolled to (toggled by JS). */
-.gallery-item {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+/* ---- Gallery preview: drifting columns ---- */
+/* Three columns that scroll vertically forever in alternating directions
+   (data-dir up/down); the container clips them and its mask fades the top &
+   bottom edges. The whole block is a button that opens the full gallery. */
+.gallery-marquee {
+  position: relative;
+  display: flex;
+  align-items: flex-start;   /* let columns overflow past the fixed height */
+  gap: 1rem;
+  width: 100%;
+  height: 30rem;
+  overflow: hidden;
   cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%);
 }
-.gallery-item.is-visible {
-  opacity: 1;
-  transform: none;
+.gallery-col {
+  flex: 1 1 0;
+  min-width: 0;
+  will-change: transform;
+  animation: gallery-scroll 36s linear infinite;
 }
-.gallery-item:hover {
-  transform: scale(1.02);
+/* Duplicated content means -50% lands exactly one set later → seamless loop.
+   "down" columns just run the same keyframes in reverse. */
+.gallery-col[data-dir="down"] { animation-direction: reverse; }
+.gallery-col:nth-child(2) { animation-duration: 30s; }
+.gallery-col:nth-child(3) { animation-duration: 40s; }
+.gallery-marquee:hover .gallery-col { animation-play-state: paused; }
+@keyframes gallery-scroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+.gallery-thumb {
+  aspect-ratio: 4 / 3;
+  margin-bottom: 1rem;      /* on every tile (incl. last) so -50% stays exact */
+  border-radius: 0.9rem;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 12px 24px -14px rgba(15, 23, 42, 0.45);
+}
+
+/* ---- Gallery modal: photo grid ---- */
+.gallery-photo {
+  aspect-ratio: 4 / 3;
+  border-radius: 0.75rem;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+  transition: transform 0.25s ease;
+}
+.gallery-photo:hover { transform: scale(1.03); }
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-col { animation: none; }
 }
 
 /* Lightbox: dim the page, then the image rises upward into place. */
 .lightbox {
   position: fixed;
   inset: 0;
-  z-index: 50;
+  z-index: 70;   /* above the gallery modal (z-60) so zoom sits on top */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -546,11 +590,6 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gallery-item {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
   .lightbox-img {
     transform: none;
     transition: none;
