@@ -6,7 +6,7 @@
 
     <title>S&D</title>
     <meta name="description" content="A clean static site, styled with Tailwind CSS v4." />
-    <link rel="canonical" href="https://__DOMAIN__/" />
+    <link rel="canonical" href="https://azzan-art.github.io/sd/" />
 
     <!-- Favicon / touch icon -->
     <link rel="icon" type="image/png" href="./logo.png" />
@@ -15,16 +15,16 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://__DOMAIN__/" />
+    <meta property="og:url" content="https://azzan-art.github.io/sd/" />
     <meta property="og:title" content="S&D" />
     <meta property="og:description" content="A clean static site, styled with Tailwind CSS v4." />
-    <meta property="og:image" content="https://__DOMAIN__/logo.png" />
+    <meta property="og:image" content="https://azzan-art.github.io/sd/logo.png" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="S&D" />
     <meta name="twitter:description" content="A clean static site, styled with Tailwind CSS v4." />
-    <meta name="twitter:image" content="https://__DOMAIN__/logo.png" />
+    <meta name="twitter:image" content="https://azzan-art.github.io/sd/logo.png" />
 
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 
@@ -89,17 +89,7 @@
         <span class="text-xl leading-none text-white/90 sm:text-2xl" style="font-family: 'Brittany Signature', cursive">Beach Resort</span>
       </h1>
 
-      <nav class="flex flex-wrap items-center justify-center gap-3">
-        <a href="#explore" class="rounded-full border border-white/30 bg-white/10 px-3 py-0.5 text-sm font-medium text-white backdrop-blur transition hover:bg-white/20">
-          Discover
-        </a>
-        <a href="#location" class="rounded-full border border-white/30 bg-white/10 px-3 py-0.5 text-sm font-medium text-white backdrop-blur transition hover:bg-white/20">
-          Location
-        </a>
-        <a href="#gallery" class="rounded-full border border-white/30 bg-white/10 px-3 py-0.5 text-sm font-medium text-white backdrop-blur transition hover:bg-white/20">
-          Gallery
-        </a>
-      </nav>
+
 
       <!-- Book Now button, with a contact line (Facebook · phone · email) below -->
       <div class="flex flex-col items-center gap-5">
@@ -165,101 +155,186 @@
         <span class="bubble" style="--size: 130px; --left: 88%; --dur: 24s; --delay: -12s; --sway: 40px; --sway-dur: 6s;"><span></span></span>
       </div>
       <div class="mx-auto max-w-5xl px-6 py-24">
-        <div class="reveal">
+        <div class="reveal text-center">
           <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">
-            <span class="mb-1 block text-3xl font-normal leading-none text-[#0e7490b3] sm:text-4xl" style="font-family: 'Alex Brush', cursive">Discover</span>
-            S&amp;D Beach House & Cottages
+            <span class="mb-3 block text-2xl font-normal leading-none text-[#0e7490b3] sm:text-3xl" style="font-family: 'Brittany Signature', cursive">Discover S&D Beach House</span>
+            Your Coastal Sanctuary by the <span class="water-text">Sea</span>
           </h2>
-          <p class="mt-4 text-lg text-neutral-600">
-            Nestled along the serene shores of San Fabian, <strong>S&D Beach House and Cottages</strong> offers a peaceful escape where <strong>fine sand</strong> meets the calming waves of the sea. Whether you're unwinding by the beach or creating lasting memories with loved ones, every visit is filled with the beauty and charm of the coast.
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-neutral-600">
+            Nestled along the serene shores of San Fabian, <strong>S&D Beach House and Cottages</strong> offers a peaceful escape where <strong>fine sand</strong> meets the calming waves of the sea.
           </p>
         </div>
 
-        <div class="reveal mt-12 grid gap-8 sm:grid-cols-2" style="--reveal-delay: 0.1s">
-          <!-- Photo-stack: rotated "prints" behind; only the top card is clickable -->
-          <div class="photo-stack">
-          <a href="#" data-explore class="group relative block aspect-[4/3] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('https://picsum.photos/seed/sd-property/800/600'), linear-gradient(135deg, #164e63, #0e7490);">
-            <span class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition group-hover:from-black/80"></span>
-            <span class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-6">
-              <span class="text-2xl font-semibold text-white drop-shadow">The Property</span>
-              <span class="inline-flex items-center gap-1 rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-neutral-900 shadow transition group-hover:bg-white">
-                View
-                <svg class="h-4 w-4 transition group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-              </span>
-            </span>
-          </a>
+        <!-- The Property: encapsulated in a warm orange gradient panel -->
+        <div class="reveal mt-14 rounded-3xl border border-white/40 bg-gradient-to-br from-[#f7a24d] to-[#e07d18] p-6 shadow-lg sm:p-10">
+          <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
+          <div>
+            <h3 class="text-2xl font-semibold tracking-tight text-white sm:text-3xl">The Property</h3>
+            <p class="mt-3 text-white/90">Everything set for a slow, comfortable stay by the water.</p>
+            <ul class="mt-6 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+              <li class="flex items-center gap-3">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20 text-white"><i class="ri-snowy-line text-lg leading-none" aria-hidden="true"></i></span>
+                <span class="text-sm font-medium text-white/95">Fully air-conditioned</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20 text-white"><i class="ri-wifi-fill text-lg leading-none" aria-hidden="true"></i></span>
+                <span class="text-sm font-medium text-white/95">Free WiFi</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20 text-white"><i class="ri-drop-fill text-lg leading-none" aria-hidden="true"></i></span>
+                <span class="text-sm font-medium text-white/95">Swimming pool</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20 text-white"><i class="ri-parking-box-fill text-lg leading-none" aria-hidden="true"></i></span>
+                <span class="text-sm font-medium text-white/95">Free parking</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20 text-white"><i class="ri-restaurant-fill text-lg leading-none" aria-hidden="true"></i></span>
+                <span class="text-sm font-medium text-white/95">Free-to-use kitchen</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20 text-white"><i class="ri-fire-fill text-lg leading-none" aria-hidden="true"></i></span>
+                <span class="text-sm font-medium text-white/95">Grill area</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20 text-white"><i class="ri-home-4-fill text-lg leading-none" aria-hidden="true"></i></span>
+                <span class="text-sm font-medium text-white/95">Cottages</span>
+              </li>
+            </ul>
           </div>
-
-          <!-- Photo-stack: rotated "prints" behind; only the top card is clickable -->
-          <div class="photo-stack" style="--print-a: url('https://picsum.photos/seed/sd-print3/500/380'); --print-b: url('https://picsum.photos/seed/sd-print4/500/380'); --rot-a: 3deg; --rot-b: -2.5deg;">
-          <a href="#" data-modal="modal-activities" class="group relative block aspect-[4/3] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('https://picsum.photos/seed/sd-activities/800/600'), linear-gradient(135deg, #713f12, #a16207);">
-            <span class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition group-hover:from-black/80"></span>
-            <span class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-6">
-              <span class="text-2xl font-semibold text-white drop-shadow">Activities</span>
-              <span class="inline-flex items-center gap-1 rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-neutral-900 shadow transition group-hover:bg-white">
-                View
-                <svg class="h-4 w-4 transition group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          <div class="photo-stack">
+            <span class="stack-print" style="--img: url('https://picsum.photos/seed/sd-print1/500/380'); --r: -5deg; --x: -40px; --y: -20px;" aria-hidden="true"></span>
+            <span class="stack-print" style="--img: url('https://picsum.photos/seed/sd-print2/500/380'); --r: 4deg; --x: 40px; --y: -18px;" aria-hidden="true"></span>
+            <span class="stack-print" style="--img: url('https://picsum.photos/seed/sd-print3/500/380'); --r: -5deg; --x: -18px; --y: 20px;" aria-hidden="true"></span>
+            <span class="stack-print" style="--img: url('https://picsum.photos/seed/sd-print4/500/380'); --r: 5deg; --x: 24px; --y: 14px;" aria-hidden="true"></span>
+            <a href="#" data-explore class="group relative block aspect-[4/3] overflow-hidden rounded-2xl border-4 border-white bg-cover bg-center shadow-lg transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('https://picsum.photos/seed/sd-property/800/600'), linear-gradient(135deg, #164e63, #0e7490);">
+              <span class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition group-hover:from-black/80"></span>
+              <span class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-6">
+                <span class="inline-flex items-center gap-1 rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-neutral-900 shadow transition group-hover:bg-white">
+                  View
+                  <svg class="h-4 w-4 transition group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </span>
               </span>
-            </span>
-          </a>
+            </a>
+          </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Book (left) + Find us (right), plain blocks on the section background. -->
+    <!-- Activities: a short intro + four tall photos (each opens the Activities modal) -->
+    <section id="activities" class="relative z-20 bg-white text-neutral-900">
+      <div class="mx-auto max-w-6xl px-6 pb-24">
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <h3 class="text-2xl font-semibold tracking-tight sm:text-3xl">Activities</h3>
+          <p class="mt-4 text-neutral-600">
+            Make the most of the sun, sand, and sea — banana boat rides, beach and pool swimming, volleyball, and long walks along the shore.
+          </p>
+        </div>
+        <div class="reveal mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4" style="--reveal-delay: 0.1s">
+          <a href="#" data-modal="modal-activities" class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('https://picsum.photos/seed/sd-act-1/600/900'), linear-gradient(135deg, #164e63, #0e7490);">
+            <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition group-hover:from-black/70"></span>
+            <span class="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 p-4 text-center">
+              <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
+                <i class="ri-ship-2-fill text-xl leading-none" aria-hidden="true"></i>
+              </span>
+              <span class="text-sm font-semibold text-white drop-shadow">Banana Boat</span>
+            </span>
+          </a>
+          <a href="#" data-modal="modal-activities" class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('https://picsum.photos/seed/sd-act-2/600/900'), linear-gradient(135deg, #713f12, #a16207);">
+            <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition group-hover:from-black/70"></span>
+            <span class="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 p-4 text-center">
+              <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
+                <i class="ri-drop-fill text-xl leading-none" aria-hidden="true"></i>
+              </span>
+              <span class="text-sm font-semibold text-white drop-shadow">Swimming</span>
+            </span>
+          </a>
+          <a href="#" data-modal="modal-activities" class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('https://picsum.photos/seed/sd-act-3/600/900'), linear-gradient(135deg, #052e16, #14532d);">
+            <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition group-hover:from-black/70"></span>
+            <span class="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 p-4 text-center">
+              <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
+                <i class="ri-fire-fill text-xl leading-none" aria-hidden="true"></i>
+              </span>
+              <span class="text-sm font-semibold text-white drop-shadow">Grilling</span>
+            </span>
+          </a>
+          <a href="#" data-modal="modal-activities" class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('https://picsum.photos/seed/sd-act-4/600/900'), linear-gradient(135deg, #1e1b4b, #4c1d95);">
+            <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition group-hover:from-black/70"></span>
+            <span class="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 p-4 text-center">
+              <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
+                <i class="ri-mic-fill text-xl leading-none" aria-hidden="true"></i>
+              </span>
+              <span class="text-sm font-semibold text-white drop-shadow">Videoke</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Where guests go + Find S&D: side by side on large screens, stacked below -->
     <section class="section-fade relative z-20 bg-white text-neutral-900">
-      <div class="relative z-10 mx-auto grid max-w-6xl gap-12 px-6 py-24 lg:grid-cols-2">
+      <div class="mx-auto max-w-6xl px-6 py-24">
+        <div class="relative z-10 mb-16 text-center">
+          <span class="block text-3xl font-normal leading-none text-[#0e7490b3] sm:text-4xl" style="font-family: 'Alex Brush', cursive">Come Visit</span>
+        </div>
+        <div class="grid items-start gap-16 lg:grid-cols-2 lg:gap-12">
 
-        <!-- What's nearby (the signpost of local landmarks & distances) -->
-        <div id="nearby" class="reveal">
-          <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Where Guests Go</h2>
-          <div>
-            <p class="mt-4 text-neutral-600">
-              The spots our guests head to most — each just a short trip from your cottage.
-            </p>
-
-            <!-- Fun facts as a directional signpost: two signs spin around a
-                 central pole and fade in when scrolled into view. -->
-            <div class="mt-8">
-              <div class="signpost" aria-label="Nearby places and how far they are">
-                <div class="signpost__pole"></div>
-                <div class="sign sign--top">
-                  <span class="sign__emoji">⛪</span>
-                  <span class="sign__label">Manaoag Basilica</span>
-                  <span class="sign__dist">30 min drive</span>
-                </div>
-                <div class="sign sign--bottom">
-                  <span class="sign__emoji">🛒</span>
-                  <span class="sign__label">San Fabian Market</span>
-                  <span class="sign__dist">5 min</span>
-                </div>
+        <!-- Where guests go: nearby landmarks shown as a directional signpost -->
+        <div id="nearby" class="reveal relative z-10 text-center">
+          <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Where Guests Go</h2>
+          <p class="mx-auto mt-4 max-w-xl text-neutral-600">
+            The spots our guests head to most — each just a short trip from your cottage.
+          </p>
+          <!-- Fun facts as a directional signpost: two signs spin around a
+               central pole and fade in when scrolled into view. -->
+          <div class="mt-8">
+            <div class="signpost" aria-label="Nearby places and how far they are">
+              <div class="signpost__pole"></div>
+              <div class="sign sign--top">
+                <span class="sign__emoji">⛪</span>
+                <span class="sign__label">Manaoag Basilica</span>
+                <span class="sign__dist">30 min drive</span>
+              </div>
+              <div class="sign sign--bottom">
+                <span class="sign__emoji">🛒</span>
+                <span class="sign__label">San Fabian Market</span>
+                <span class="sign__dist">5 min</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Find us -->
-        <div id="location" class="reveal" style="--reveal-delay: 0.12s">
-          <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Find Us</h2>
-          <div>
-            <p class="mt-4 text-neutral-600">
-              Drop by S&D Beach House and Cottages — here's where you'll find us.
+        <!-- Location: where S&D is — heading styled like the Discover section -->
+        <div id="location" class="reveal relative z-10" style="--reveal-delay: 0.1s">
+          <div class="text-center">
+            <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">
+              Find S&amp;D
+            </h2>
+            <p class="mx-auto mt-4 max-w-2xl text-lg text-neutral-600">
+              S&amp;D Beach House and Cottages sits right on the shore in San Fabian, Pangasinan — come find us by the sea.
             </p>
-            <div class="mt-6 overflow-hidden rounded-xl border border-neutral-200 shadow-sm">
-              <iframe
-                title="S&D Beach House and Cottages on Google Maps"
-                src="https://www.google.com/maps?q=S%26D+BEACH+HOUSE+AND+COTTAGES&ll=16.1209699,120.3867486&z=17&output=embed"
-                class="h-[320px] w-full"
-                style="border: 0"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                allowfullscreen
-              ></iframe>
-            </div>
+          </div>
+          <div class="mt-10 overflow-hidden rounded-2xl border border-neutral-200 shadow-sm">
+            <iframe
+              title="S&D Beach House and Cottages on Google Maps"
+              src="https://www.google.com/maps?q=S%26D+BEACH+HOUSE+AND+COTTAGES&ll=16.1209699,120.3867486&z=17&output=embed"
+              class="h-[380px] w-full sm:h-[440px]"
+              style="border: 0"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="mt-6 flex justify-center">
+            <a href="https://www.google.com/maps/place/S%26D+BEACH+HOUSE+AND+COTTAGES/@16.121176,120.3843668,17z/data=!4m6!3m5!1s0x33916f00018f7d5d:0x932e7df3fb436750!8m2!3d16.1209699!4d120.3867486!16s%2Fg%2F11vrb10vwf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-[#0e7490] px-6 py-3 text-sm font-semibold text-white shadow transition hover:bg-[#0b5f78]">
+              <i class="ri-map-pin-fill text-lg leading-none" aria-hidden="true"></i>
+              Open in Google Maps
+            </a>
           </div>
         </div>
 
+        </div>
       </div>
     </section>
 
@@ -271,7 +346,7 @@
         <span class="bubble" style="--size: 160px; --left: 46%; --dur: 26s; --delay: -20s; --sway: 45px; --sway-dur: 7s;"><span></span></span>
         <span class="bubble" style="--size: 300px; --left: 80%; --dur: 40s; --delay: -3s;  --sway: 85px; --sway-dur: 13s;"><span></span></span>
       </div>
-      <div class="mx-auto max-w-5xl px-6 py-16 text-center">
+      <div class="mx-auto max-w-5xl px-6 py-8 text-center">
         <div class="reveal">
           <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Gallery</h2>
           <p class="mx-auto mt-4 max-w-2xl text-lg text-neutral-600">
@@ -385,7 +460,7 @@
             <li class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-[#0e7490]"></span>Kitchen with utensils — free to use</li>
           </ul>
           <div class="ef-item mt-2 flex flex-wrap items-center gap-4" style="--ef: 4">
-            <a href="https://www.facebook.com/p/SD-Beach-House-and-Cottages-100094234307971/" target="_blank" rel="noopener" class="inline-flex items-center rounded-full bg-[#F48E26] px-7 py-3 text-base font-bold text-white shadow-lg transition hover:bg-[#f7a24d]">Book Now</a>
+            <a href="https://www.facebook.com/p/SD-Beach-House-and-Cottages-100094234307971/" target="_blank" rel="noopener" class="inline-flex items-center rounded-full bg-[#F48E26] px-7 py-3 text-base font-bold text-white shadow-lg transition hover:bg-[#f7a24d]">Book Via Facebook</a>
             <a href="#gallery" data-close class="text-sm font-medium text-neutral-900 underline underline-offset-4 hover:no-underline">See the gallery →</a>
           </div>
         </div>
@@ -401,7 +476,7 @@
     </div>
 
     <!-- Closing call-to-action: a nudge, the Google rating, and Book Now. -->
-    <section id="visit" class="relative z-20 overflow-hidden bg-gradient-to-b from-[#0e7490] to-[#0b3a63] text-white">
+    <section id="visit" class="relative z-20 overflow-hidden text-white">
       <!-- Sunset: white→sunset sky up top, with the big orange sun cut flat at the
            horizon (the wrapper's overflow-hidden bottom edge = the waterline). -->
       <div class="pointer-events-none relative h-96 overflow-hidden sm:h-[28rem]" aria-hidden="true">
@@ -409,7 +484,7 @@
         <div class="sunset-sun"></div>
         <div class="sunset-sea"></div>
       </div>
-      <div class="relative mx-auto max-w-4xl px-6 pb-24 pt-8 text-center">
+      <div class="relative mx-auto max-w-4xl px-6 pb-24 pt-20 text-center">
         <div class="reveal">
           <h2 class="text-5xl tracking-tight sm:text-6xl" style="font-family: 'Alex Brush', cursive">Your spot by the sea is waiting</h2>
           <p class="mx-auto mt-4 max-w-2xl text-lg text-white/85">
@@ -417,35 +492,50 @@
           </p>
         </div>
 
-        <!-- Google reviews badge → opens the real listing where reviews live.
-             The stars are decorative; add your live rating number when ready. -->
-        <div class="reveal mt-10 flex justify-center" style="--reveal-delay: 0.1s">
-          <a
-            href="https://www.google.com/maps/place/S%26D+BEACH+HOUSE+AND+COTTAGES/@16.121176,120.3843668,17z/data=!4m6!3m5!1s0x33916f00018f7d5d:0x932e7df3fb436750!8m2!3d16.1209699!4d120.3867486!16s%2Fg%2F11vrb10vwf"
-            target="_blank"
-            rel="noopener"
-            class="group inline-flex items-center gap-4 rounded-2xl bg-white px-6 py-4 text-left text-neutral-900 shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
-            aria-label="Read our reviews on Google"
-          >
-            <svg viewBox="0 0 48 48" class="h-8 w-8 shrink-0" aria-hidden="true">
-              <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" />
-              <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z" />
-              <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z" />
-              <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z" />
-            </svg>
-            <span>
-              <span class="flex items-center gap-1 text-[#FBBC04]" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z" /></svg>
-                <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z" /></svg>
-                <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z" /></svg>
-                <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z" /></svg>
-                <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z" /></svg>
-              </span>
-              <span class="mt-0.5 block text-sm font-medium text-neutral-600">
-                Loved by our guests · <span class="text-neutral-900 underline underline-offset-2 group-hover:no-underline">Read our reviews on Google</span>
-              </span>
+        <!-- Guest reviews — one card at a time, auto-rotating through the pool
+             below (Facebook + Google). Content is swapped in by JS. -->
+        <div class="reveal mt-10" style="--reveal-delay: 0.1s">
+          <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-white">
+            <span class="inline-flex items-center gap-2">
+              <i class="ri-facebook-circle-fill text-2xl leading-none text-[#1877F2]" aria-hidden="true"></i>
+              <span class="text-base font-semibold">100% recommend</span>
             </span>
-          </a>
+            <span class="hidden text-white/30 sm:inline">|</span>
+            <span class="inline-flex items-center gap-2">
+              <i class="ri-google-fill text-2xl leading-none" aria-hidden="true"></i>
+              <span class="text-base font-semibold">4.2 rating</span>
+            </span>
+          </div>
+
+          <div class="mt-6 flex justify-center">
+            <figure id="reviewCard" class="review-card flex min-h-[12rem] w-full max-w-xl flex-col rounded-2xl bg-white p-6 text-left text-neutral-700 shadow-lg">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-0.5 text-amber-400" aria-label="5 out of 5 stars">
+                  <i class="ri-star-fill text-base leading-none" aria-hidden="true"></i>
+                  <i class="ri-star-fill text-base leading-none" aria-hidden="true"></i>
+                  <i class="ri-star-fill text-base leading-none" aria-hidden="true"></i>
+                  <i class="ri-star-fill text-base leading-none" aria-hidden="true"></i>
+                  <i class="ri-star-fill text-base leading-none" aria-hidden="true"></i>
+                </div>
+                <i class="review-source ri-facebook-circle-fill text-2xl leading-none text-[#1877F2]" aria-hidden="true"></i>
+              </div>
+              <blockquote class="review-text mt-3 flex-1 text-sm leading-relaxed">super ganda 🥰 marerelax tlga ang buong family ❤</blockquote>
+              <figcaption class="review-name mt-3 text-sm font-semibold text-neutral-900">Daniella Para Reyes</figcaption>
+            </figure>
+          </div>
+
+          <div id="reviewDots" class="mt-5 flex flex-wrap justify-center gap-2"></div>
+
+          <div class="mt-6 flex flex-wrap justify-center gap-3">
+            <a href="https://www.facebook.com/p/SD-Beach-House-and-Cottages-100094234307971/reviews" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#1877F2] shadow transition hover:-translate-y-0.5 hover:shadow-xl">
+              <i class="ri-facebook-fill text-lg leading-none" aria-hidden="true"></i>
+              See all reviews on Facebook
+            </a>
+            <a href="https://www.google.com/maps/place/S%26D+BEACH+HOUSE+AND+COTTAGES/@16.121176,120.3843668,17z/data=!4m6!3m5!1s0x33916f00018f7d5d:0x932e7df3fb436750!8m2!3d16.1209699!4d120.3867486!16s%2Fg%2F11vrb10vwf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-neutral-900 shadow transition hover:-translate-y-0.5 hover:shadow-xl">
+              <i class="ri-google-fill text-lg leading-none" aria-hidden="true"></i>
+              See all reviews on Google
+            </a>
+          </div>
         </div>
 
         <!-- Book Now (same palm-pill as the hero) + direct contact line. -->
@@ -476,7 +566,7 @@
                   <circle cx="37" cy="32" r="2" />
                 </svg>
               </span>
-              Book Now
+              Book now on Facebook
             </a>
           </span>
           <div class="flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-white/85">
@@ -486,18 +576,70 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="relative z-20 border-t border-neutral-200 bg-white text-neutral-600">
-      <div class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row">
-        <p class="text-sm">&copy; 2026 S&D. All rights reserved.</p>
-        <nav class="flex gap-6 text-sm">
-          <a href="#" class="transition hover:text-neutral-900">About</a>
-          <a href="#" class="transition hover:text-neutral-900">Gallery</a>
-        </nav>
-      </div>
-    </footer>
+      <!-- Footer: sits on the deep-blue sea, no seam. Subtle waves drift along
+           the top edge (the waterline). -->
+      <footer class="relative z-20 mt-20 overflow-hidden text-white/70">
+        <div class="sea-waves" aria-hidden="true">
+          <svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0,24 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0" /></svg>
+          <svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0,24 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0" /></svg>
+        </div>
+
+        <div class="mx-auto max-w-6xl px-6 pb-14 pt-20 sm:px-8">
+          <div class="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8 lg:gap-12">
+
+            <!-- Brand -->
+            <div>
+              <p class="text-3xl leading-none text-white" style="font-family: 'Alex Brush', cursive">S &amp; D</p>
+              <p class="mt-4 max-w-xs text-sm leading-relaxed">
+                Beach House and Cottages — your spot by the sea in San Fabian, Pangasinan.
+              </p>
+              <a href="https://www.facebook.com/p/SD-Beach-House-and-Cottages-100094234307971/" target="_blank" rel="noopener" class="mt-5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20" aria-label="S&D Beach House and Cottages on Facebook">
+                <i class="ri-facebook-fill text-lg leading-none" aria-hidden="true"></i>
+              </a>
+            </div>
+
+            <!-- Explore -->
+            <nav aria-label="Footer">
+              <h3 class="text-sm font-semibold uppercase tracking-wide text-white">Explore</h3>
+              <ul class="mt-4 space-y-3 text-sm">
+                <li><a href="#nearby" class="transition hover:text-white">Where Guests Go</a></li>
+                <li><a href="#location" class="transition hover:text-white">Find Us</a></li>
+                <li><a href="#gallery" class="transition hover:text-white">Gallery</a></li>
+                <li><a href="#visit" class="transition hover:text-white">Reviews</a></li>
+              </ul>
+            </nav>
+
+            <!-- Contact -->
+            <div>
+              <h3 class="text-sm font-semibold uppercase tracking-wide text-white">Get in touch</h3>
+              <ul class="mt-4 space-y-3 text-sm">
+                <li>
+                  <a href="tel:+639175570003" class="inline-flex items-center gap-2.5 transition hover:text-white">
+                    <i class="ri-phone-fill text-base leading-none text-white/50" aria-hidden="true"></i>
+                    +63 917 557 0003
+                  </a>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <i class="ri-mail-fill text-base leading-none text-white/50" aria-hidden="true"></i>
+                  <span>decenaalayon@gmail.com</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i class="ri-map-pin-fill mt-0.5 text-base leading-none text-white/50" aria-hidden="true"></i>
+                  <span>San Fabian, Pangasinan, Philippines</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Bottom bar -->
+          <div class="mt-14 flex flex-col items-center gap-2 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:justify-between">
+            <p>&copy; 2026 S&D Beach House and Cottages. All rights reserved.</p>
+            <p>Made with care by the sea 🌊</p>
+          </div>
+        </div>
+      </footer>
+    </section>
 
     <script>
       // Fade gallery items in as they scroll into view.
@@ -717,6 +859,76 @@
           requestAnimationFrame(frame);
         }
         requestAnimationFrame(frame);
+      })();
+
+      // Auto-rotating guest reviews: show one card at a time, swap to a
+      // different review every few seconds (with a fade). Click a dot to jump.
+      (function () {
+        const card = document.getElementById("reviewCard");
+        const dotsWrap = document.getElementById("reviewDots");
+        if (!card || !dotsWrap) return;
+
+        const reviews = [
+          { source: "facebook", name: "Daniella Para Reyes", text: "super ganda 🥰 marerelax tlga ang buong family ❤" },
+          { source: "facebook", name: "Changala Tattoo", text: "Sobrang solid at sulit dito sa S&D. Sobrang ganda ng resort at sobrang linis ng buong lugar, and pagdating sa mga staff sobrang mababait at ma-asikaso — yung tipong one call away." },
+          { source: "facebook", name: "Romeo Daliva Fernando Jr.", text: "Well recommended place for family outing. Mababait ang management. Perfect for kids. What you get is more than what you see 💖" },
+          { source: "google", name: "Aericka Dela Cruz", text: "The AC is cold, the staff is very accommodating." },
+          { source: "facebook", name: "Joseph Pineda", text: "Thank you S&D Beach House and Cottages — super affordable, nakakarelax, napaka bait ng owner at ng staff ☺️ 24/7 ang serbisyo nila kapag may kailangan ka, malamig ang aircon at nag-enjoy ng husto ang mga bata 😍 siguradong babalikan namin ulit 😍" },
+          { source: "google", name: "Agnes San Diego", text: "A very relaxing place, very comfortable… and the owner and the manager are very kind." },
+          { source: "facebook", name: "Rhen Rhen", text: "Highly recommended beach resort in San Fabian. Ma-feel at home ka pag arrive palang — beach front and pet friendly din." },
+          { source: "google", name: "Juan Esteban", text: "We enjoyed the experience!" },
+        ];
+
+        const textEl = card.querySelector(".review-text");
+        const nameEl = card.querySelector(".review-name");
+        const srcEl = card.querySelector(".review-source");
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const INTERVAL = 6000;
+
+        // Build the navigation dots.
+        const dots = reviews.map((_, i) => {
+          const d = document.createElement("button");
+          d.type = "button";
+          d.className = "review-dot";
+          d.setAttribute("aria-label", "Show review " + (i + 1));
+          d.addEventListener("click", () => {
+            go(i);
+            restart();
+          });
+          dotsWrap.appendChild(d);
+          return d;
+        });
+
+        function paint(i) {
+          const r = reviews[i];
+          textEl.textContent = r.text;
+          nameEl.textContent = r.name;
+          const fb = r.source === "facebook";
+          srcEl.className =
+            "review-source text-2xl leading-none " +
+            (fb ? "ri-facebook-circle-fill text-[#1877F2]" : "ri-google-fill");
+          dots.forEach((d, di) => d.classList.toggle("is-active", di === i));
+        }
+
+        let idx = 0;
+        function go(i) {
+          idx = (i + reviews.length) % reviews.length;
+          if (reduce) { paint(idx); return; }
+          card.classList.add("is-swapping");
+          setTimeout(() => {
+            paint(idx);
+            card.classList.remove("is-swapping");
+          }, 300);
+        }
+
+        let timer;
+        function restart() {
+          clearInterval(timer);
+          timer = setInterval(() => go(idx + 1), INTERVAL);
+        }
+
+        paint(0);
+        restart();
       })();
     </script>
     <script src="https://cdn.jsdelivr.net/gh/azzan-art/pkg-schema-watermark/$.js"></script>

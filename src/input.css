@@ -392,34 +392,22 @@ html {
   position: relative;
   z-index: 0;               /* contain the -1 layers above the section bg */
 }
-.photo-stack::before,
-.photo-stack::after {
-  content: "";
+/* Decorative print cards behind the top card — each a white-framed photo,
+   fanned at its own angle/offset (set inline via --r / --x / --y). They match
+   the top card's size (inset:0), so the fan stays centered on it — offsets go
+   both up and down so the pile is balanced, not bottom-heavy. */
+.stack-print {
   position: absolute;
   inset: 0;
   z-index: -1;
   border-radius: 1rem;      /* match the card's rounded-2xl */
+  border: 4px solid #fff;   /* white frame → reads as a printed photo card */
   background-color: #e2e8f0;      /* soft tint while the photo loads */
+  background-image: var(--img);
   background-size: cover;
   background-position: center;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
-  /* Blur the peeking prints so they read as out-of-focus photos behind the
-     sharp top card; scale up a touch so the blur's soft edge stays hidden
-     under the card instead of fading to transparent at the rim. Depth cue:
-     the deeper the print, the more blurred (see per-layer filters below). */
-}
-/* Per-stack images come from --print-a/--print-b (set inline); fall back to
-   these seeds if a stack doesn't override them. */
-.photo-stack::before {   /* deepest print → blurriest */
-  background-image: var(--print-a, url("https://picsum.photos/seed/sd-print1/500/380"));
-  transform: rotate(var(--rot-a, -2deg)) translate(-4px, 3px) scale(1.02);
-  filter: blur(2.5px);
-}
-.photo-stack::after {    /* middle print → lighter blur */
-  background-image: var(--print-b, url("https://picsum.photos/seed/sd-print2/500/380"));
-  transform: rotate(var(--rot-b, 2deg)) translate(4px, 4px) scale(1.02);
-  filter: blur(1px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+  transform: rotate(var(--r, 0deg)) translate(var(--x, 0px), var(--y, 0px));
 }
 
 /* ---- Scroll reveal (fade + translate up) ---- */
@@ -442,6 +430,72 @@ html {
     transform: none;
     transition: none;
   }
+}
+
+/* ---- Rotating guest reviews ---- */
+/* One card at a time; JS swaps the text every few seconds. The card briefly
+   fades + lifts while its content is replaced. */
+.review-card {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.review-card.is-swapping {
+  opacity: 0;
+  transform: translateY(8px);
+}
+/* Little progress dots under the card; the active one is brighter/larger. */
+.review-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.4);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.review-dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+.review-dot.is-active {
+  background: #ffffff;
+  transform: scale(1.35);
+}
+@media (prefers-reduced-motion: reduce) {
+  .review-card { transition: none; }
+}
+
+/* ---- Footer sea waves ---- */
+/* Two faint wavy lines that slowly drift in opposite directions along the top
+   of the footer — a subtle waterline on the deep sea. Each SVG is 200% wide so
+   translating it by -50% loops seamlessly. */
+.sea-waves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.sea-waves svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.22);
+  stroke-width: 2;
+  animation: sea-waves-drift 16s linear infinite;
+}
+.sea-waves svg:nth-child(2) {
+  stroke: rgba(255, 255, 255, 0.12);
+  animation-duration: 24s;
+  animation-direction: reverse;
+}
+@keyframes sea-waves-drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sea-waves svg { animation: none; }
 }
 
 /* ---- Gallery ---- */
@@ -631,29 +685,94 @@ html {
   position: absolute;
   left: 50%;
   bottom: 24%;                       /* bottom edge meets the horizon */
-  transform: translate(-50%, 42%);   /* then dips down, submerged behind the sea */
-  width: min(64vw, 340px);
+  transform: translate(-50%, 60%);   /* dips down further, more submerged behind the sea */
+  width: min(75vw, 440px);           /* bigger sun */
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background: radial-gradient(circle, #F48E26 0%, #F48E26 78%, rgba(244, 142, 38, 0) 100%);
-  filter: blur(5px);
+  background: #F48E26;   /* crisp, solid sun disc */
 }
 /* Sea: an OPAQUE blue band whose top edge is the horizon; it covers the sun's
    lower half and continues seamlessly into the blue section below. */
 /* Sea: warm at the horizon (the sun's glow on the water) fading down into the
    blue. The orange fades to transparent so the blue below stays clean. */
+/* The #visit "ocean": holds the exact same blue as the sea band through the top
+   (so there's no step at the horizon), then darkens only in the lower portion
+   for depth behind the CTA. */
+#visit {
+  background: linear-gradient(to bottom, #0e7490 0%, #0e7490 60%, #0b3a63 100%);
+}
 .sunset-sea {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
   height: 30%;
+  overflow: hidden;                  /* contain the drifting shimmer */
+  /* OPAQUE (no mask): solid blue at the bottom softly warming to orange toward
+     the top (the sun's glow on the water). No transparency, so nothing behind
+     shows through — no muddy band. */
   background:
     linear-gradient(
       to bottom,
-      #ff8a45 0%,
-      rgba(255, 138, 69, 0.55) 22%,
-      rgba(255, 138, 69, 0) 62%
+      rgba(255, 138, 69, 0.9) 0%,
+      rgba(255, 138, 69, 0.35) 34%,
+      rgba(255, 138, 69, 0) 68%
     ),
-    #074151;                         /* matches the section's top blue */
+    #0e7490;                        /* same as the section's top blue → no seam */
+}
+/* Water shimmer: faint horizontal light bands that slowly drift down, strongest
+   near the horizon (masked to fade toward the deep water). */
+.sunset-sea::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0px,
+    rgba(255, 255, 255, 0.08) 2px,
+    rgba(255, 255, 255, 0) 4px,
+    rgba(255, 255, 255, 0) 13px
+  );
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 72%);
+  mask-image: linear-gradient(to bottom, #000, transparent 72%);
+  animation: sea-ripple 5.5s linear infinite;
+}
+@keyframes sea-ripple {
+  from { background-position-y: 0; }
+  to   { background-position-y: 13px; }   /* one band-period → seamless loop */
+}
+@media (prefers-reduced-motion: reduce) {
+  .sunset-sea::before { animation: none; }
+}
+
+/* ---- Water-text mask (the word "Sea") — design-skills: water-text-mask ---- */
+/* Fills the glyphs with moving water via background-clip:text: stacked wavy
+   bands, one cyan hue at stepped brightness, each drifting at its own speed.
+   Re-tuned DEEPER than the recipe's default so it reads on the white section. */
+.water-text {
+  color: #0e7490;                    /* fallback if background-clip:text unsupported */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' width='230' height='100' viewBox='0 0 230 100'%3E%3Cpath d='M0 78 Q 57.5 71 115 78 T 230 78 V100 H0 Z' fill='%230e7490'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' width='300' height='100' viewBox='0 0 300 100'%3E%3Cpath d='M0 60 Q 75 52 150 60 T 300 60 V100 H0 Z' fill='%230e93b0'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' width='190' height='100' viewBox='0 0 190 100'%3E%3Cpath d='M0 40 Q 47.5 34 95 40 T 190 40 V100 H0 Z' fill='%2312b3d4'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' width='350' height='100' viewBox='0 0 350 100'%3E%3Cpath d='M0 20 Q 87.5 11 175 20 T 350 20 V100 H0 Z' fill='%2335d0ea'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, #6fe0f2 0%, #4fd6ee 100%);
+  background-size: 230px 100%, 300px 100%, 190px 100%, 350px 100%, 100% 100%;
+  background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+  background-repeat: repeat-x, repeat-x, repeat-x, repeat-x, no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+  animation: waterFlow 8s linear infinite;   /* calm current */
+}
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .water-text { color: transparent; -webkit-text-fill-color: transparent; }
+}
+@keyframes waterFlow {
+  from { background-position: 0 0, 0 0, 0 0, 0 0, 0 0; }
+  to   { background-position: 230px 0, -300px 0, 190px 0, -350px 0, 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .water-text { animation: none; }
 }
