@@ -249,31 +249,120 @@ html {
   transform: scaleX(-1) rotate(-35deg) translateY(3px);
 }
 
-/* ---- Section with feathered edges ---- */
-/* A tinted layer over a white base, masked so it fades to transparent at the
-   top and bottom — the tint blends into the neighbouring white sections
-   instead of stopping on a hard line. Content sits above it (z-10). */
-.section-fade::before {
+/* ---- Sticky section nav ---- */
+/* Fixed to the top, hidden while the hero is on screen; slides down once you
+   scroll past it. The link for the section currently in view lights up. */
+.section-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;                 /* above sections (z-20), below modals (z-60) */
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  backdrop-filter: saturate(160%) blur(12px);
+  border-bottom: 1px solid rgba(14, 116, 144, 0.12);
+  box-shadow: 0 6px 24px -14px rgba(3, 20, 28, 0.35);
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease, visibility 0.35s ease;
+}
+.section-nav.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+.section-nav__inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0.6rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.section-nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.35rem;
+  line-height: 1;
+  font-family: "Alex Brush", cursive;
+  color: #0e7490;
+  flex-shrink: 0;
+}
+.section-nav__logo {
+  height: 1.9rem;
+  width: auto;
+}
+.section-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.section-nav__links::-webkit-scrollbar {
+  display: none;
+}
+.section-nav__links a {
+  position: relative;
+  display: inline-block;
+  padding: 0.4rem 0.75rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #525252;
+  transition: color 0.25s ease, background 0.25s ease;
+}
+.section-nav__links a::after {
   content: "";
   position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: #f4f6f8;      /* soft tint, a touch deeper than the page white */
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0,
-    #000 120px,
-    #000 calc(100% - 120px),
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0,
-    #000 120px,
-    #000 calc(100% - 120px),
-    transparent 100%
-  );
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.15rem;
+  height: 2px;
+  border-radius: 2px;
+  background: #0e7490;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.section-nav__links a:hover {
+  color: #0e7490;
+}
+.section-nav__links a.is-active {
+  color: #0e7490;
+}
+.section-nav__links a.is-active::after {
+  transform: scaleX(1);
+}
+/* Sit anchor jumps below the fixed bar. */
+html {
+  scroll-padding-top: 4.5rem;
+}
+@media (max-width: 640px) {
+  .section-nav__brand span {
+    display: none;             /* logo-only on tight phones, more room for links */
+  }
+  .section-nav__inner {
+    padding: 0.5rem 0.9rem;
+  }
+  .section-nav__links a {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section-nav,
+  .section-nav__links a,
+  .section-nav__links a::after {
+    transition: none;
+  }
 }
 
 /* ---- Directional signpost ---- */
@@ -284,7 +373,7 @@ html {
 .signpost {
   position: relative;
   margin-top: 1.5rem;
-  height: 240px;
+  height: 330px;
   perspective: 900px;
   overflow: visible;        /* let the long pole run past the signpost box */
 }
@@ -299,9 +388,9 @@ html {
   margin-left: -7px;
   border-radius: 7px;
   background: linear-gradient(to right, #6b3410, #a1591f 45%, #6b3410);
-  /* Solid through both signs (~to 185px), then feather out the tail. */
-  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 185px, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0, #000 185px, transparent 100%);
+  /* Solid through all three signs (~to 275px), then feather out the tail. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 275px, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0, #000 275px, transparent 100%);
 }
 .sign {
   position: absolute;
@@ -345,6 +434,13 @@ html {
   justify-content: flex-end;   /* arrow points left → text hugs the flat right edge */
   text-align: right;
 }
+/* Third sign points right again (like the top), in a warm sand gold. */
+.sign--third {
+  top: 202px;
+  background: linear-gradient(180deg, #ca8a04, #92610a);
+  clip-path: polygon(0 0, 88% 0, 100% 50%, 88% 100%, 0 100%);
+  padding-right: 40px;
+}
 /* Cluster the distance pill with the text on the right instead of floating it
    left, so the whole label reads toward the right (away from the left point). */
 .sign--bottom .sign__dist {
@@ -363,6 +459,13 @@ html {
     row-gap: 4px;
     align-content: center;
   }
+  /* Let long place names wrap instead of running under the arrow's clip-path
+     and getting cut off; keep a slightly smaller label so wraps stay tidy. */
+  .sign__label {
+    white-space: normal;
+    font-size: 0.9rem;
+    line-height: 1.2;
+  }
   .sign__dist {
     margin-left: 0;   /* drop the push-right so it sits at the start of line 2 */
   }
@@ -374,6 +477,9 @@ html {
 }
 .signpost.is-visible .sign--bottom {
   animation: sign-spin 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.28s forwards;
+}
+.signpost.is-visible .sign--third {
+  animation: sign-spin 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.56s forwards;
 }
 @keyframes sign-spin {
   from { opacity: 0; transform: translateX(-50%) rotateY(-540deg); }
@@ -529,6 +635,10 @@ html {
 .gallery-col:nth-child(2) { animation-duration: 30s; }
 .gallery-col:nth-child(3) { animation-duration: 40s; }
 .gallery-marquee:hover .gallery-col { animation-play-state: paused; }
+/* Phones get 2 columns (matching the modal grid); the 3rd appears at sm+. */
+@media (max-width: 639px) {
+  .gallery-marquee .gallery-col:nth-child(3) { display: none; }
+}
 @keyframes gallery-scroll {
   from { transform: translateY(0); }
   to   { transform: translateY(-50%); }
@@ -698,6 +808,246 @@ html {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* ---- Explore: 6-panel launcher grid ---- */
+/* Six equal panels tile the whole viewport (2×3 on phones, 3×2 on desktop).
+   Each is a button that opens its matching .ep-detail view. */
+.ep-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 100%;
+  height: 100dvh;
+}
+@media (min-width: 1024px) {
+  .ep-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+.ep-panel {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.25rem;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  isolation: isolate;
+  /* Staggered entrance, keyed off each panel's --ep index. */
+  opacity: 0;
+  transform: translateY(22px) scale(0.98);
+  transition: opacity 0.55s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--ep, 0) * 0.07s + 0.05s);
+}
+.modal-full.is-open .ep-panel {
+  opacity: 1;
+  transform: none;
+}
+/* The zooming photo layer. */
+.ep-panel__img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* Dark wash so the label always reads; warms toward the brand teal on hover. */
+.ep-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    rgba(3, 20, 28, 0.82) 0%,
+    rgba(3, 20, 28, 0.25) 55%,
+    rgba(3, 20, 28, 0.12) 100%
+  );
+  transition: background 0.4s ease;
+}
+.ep-panel:hover .ep-panel__img,
+.ep-panel:focus-visible .ep-panel__img {
+  transform: scale(1.06);
+}
+.ep-panel:hover::before,
+.ep-panel:focus-visible::before {
+  background: linear-gradient(
+    to top,
+    rgba(3, 20, 28, 0.9) 0%,
+    rgba(14, 116, 144, 0.45) 60%,
+    rgba(14, 116, 144, 0.2) 100%
+  );
+}
+.ep-panel:focus-visible {
+  outline: 3px solid #67e8f9;
+  outline-offset: -3px;
+}
+.ep-panel__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.ep-panel__icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  opacity: 0.9;
+}
+.ep-panel__label {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+}
+@media (min-width: 640px) {
+  .ep-panel__label {
+    font-size: 1.4rem;
+  }
+}
+
+/* ---- Explore: per-panel detail view ---- */
+/* Slides over the grid when a panel is clicked; "Back" dismisses it. */
+.ep-detail {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: #fff;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px);
+  transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0.4s ease;
+}
+.ep-detail.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.ep-detail__media {
+  min-height: 40vh;
+  background-size: cover;
+  background-position: center;
+}
+@media (min-width: 1024px) {
+  .ep-detail__media {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    min-height: 0;
+  }
+}
+.ep-detail__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 4rem 2rem 3rem;
+  color: #404040;
+}
+@media (min-width: 640px) {
+  .ep-detail__text {
+    padding: 4.5rem 3.5rem 3.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .ep-detail__text {
+    justify-content: center;
+    padding: 4rem 4rem 4rem;
+  }
+}
+.ep-back {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem 0.5rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(14, 116, 144, 0.1);
+  color: #0e7490;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+.ep-back:hover {
+  background: rgba(14, 116, 144, 0.18);
+}
+.ep-detail__eyebrow {
+  color: rgba(14, 116, 144, 0.7);
+  font-size: 1.5rem;
+  line-height: 1;
+  font-family: "Alex Brush", cursive;
+}
+.ep-detail__title {
+  font-size: 2.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #171717;
+}
+@media (min-width: 640px) {
+  .ep-detail__title {
+    font-size: 3rem;
+  }
+}
+.ep-detail__text p {
+  max-width: 34rem;
+  font-size: 1.075rem;
+  line-height: 1.7;
+}
+.ep-detail__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.ep-detail__list li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: #525252;
+}
+.ep-detail__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 9999px;
+  background: #0e7490;
+}
+.ep-detail__cta {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  background: #f48e26;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 10px 25px -5px rgba(244, 142, 38, 0.5);
+  transition: background 0.25s ease;
+}
+.ep-detail__cta:hover {
+  background: #f7a24d;
+}
+/* When a detail is open, freeze the grid behind it so it can't be tabbed to. */
+.modal-full.ep--detail .ep-grid {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ep-panel,
+  .ep-panel__img,
+  .ep-detail {
+    transition: none;
+  }
+  .ep-panel {
+    opacity: 1;
+    transform: none;
   }
 }
 

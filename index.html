@@ -45,6 +45,24 @@
     <!-- Dark overlay keeps the logo & links legible over any image -->
     <div class="fixed inset-0 z-10 bg-black/50" aria-hidden="true"></div>
 
+    <!-- Sticky section nav: hidden over the hero, slides down once you scroll
+         past it. Highlights the section currently in view (scrollspy). -->
+    <nav id="section-nav" class="section-nav" aria-label="Sections">
+      <div class="section-nav__inner">
+        <a href="#hero" class="section-nav__brand" data-nav-top aria-label="Back to top">
+          <img src="./logo.png" alt="" class="section-nav__logo" />
+          <span>S&amp;D</span>
+        </a>
+        <ul class="section-nav__links">
+          <li><a href="#explore" data-nav>Discover</a></li>
+          <li><a href="#activities" data-nav>Activities</a></li>
+          <li><a href="#location-section" data-nav>Location</a></li>
+          <li><a href="#gallery" data-nav>Gallery</a></li>
+          <li><a href="#visit" data-nav>Book</a></li>
+        </ul>
+      </div>
+    </nav>
+
     <!-- Shore wave: three layers, each a drifting wavy crest on top of a body
          that runs all the way to the bottom (no clipped fill). JS drives the
          vertical position (chases the viewport bottom, with lag); CSS drives
@@ -80,7 +98,7 @@
       </div>
     </div>
 
-    <main class="relative z-20 mx-auto flex min-h-screen max-w-2xl flex-col items-center justify-center gap-8 px-6 text-center">
+    <main id="hero" class="relative z-20 mx-auto flex min-h-screen max-w-2xl flex-col items-center justify-center gap-8 px-6 text-center">
       <h1 class="flex flex-col items-center gap-2 drop-shadow-lg">
         <img src="./logo.png" alt="S&D Beach House and Cottages" class="h-32 w-auto sm:h-44" />
         <span class="text-6xl leading-none sm:text-7xl" style="font-family: 'Alex Brush', cursive">
@@ -187,15 +205,7 @@
               </li>
               <li class="flex items-center gap-3">
                 <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20 text-white"><i class="ri-restaurant-fill text-lg leading-none" aria-hidden="true"></i></span>
-                <span class="text-sm font-medium text-white/95">Free-to-use kitchen</span>
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20 text-white"><i class="ri-fire-fill text-lg leading-none" aria-hidden="true"></i></span>
-                <span class="text-sm font-medium text-white/95">Grill area</span>
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20 text-white"><i class="ri-home-4-fill text-lg leading-none" aria-hidden="true"></i></span>
-                <span class="text-sm font-medium text-white/95">Cottages</span>
+                <span class="text-sm font-medium text-white/95">Kitchen & grill area</span>
               </li>
             </ul>
           </div>
@@ -208,7 +218,7 @@
               <span class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition group-hover:from-black/80"></span>
               <span class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-6">
                 <span class="inline-flex items-center gap-1 rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-neutral-900 shadow transition group-hover:bg-white">
-                  View
+                  Click to View
                   <svg class="h-4 w-4 transition group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
                 </span>
               </span>
@@ -223,7 +233,7 @@
     <section id="activities" class="relative z-20 bg-white text-neutral-900">
       <div class="mx-auto max-w-6xl px-6 pb-24">
         <div class="reveal mx-auto max-w-2xl text-center">
-          <h3 class="text-2xl font-semibold tracking-tight sm:text-3xl">Activities</h3>
+          <h3 class="text-2xl font-semibold tracking-tight sm:text-3xl">Fun Activities</h3>
           <p class="mt-4 text-neutral-600">
             Make the most of the sun, sand, and sea.
           </p>
@@ -253,7 +263,7 @@
               <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
                 <i class="ri-fire-fill text-xl leading-none" aria-hidden="true"></i>
               </span>
-              <span class="text-sm font-semibold text-white drop-shadow">Grilling</span>
+              <span class="text-sm font-semibold text-white drop-shadow">Volleyball</span>
             </span>
           </a>
           <a href="#" data-modal="modal-activities" class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('https://picsum.photos/seed/sd-act-4/600/900'), linear-gradient(135deg, #1e1b4b, #4c1d95);">
@@ -270,16 +280,22 @@
     </section>
 
     <!-- Where guests go + Find S&D: side by side on large screens, stacked below -->
-    <section class="section-fade relative z-20 bg-white text-neutral-900">
+    <section id="location-section" class="relative z-20 bg-white text-neutral-900">
+      <div class="bubbles" aria-hidden="true">
+        <span class="bubble" style="--size: 260px; --left: 16%; --dur: 32s; --delay: -4s;  --sway: 65px; --sway-dur: 10s;"><span></span></span>
+        <span class="bubble" style="--size: 150px; --left: 46%; --dur: 25s; --delay: -15s; --sway: 42px; --sway-dur: 7s;"><span></span></span>
+        <span class="bubble" style="--size: 300px; --left: 78%; --dur: 40s; --delay: -9s;  --sway: 82px; --sway-dur: 12s;"><span></span></span>
+        <span class="bubble" style="--size: 120px; --left: 90%; --dur: 22s; --delay: -13s; --sway: 38px; --sway-dur: 6s;"><span></span></span>
+      </div>
       <div class="mx-auto max-w-6xl px-6 py-24">
-        <div class="relative z-10 mb-16 text-center">
-          <span class="block text-3xl font-normal leading-none text-[#0e7490b3] sm:text-4xl" style="font-family: 'Alex Brush', cursive">Come Visit</span>
+        <div class="relative z-10 mb-14 text-center">
+          <span class="mb-0 block text-2xl font-normal leading-none text-[#0e7490b3] sm:text-3xl" style="font-family: 'Brittany Signature', cursive">Our Location</span>
         </div>
         <div class="grid items-start gap-16 lg:grid-cols-2 lg:gap-12">
 
         <!-- Where guests go: nearby landmarks shown as a directional signpost -->
         <div id="nearby" class="reveal relative z-10 text-center">
-          <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Where Guests Go</h2>
+          <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Location Facts</h2>
           <p class="mx-auto mt-4 max-w-xl text-neutral-600">
             The spots our guests head to most.
           </p>
@@ -289,14 +305,13 @@
             <div class="signpost" aria-label="Nearby places and how far they are">
               <div class="signpost__pole"></div>
               <div class="sign sign--top">
-                <span class="sign__emoji">⛪</span>
-                <span class="sign__label">Manaoag Basilica</span>
-                <span class="sign__dist">30 min drive</span>
+                <span class="sign__label">30 minutes to Manaoag Basilica</span>
               </div>
               <div class="sign sign--bottom">
-                <span class="sign__emoji">🛒</span>
-                <span class="sign__label">San Fabian Market</span>
-                <span class="sign__dist">5 min</span>
+                <span class="sign__label">5 minutes to San Fabian Market</span>
+              </div>
+              <div class="sign sign--third">
+                <span class="sign__label">Right on San Fabian's fine sand</span>
               </div>
             </div>
           </div>
@@ -309,11 +324,12 @@
               Find Us
             </h2>
             <p class="mx-auto mt-4 max-w-2xl text-lg text-neutral-600">
-              Right on the shore in San Fabian, Pangasinan — come find us by the sea.
+              Right on the shore in San Fabian, Pangasinan.
             </p>
           </div>
           <div class="mt-10 overflow-hidden rounded-2xl border border-neutral-200 shadow-sm">
             <iframe
+              id="location-map"
               title="S&D Beach House and Cottages on Google Maps"
               src="https://www.google.com/maps?q=S%26D+BEACH+HOUSE+AND+COTTAGES&ll=16.1209699,120.3867486&z=15&output=embed"
               class="h-[380px] w-full sm:h-[440px]"
@@ -323,7 +339,7 @@
               allowfullscreen
             ></iframe>
           </div>
-          <div class="mt-6 flex justify-center">
+          <div id="location-map-cta" class="mt-6 flex justify-center">
             <a href="https://www.google.com/maps/place/S%26D+BEACH+HOUSE+AND+COTTAGES/@16.121176,120.3843668,17z/data=!4m6!3m5!1s0x33916f00018f7d5d:0x932e7df3fb436750!8m2!3d16.1209699!4d120.3867486!16s%2Fg%2F11vrb10vwf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-[#0e7490] px-6 py-3 text-sm font-semibold text-white shadow transition hover:bg-[#0b5f78]">
               <i class="ri-map-pin-fill text-lg leading-none" aria-hidden="true"></i>
               Open in Google Maps
@@ -343,7 +359,7 @@
         <span class="bubble" style="--size: 160px; --left: 46%; --dur: 26s; --delay: -20s; --sway: 45px; --sway-dur: 7s;"><span></span></span>
         <span class="bubble" style="--size: 300px; --left: 80%; --dur: 40s; --delay: -3s;  --sway: 85px; --sway-dur: 13s;"><span></span></span>
       </div>
-      <div class="mx-auto max-w-5xl px-6 py-8 text-center">
+      <div class="mx-auto max-w-5xl px-6 pt-8 pb-0 text-center">
         <div class="reveal">
           <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Gallery</h2>
           <p class="mx-auto mt-4 max-w-2xl text-lg text-neutral-600">
@@ -445,7 +461,7 @@
         <button type="button" data-close class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-2xl leading-none text-neutral-700 shadow transition hover:bg-white" aria-label="Close">&times;</button>
         <div class="modal-content p-8">
           <h3 id="modal-activities-title" class="text-3xl font-semibold tracking-tight">Activities</h3>
-          <p class="mt-2 text-neutral-600">Make the most of the sun, sand, and sea.</p>
+          <p class="mt-2 text-neutral-600">Make the most out of your time with us.</p>
           <ul class="mt-6 grid grid-cols-2 gap-3 text-sm text-neutral-700">
             <li class="rounded-lg bg-neutral-100 px-3 py-2">Banana Boat Rides</li>
             <li class="rounded-lg bg-neutral-100 px-3 py-2">Beach Swimming</li>
@@ -457,35 +473,165 @@
       </div>
     </div>
 
-    <!-- Full-screen "Explore" panel: text (left, animates in) + property photos (right) -->
+    <!-- Full-screen "Explore" panel: a 6-panel launcher grid that fills the
+         viewport equally. Click a panel to open its detailed section; the ×
+         closes the whole thing, "Back" returns to the grid. -->
     <div id="modal-explore" class="modal-full" role="dialog" aria-modal="true" aria-labelledby="modal-explore-title">
-      <button type="button" data-close class="absolute right-5 top-5 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-neutral-900/5 text-3xl leading-none text-neutral-600 transition hover:bg-neutral-900/10" aria-label="Close">&times;</button>
+      <h2 id="modal-explore-title" class="sr-only">Explore S&amp;D Beach Resort</h2>
+      <button type="button" data-close class="absolute right-5 top-5 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-black/35 text-3xl leading-none text-white backdrop-blur-sm transition hover:bg-black/55" aria-label="Close">&times;</button>
 
-      <div class="grid min-h-full lg:grid-cols-2">
-        <!-- Left: text -->
-        <div class="flex flex-col justify-center gap-5 px-8 py-16 sm:px-14 lg:px-16 xl:px-24">
-          <p class="ef-item text-2xl text-[#0e7490]/70" style="--ef: 0; font-family: 'Alex Brush', cursive">Welcome to</p>
-          <h2 id="modal-explore-title" class="ef-item text-4xl font-semibold tracking-tight text-neutral-900 sm:text-5xl" style="--ef: 1">S&amp;D Beach Resort</h2>
-          <p class="ef-item max-w-md text-lg leading-relaxed text-neutral-600" style="--ef: 2">
-            Tucked along the fine-sand shores of San Fabian, S&amp;D is a laid-back escape built for slowing down — cottages by the water, a pool for the kids, and easy waves just steps away.
-          </p>
-          <ul class="ef-item flex flex-col gap-2 text-neutral-700" style="--ef: 3">
-            <li class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-[#0e7490]"></span>Beachfront cottages &amp; air-conditioned rooms</li>
-            <li class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-[#0e7490]"></span>Pool, grilling area &amp; free parking</li>
-            <li class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-[#0e7490]"></span>Kitchen with utensils — free to use</li>
-          </ul>
-          <div class="ef-item mt-2 flex flex-wrap items-center gap-4" style="--ef: 4">
-            <a href="https://www.facebook.com/profile.php?id=100094234307971" target="_blank" rel="noopener" class="inline-flex items-center rounded-full bg-[#F48E26] px-7 py-3 text-base font-bold text-white shadow-lg transition hover:bg-[#f7a24d]">Book Via Facebook</a>
-            <a href="#gallery" data-close class="text-sm font-medium text-neutral-900 underline underline-offset-4 hover:no-underline">See the gallery →</a>
+      <!-- The 6 equal panels -->
+      <div class="ep-grid">
+        <button type="button" class="ep-panel" data-detail="ep-cottages" style="--ep: 0">
+          <span class="ep-panel__img" style="background-image: url('https://picsum.photos/seed/sd-prop-a/700/900')"></span>
+          <span class="ep-panel__body">
+            <i class="ep-panel__icon ri-home-4-line" aria-hidden="true"></i>
+            <span class="ep-panel__label">Beachfront Cottages</span>
+          </span>
+        </button>
+        <button type="button" class="ep-panel" data-detail="ep-rooms" style="--ep: 1">
+          <span class="ep-panel__img" style="background-image: url('https://picsum.photos/seed/sd-prop-b/700/900')"></span>
+          <span class="ep-panel__body">
+            <i class="ep-panel__icon ri-hotel-bed-line" aria-hidden="true"></i>
+            <span class="ep-panel__label">Air-Conditioned Rooms</span>
+          </span>
+        </button>
+        <button type="button" class="ep-panel" data-detail="ep-pool" style="--ep: 2">
+          <span class="ep-panel__img" style="background-image: url('https://picsum.photos/seed/sd-prop-c/700/900')"></span>
+          <span class="ep-panel__body">
+            <i class="ep-panel__icon ri-drop-line" aria-hidden="true"></i>
+            <span class="ep-panel__label">Swimming Pool</span>
+          </span>
+        </button>
+        <button type="button" class="ep-panel" data-detail="ep-kitchen" style="--ep: 3">
+          <span class="ep-panel__img" style="background-image: url('https://picsum.photos/seed/sd-prop-d/700/900')"></span>
+          <span class="ep-panel__body">
+            <i class="ep-panel__icon ri-restaurant-line" aria-hidden="true"></i>
+            <span class="ep-panel__label">Kitchen &amp; Grilling</span>
+          </span>
+        </button>
+        <button type="button" class="ep-panel" data-detail="ep-parking" style="--ep: 4">
+          <span class="ep-panel__img" style="background-image: url('https://picsum.photos/seed/sd-property/800/600')"></span>
+          <span class="ep-panel__body">
+            <i class="ep-panel__icon ri-car-line" aria-hidden="true"></i>
+            <span class="ep-panel__label">Free Parking</span>
+          </span>
+        </button>
+        <button type="button" class="ep-panel" data-detail="ep-shore" style="--ep: 5">
+          <span class="ep-panel__img" style="background-image: url('https://picsum.photos/seed/sd-hero/1600/900')"></span>
+          <span class="ep-panel__body">
+            <i class="ep-panel__icon ri-sun-line" aria-hidden="true"></i>
+            <span class="ep-panel__label">The Shoreline</span>
+          </span>
+        </button>
+      </div>
+
+      <!-- Detail views (one per panel) -->
+      <div class="ep-detail" id="ep-cottages" role="group" aria-label="Beachfront Cottages">
+        <div class="grid min-h-full lg:grid-cols-2">
+          <div class="ep-detail__media" style="background-image: url('https://picsum.photos/seed/sd-prop-a/900/1200')"></div>
+          <div class="ep-detail__text">
+            <button type="button" data-back class="ep-back"><i class="ri-arrow-left-line" aria-hidden="true"></i> All highlights</button>
+            <span class="ep-detail__eyebrow">Where you'll stay</span>
+            <h3 class="ep-detail__title">Beachfront Cottages</h3>
+            <p>Native-style cottages sit right on the sand, a few steps from the water. They're the spot for daytime lounging and sunset watching — shady, breezy, and built for big groups to gather.</p>
+            <ul class="ep-detail__list">
+              <li>Steps from the shoreline</li>
+              <li>Shaded seating for the whole barkada</li>
+              <li>Perfect base for grilling &amp; swimming days</li>
+            </ul>
+            <a href="https://www.facebook.com/profile.php?id=100094234307971" target="_blank" rel="noopener" class="ep-detail__cta">Book Via Facebook</a>
           </div>
         </div>
+      </div>
 
-        <!-- Right: property photos -->
-        <div class="ef-item grid grid-cols-2 grid-rows-2 gap-2 bg-neutral-100 p-2 sm:gap-3 sm:p-3 lg:h-[100dvh]" style="--ef: 2">
-          <img src="https://picsum.photos/seed/sd-prop-a/700/900" alt="S&D Beach Resort" class="h-full min-h-[42vw] w-full rounded-xl object-cover lg:min-h-0" loading="lazy" />
-          <img src="https://picsum.photos/seed/sd-prop-b/700/900" alt="S&D Beach Resort" class="h-full min-h-[42vw] w-full rounded-xl object-cover lg:min-h-0" loading="lazy" />
-          <img src="https://picsum.photos/seed/sd-prop-c/700/900" alt="S&D Beach Resort" class="h-full min-h-[42vw] w-full rounded-xl object-cover lg:min-h-0" loading="lazy" />
-          <img src="https://picsum.photos/seed/sd-prop-d/700/900" alt="S&D Beach Resort" class="h-full min-h-[42vw] w-full rounded-xl object-cover lg:min-h-0" loading="lazy" />
+      <div class="ep-detail" id="ep-rooms" role="group" aria-label="Air-Conditioned Rooms">
+        <div class="grid min-h-full lg:grid-cols-2">
+          <div class="ep-detail__media" style="background-image: url('https://picsum.photos/seed/sd-prop-b/900/1200')"></div>
+          <div class="ep-detail__text">
+            <button type="button" data-back class="ep-back"><i class="ri-arrow-left-line" aria-hidden="true"></i> All highlights</button>
+            <span class="ep-detail__eyebrow">Where you'll sleep</span>
+            <h3 class="ep-detail__title">Air-Conditioned Rooms</h3>
+            <p>Cool, comfortable rooms for when you want to escape the midday heat and get a real night's rest. Ideal for families who'd rather stay overnight than pack up at sundown.</p>
+            <ul class="ep-detail__list">
+              <li>Fully air-conditioned</li>
+              <li>Comfortable bedding for families</li>
+              <li>Quiet rest away from the sun</li>
+            </ul>
+            <a href="https://www.facebook.com/profile.php?id=100094234307971" target="_blank" rel="noopener" class="ep-detail__cta">Book Via Facebook</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ep-detail" id="ep-pool" role="group" aria-label="Swimming Pool">
+        <div class="grid min-h-full lg:grid-cols-2">
+          <div class="ep-detail__media" style="background-image: url('https://picsum.photos/seed/sd-prop-c/900/1200')"></div>
+          <div class="ep-detail__text">
+            <button type="button" data-back class="ep-back"><i class="ri-arrow-left-line" aria-hidden="true"></i> All highlights</button>
+            <span class="ep-detail__eyebrow">For the kids</span>
+            <h3 class="ep-detail__title">Swimming Pool</h3>
+            <p>A clean pool for the little ones (and the young at heart) who aren't quite ready for the waves. Splash around close to the cottages while the grill gets going.</p>
+            <ul class="ep-detail__list">
+              <li>Kid-friendly depth</li>
+              <li>Right beside the cottages</li>
+              <li>A safe alternative to the open sea</li>
+            </ul>
+            <a href="https://www.facebook.com/profile.php?id=100094234307971" target="_blank" rel="noopener" class="ep-detail__cta">Book Via Facebook</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ep-detail" id="ep-kitchen" role="group" aria-label="Kitchen and Grilling">
+        <div class="grid min-h-full lg:grid-cols-2">
+          <div class="ep-detail__media" style="background-image: url('https://picsum.photos/seed/sd-prop-d/900/1200')"></div>
+          <div class="ep-detail__text">
+            <button type="button" data-back class="ep-back"><i class="ri-arrow-left-line" aria-hidden="true"></i> All highlights</button>
+            <span class="ep-detail__eyebrow">For the food</span>
+            <h3 class="ep-detail__title">Kitchen &amp; Grilling</h3>
+            <p>Bring your own catch or groceries — there's a grilling area for the classic seaside cookout and a kitchen stocked with utensils, free for guests to use.</p>
+            <ul class="ep-detail__list">
+              <li>Open-air grilling area</li>
+              <li>Kitchen with utensils — free to use</li>
+              <li>Made for family-style meals</li>
+            </ul>
+            <a href="https://www.facebook.com/profile.php?id=100094234307971" target="_blank" rel="noopener" class="ep-detail__cta">Book Via Facebook</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ep-detail" id="ep-parking" role="group" aria-label="Free Parking">
+        <div class="grid min-h-full lg:grid-cols-2">
+          <div class="ep-detail__media" style="background-image: url('https://picsum.photos/seed/sd-property/900/1200')"></div>
+          <div class="ep-detail__text">
+            <button type="button" data-back class="ep-back"><i class="ri-arrow-left-line" aria-hidden="true"></i> All highlights</button>
+            <span class="ep-detail__eyebrow">Getting here</span>
+            <h3 class="ep-detail__title">Free Parking</h3>
+            <p>Drive straight in — parking is free and right on site, so unloading the cooler, the kids, and the beach bags is as easy as it should be.</p>
+            <ul class="ep-detail__list">
+              <li>Free on-site parking</li>
+              <li>Easy loading &amp; unloading</li>
+              <li>Just off the San Fabian shore road</li>
+            </ul>
+            <a href="https://www.facebook.com/profile.php?id=100094234307971" target="_blank" rel="noopener" class="ep-detail__cta">Book Via Facebook</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ep-detail" id="ep-shore" role="group" aria-label="The Shoreline">
+        <div class="grid min-h-full lg:grid-cols-2">
+          <div class="ep-detail__media" style="background-image: url('https://picsum.photos/seed/sd-hero/1600/1200')"></div>
+          <div class="ep-detail__text">
+            <button type="button" data-back class="ep-back"><i class="ri-arrow-left-line" aria-hidden="true"></i> All highlights</button>
+            <span class="ep-detail__eyebrow">The main event</span>
+            <h3 class="ep-detail__title">The Shoreline</h3>
+            <p>Fine sand and easy waves just steps from the cottages. Swim, build sandcastles, or just sit back for the San Fabian sunset — this is why guests keep coming back.</p>
+            <ul class="ep-detail__list">
+              <li>Fine-sand beachfront</li>
+              <li>Gentle, swimmable waves</li>
+              <li>Front-row seat to the sunset</li>
+            </ul>
+            <a href="https://www.facebook.com/profile.php?id=100094234307971" target="_blank" rel="noopener" class="ep-detail__cta">Book Via Facebook</a>
+          </div>
         </div>
       </div>
     </div>
@@ -664,6 +810,51 @@
       );
       document.querySelectorAll(".reveal").forEach((el) => revealIO.observe(el));
 
+      // Sticky section nav: reveal it once the hero has scrolled out of view,
+      // and light up the link whose section is currently centred (scrollspy).
+      const sectionNav = document.getElementById("section-nav");
+      const hero = document.getElementById("hero");
+      if (sectionNav && hero) {
+        // Show/hide: the nav appears the moment the hero leaves the viewport.
+        new IntersectionObserver(
+          ([entry]) => sectionNav.classList.toggle("is-visible", !entry.isIntersecting),
+          { threshold: 0 }
+        ).observe(hero);
+
+        // Scrollspy: a thin band across the viewport middle; whichever section
+        // crosses it becomes the active link.
+        const navLinks = [...sectionNav.querySelectorAll("[data-nav]")];
+        const linkScroller = sectionNav.querySelector(".section-nav__links");
+        const linkFor = new Map();
+        navLinks.forEach((link) => {
+          const section = document.querySelector(link.getAttribute("href"));
+          if (section) linkFor.set(section, link);
+        });
+        // On narrow screens the links overflow, so keep the active one centred
+        // by nudging the strip horizontally (nudge only the strip, never the
+        // page — scrollBy on the container, not scrollIntoView).
+        const centerNavLink = (link) => {
+          if (!linkScroller) return;
+          const l = link.getBoundingClientRect();
+          const s = linkScroller.getBoundingClientRect();
+          const delta = l.left + l.width / 2 - (s.left + s.width / 2);
+          linkScroller.scrollBy({ left: delta, behavior: reduceMotion ? "auto" : "smooth" });
+        };
+        const spy = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              navLinks.forEach((l) => l.classList.remove("is-active"));
+              const active = linkFor.get(entry.target);
+              active.classList.add("is-active");
+              centerNavLink(active);
+            });
+          },
+          { rootMargin: "-50% 0px -50% 0px", threshold: 0 }
+        );
+        linkFor.forEach((_, section) => spy.observe(section));
+      }
+
       // Spin the signpost's signs in when it scrolls into view.
       const signpost = document.querySelector(".signpost");
       if (signpost) {
@@ -679,6 +870,38 @@
           { threshold: 0.4 }
         );
         signIO.observe(signpost);
+      }
+
+      // Size the map so the whole Find-Us stack — map + gap + "Open in Google
+      // Maps" button — ends exactly where the "Location Facts" signpost column
+      // ends. The signpost can grow/shrink (longer labels, more signs, font
+      // changes), so we watch it and re-fit. We fold the gap between the CTA's
+      // current bottom and the column's bottom straight into the map's height,
+      // which absorbs the button and the heading offset automatically. Only
+      // side by side (lg); stacked on mobile the map keeps its CSS height.
+      const locationMap = document.getElementById("location-map");
+      const nearbyColumn = document.getElementById("nearby");
+      const mapCta = document.getElementById("location-map-cta");
+      const pole = document.querySelector(".signpost__pole");
+      if (locationMap && nearbyColumn) {
+        const sideBySide = window.matchMedia("(min-width: 1024px)");
+        const syncMapHeight = () => {
+          if (!sideBySide.matches) {
+            locationMap.style.height = ""; // hand control back to the CSS classes
+            return;
+          }
+          const anchor = mapCta || locationMap;      // what should bottom-align
+          // Match the bottom of the pole itself (map + gap + button = pole).
+          const target = (pole || nearbyColumn).getBoundingClientRect().bottom;
+          const current = anchor.getBoundingClientRect().bottom;
+          const mapH = locationMap.getBoundingClientRect().height;
+          // Grow/shrink the map by however far the CTA is from the target line.
+          locationMap.style.height = Math.max(240, mapH + (target - current)) + "px";
+        };
+        new ResizeObserver(syncMapHeight).observe(nearbyColumn);
+        sideBySide.addEventListener("change", syncMapHeight);
+        window.addEventListener("load", syncMapHeight);
+        syncMapHeight();
       }
 
       // Lightbox: clicking a photo zooms it in, rising upward into view.
@@ -825,10 +1048,26 @@
         });
       });
 
-      // Full-screen Explore panel: open from the hero cue; close via [data-close].
+      // Full-screen Explore panel: a 6-panel grid that opens per-panel detail
+      // views. Open from the hero cue; a panel opens its detail; "Back" returns
+      // to the grid; × (or Esc from the grid) closes the whole thing.
       const explore = document.getElementById("modal-explore");
+      function showExploreGrid() {
+        if (!explore) return;
+        explore.classList.remove("ep--detail");
+        explore.querySelectorAll(".ep-detail.is-active").forEach((d) => d.classList.remove("is-active"));
+      }
+      function openExploreDetail(id) {
+        const detail = document.getElementById(id);
+        if (!explore || !detail) return;
+        explore.querySelectorAll(".ep-detail.is-active").forEach((d) => d.classList.remove("is-active"));
+        detail.classList.add("is-active");
+        detail.scrollTop = 0;
+        explore.classList.add("ep--detail");
+      }
       function openExplore() {
         if (!explore) return;
+        showExploreGrid();          // always start on the grid
         explore.classList.add("is-open");
         document.body.style.overflow = "hidden";
       }
@@ -844,8 +1083,12 @@
         });
       });
       if (explore) {
+        explore.querySelectorAll(".ep-panel").forEach((panel) => {
+          panel.addEventListener("click", () => openExploreDetail(panel.dataset.detail));
+        });
         explore.addEventListener("click", (e) => {
           if (e.target.closest("[data-close]")) closeExplore();
+          else if (e.target.closest("[data-back]")) showExploreGrid();
         });
       }
 
@@ -854,7 +1097,11 @@
         if (e.key === "Escape") {
           closeLightbox();
           closeModals();
-          closeExplore();
+          // In Explore: a detail view backs out to the grid first; the grid closes.
+          if (explore && explore.classList.contains("is-open")) {
+            if (explore.classList.contains("ep--detail")) showExploreGrid();
+            else closeExplore();
+          }
         }
       });
 
