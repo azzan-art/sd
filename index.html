@@ -645,6 +645,25 @@
         <div class="sunset-sun"></div>
         <div class="sunset-sea"></div>
       </div>
+
+      <!-- Sea surface: stylized wave lines drifting across the whole sea, from
+           the horizon (up in the sunset block) down through the footer, so the
+           two blocks read as one water surface. Warm near the horizon (the sun
+           on the water) → cool with depth. No z-index: DOM order paints it above
+           the sunset water block but below the sea's text. -->
+      <div class="sea-surface" aria-hidden="true">
+        <svg class="sea-surface__line" style="--top: 4%; --dur: 34s; --stroke: rgba(255, 201, 143, 0.5); --sw: 2.5; --dash: 24 24 36 28 28 26" viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0,24 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0" /></svg>
+        <svg class="sea-surface__line sea-surface__line--rev" style="--top: 12%; --dur: 40s; --stroke: rgba(255, 214, 170, 0.46); --sw: 2.5; --dash: 20 22 32 26 24 22" viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0,24 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0" /></svg>
+        <svg class="sea-surface__line" style="--top: 21%; --dur: 36s; --stroke: rgba(255, 228, 196, 0.42); --sw: 2; --dash: 28 26 22 30 34 24" viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0,24 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0" /></svg>
+        <svg class="sea-surface__line sea-surface__line--rev" style="--top: 30%; --dur: 46s; --stroke: rgba(240, 244, 232, 0.4); --sw: 2; --dash: 18 24 30 22 26 28" viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0,24 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0" /></svg>
+        <svg class="sea-surface__line" style="--top: 39%; --dur: 38s; --stroke: rgba(224, 247, 255, 0.4); --sw: 2; --dash: 26 22 34 28 20 24" viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0,24 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0" /></svg>
+        <svg class="sea-surface__line sea-surface__line--rev" style="--top: 48%; --dur: 48s; --stroke: rgba(212, 244, 253, 0.37); --sw: 2; --dash: 22 26 28 24 32 22" viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0,24 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0" /></svg>
+        <svg class="sea-surface__line" style="--top: 57%; --dur: 42s; --stroke: rgba(203, 240, 252, 0.34); --sw: 2; --dash: 30 24 20 28 26 30" viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0,24 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0" /></svg>
+        <svg class="sea-surface__line sea-surface__line--rev" style="--top: 66%; --dur: 50s; --stroke: rgba(195, 238, 250, 0.31); --sw: 2; --dash: 24 28 34 22 26 24" viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0,24 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0" /></svg>
+        <svg class="sea-surface__line" style="--top: 75%; --dur: 44s; --stroke: rgba(188, 235, 248, 0.28); --sw: 2; --dash: 20 22 28 30 24 26" viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0,24 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0" /></svg>
+        <svg class="sea-surface__line sea-surface__line--rev" style="--top: 84%; --dur: 52s; --stroke: rgba(182, 232, 246, 0.25); --sw: 2; --dash: 28 24 32 26 22 28" viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0,24 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0" /></svg>
+        <svg class="sea-surface__line" style="--top: 92%; --dur: 46s; --stroke: rgba(176, 230, 245, 0.22); --sw: 2; --dash: 22 26 24 30 28 24" viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0,24 q120,-16 240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0 t240,0" /></svg>
+      </div>
       <div class="relative mx-auto max-w-4xl px-6 pb-24 pt-20 text-center">
         <div class="reveal">
           <h2 class="text-5xl tracking-tight sm:text-6xl" style="font-family: 'Alex Brush', cursive">Your spot by the sea is waiting</h2>

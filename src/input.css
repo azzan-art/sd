@@ -604,6 +604,61 @@ html {
   .sea-waves svg { animation: none; }
 }
 
+/* ---- Sea surface waves ---- */
+/* Stylized wave lines drifting across the whole sea — from the horizon (inside
+   the #visit sunset block) down through the footer, so the two blocks read as
+   one water surface. Each line sits at its own depth (--top) and drifts left or
+   right; colour warms near the horizon (the sun on the water) and cools with
+   depth. Reuses the same wave-crest motif as the shore & footer waves. */
+.sea-surface {
+  position: absolute;
+  top: 18rem;               /* the horizon, inside the sunset block */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* No z-index: DOM order puts it above the sunset water block, below the text. */
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.35;            /* keep the marks faint over the water */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 120px, #000 calc(100% - 70px), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 120px, #000 calc(100% - 70px), transparent 100%);
+}
+@media (min-width: 640px) {
+  .sea-surface {
+    top: 21rem;             /* horizon on the taller sm:h-[28rem] sunset */
+  }
+}
+.sea-surface__line {
+  position: absolute;
+  left: 0;
+  top: var(--top);
+  width: 200%;              /* 2× so translateX -50% loops seamlessly */
+  height: 60px;
+  will-change: transform;
+  animation: sea-surface-drift var(--dur, 20s) linear infinite;
+}
+.sea-surface__line--rev {
+  animation-direction: reverse;
+}
+.sea-surface__line path {
+  fill: none;
+  stroke: var(--stroke, rgba(255, 255, 255, 0.35));
+  stroke-width: var(--sw, 2);
+  stroke-linecap: round;
+  /* Break the wave into short, irregular strokes — little wave marks cut off at
+     points, not one continuous line. Denser rhythm = more marks; per-line --dash
+     varies it. No stroke pulsing — the lines just drift. */
+  stroke-dasharray: var(--dash, 5 26 16 34 8 22);
+  vector-effect: non-scaling-stroke;   /* thin, consistent strokes & dashes */
+}
+@keyframes sea-surface-drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sea-surface__line { animation: none; }
+}
+
 /* ---- Gallery preview: drifting columns ---- */
 /* Three columns that scroll vertically forever in alternating directions
    (data-dir up/down); the container clips them and its mask fades the top &
