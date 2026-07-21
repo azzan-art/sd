@@ -1067,8 +1067,17 @@
           box.removeEventListener("transitionend", done);
         });
       }
+      // Drag-selecting text inside a panel leaves a live selection after it
+      // closes; a lingering selection makes the next click just deselect
+      // instead of firing, so clear it whenever we close something.
+      function clearSelection() {
+        const sel = window.getSelection && window.getSelection();
+        if (sel && sel.rangeCount) sel.removeAllRanges();
+      }
+
       function closeModals() {
         document.querySelectorAll(".modal.is-open").forEach((m) => m.classList.remove("is-open"));
+        clearSelection();
         syncScrollLock();
       }
 
@@ -1103,6 +1112,7 @@
         if (!explore) return;
         explore.classList.remove("ep--detail");
         explore.querySelectorAll(".ep-detail.is-active").forEach((d) => d.classList.remove("is-active"));
+        clearSelection();
       }
       function openExploreDetail(id) {
         const detail = document.getElementById(id);
@@ -1121,6 +1131,7 @@
       function closeExplore() {
         if (!explore) return;
         explore.classList.remove("is-open");
+        clearSelection();
         syncScrollLock();
       }
       document.querySelectorAll("[data-explore]").forEach((t) => {

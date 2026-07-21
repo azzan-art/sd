@@ -737,11 +737,15 @@ html {
   background: rgba(0, 0, 0, 0.85);
   opacity: 0;
   visibility: hidden;
+  /* pointer-events flips instantly (no transition), so a closing overlay stops
+     catching clicks immediately instead of eating them while it fades out. */
+  pointer-events: none;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 .lightbox.is-open {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 .lightbox-img {
   width: min(900px, 90vw);
@@ -775,11 +779,13 @@ html {
   background: rgba(0, 0, 0, 0.7);
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 .modal.is-open {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 /* The box itself is moved by JS (FLIP: it expands from the clicked image).
    Only the inner content fades/rises in, once the panel has grown. */
@@ -846,11 +852,13 @@ html {
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 .modal-full.is-open {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 /* GSAP-style entrance: each item rises + fades, staggered by its --ef index. */
 .ef-item {
