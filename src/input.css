@@ -499,9 +499,12 @@ html {
   z-index: 0;               /* contain the -1 layers above the section bg */
 }
 /* Decorative print cards behind the top card — each a white-framed photo,
-   fanned at its own angle/offset (set inline via --r / --x / --y). They match
-   the top card's size (inset:0), so the fan stays centered on it — offsets go
-   both up and down so the pile is balanced, not bottom-heavy. */
+   fanned at its own angle/offset (set inline via --r / --x / --y). The photo
+   itself is set inline as `background-image` (NOT through a custom property):
+   a relative url() carried in a custom prop resolves against THIS stylesheet's
+   folder (/css), so it 404s as /css/img/… — inline on the element resolves
+   against the page. They match the top card's size (inset:0), so the fan stays
+   centered on it — offsets go both up and down so the pile is balanced. */
 .stack-print {
   position: absolute;
   inset: 0;
@@ -509,7 +512,6 @@ html {
   border-radius: 1rem;      /* match the card's rounded-2xl */
   border: 4px solid #fff;   /* white frame → reads as a printed photo card */
   background-color: #e2e8f0;      /* soft tint while the photo loads */
-  background-image: var(--img);
   background-size: cover;
   background-position: center;
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
@@ -837,7 +839,11 @@ html {
   inset: 0;
   z-index: 70;                /* above shore (30), modals (60), lightbox (50) */
   background: #fff;
-  overflow-y: auto;
+  /* The launcher grid is exactly 100dvh, so this layer must NOT scroll — an
+     `auto` here just lets the grid rubber-band (elastic overscroll) with
+     nowhere to go. Each .ep-detail is absolute inset:0 with its own
+     overflow-y:auto, so detail views still scroll on their own. */
+  overflow: hidden;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.4s ease, visibility 0.4s ease;

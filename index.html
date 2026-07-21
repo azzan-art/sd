@@ -37,8 +37,9 @@
   </head>
   <body class="min-h-screen bg-neutral-950 text-neutral-100 antialiased">
     <!-- Hero background video (fixed, so it only shows through the hero;
-         the content sections below sit on top of it). -->
-    <video class="slideshow" autoplay muted loop playsinline preload="auto" poster="https://picsum.photos/seed/sd-hero/1600/900" aria-hidden="true">
+         the content sections below sit on top of it). The poster (first frame
+         of the video) shows until the video has buffered enough to play. -->
+    <video class="slideshow" autoplay muted loop playsinline preload="auto" poster="img/hero_temp.jpg" aria-hidden="true">
       <source src="./hero.mp4" type="video/mp4" />
     </video>
 
@@ -210,11 +211,11 @@
             </ul>
           </div>
           <div class="photo-stack">
-            <span class="stack-print" style="--img: url('https://picsum.photos/seed/sd-print1/500/380'); --r: -5deg; --x: -40px; --y: -20px;" aria-hidden="true"></span>
-            <span class="stack-print" style="--img: url('https://picsum.photos/seed/sd-print2/500/380'); --r: 4deg; --x: 40px; --y: -18px;" aria-hidden="true"></span>
-            <span class="stack-print" style="--img: url('https://picsum.photos/seed/sd-print3/500/380'); --r: -5deg; --x: -18px; --y: 20px;" aria-hidden="true"></span>
-            <span class="stack-print" style="--img: url('https://picsum.photos/seed/sd-print4/500/380'); --r: 5deg; --x: 24px; --y: 14px;" aria-hidden="true"></span>
-            <a href="#" data-explore class="group relative block aspect-[4/3] overflow-hidden rounded-2xl border-4 border-white bg-cover bg-center shadow-lg transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('https://picsum.photos/seed/sd-property/800/600'), linear-gradient(135deg, #164e63, #0e7490);">
+            <span class="stack-print" style="background-image: url('img/gallery_7.jpg'); --r: -5deg; --x: -40px; --y: -20px;" aria-hidden="true"></span>
+            <span class="stack-print" style="background-image: url('img/room_1.jpg'); --r: 4deg; --x: 40px; --y: -18px;" aria-hidden="true"></span>
+            <span class="stack-print" style="background-image: url('img/gallery_8.jpg'); --r: -5deg; --x: -18px; --y: 20px;" aria-hidden="true"></span>
+            <span class="stack-print" style="background-image: url('img/stack_1.jpg'); --r: 5deg; --x: 24px; --y: 14px;" aria-hidden="true"></span>
+            <a href="#" data-explore class="group relative block aspect-[4/3] overflow-hidden rounded-2xl border-4 border-white bg-cover bg-center shadow-lg transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('img/cottage_1.jpg'), linear-gradient(135deg, #164e63, #0e7490);">
               <span class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition group-hover:from-black/80"></span>
               <span class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-6">
                 <span class="inline-flex items-center gap-1 rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-neutral-900 shadow transition group-hover:bg-white">
@@ -231,7 +232,7 @@
 
     <!-- Activities: a short intro + four tall photos (each opens the Activities modal) -->
     <section id="activities" class="relative z-20 bg-white text-neutral-900">
-      <div class="mx-auto max-w-6xl px-6 pb-24">
+      <div class="mx-auto max-w-6xl px-6 pb-14">
         <div class="reveal mx-auto max-w-2xl text-center">
           <h3 class="text-2xl font-semibold tracking-tight sm:text-3xl">Fun Activities</h3>
           <p class="mt-4 text-neutral-600">
@@ -239,7 +240,7 @@
           </p>
         </div>
         <div class="reveal mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4" style="--reveal-delay: 0.1s">
-          <a href="#" data-modal="modal-activities" class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('https://picsum.photos/seed/sd-act-1/600/900'), linear-gradient(135deg, #164e63, #0e7490);">
+          <a href="#" data-modal="modal-activities" class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('img/banana.jpg'), linear-gradient(135deg, #164e63, #0e7490);">
             <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition group-hover:from-black/70"></span>
             <span class="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 p-4 text-center">
               <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
@@ -248,7 +249,7 @@
               <span class="text-sm font-semibold text-white drop-shadow">Banana Boat</span>
             </span>
           </a>
-          <a href="#" data-modal="modal-activities" class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('https://picsum.photos/seed/sd-act-2/600/900'), linear-gradient(135deg, #713f12, #a16207);">
+          <a href="#" data-modal="modal-activities" class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('img/swimming.jpg'), linear-gradient(135deg, #713f12, #a16207);">
             <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition group-hover:from-black/70"></span>
             <span class="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 p-4 text-center">
               <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
@@ -257,7 +258,7 @@
               <span class="text-sm font-semibold text-white drop-shadow">Swimming</span>
             </span>
           </a>
-          <a href="#" data-modal="modal-activities" class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('https://picsum.photos/seed/sd-act-3/600/900'), linear-gradient(135deg, #052e16, #14532d);">
+          <a href="#" data-modal="modal-activities" class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('img/volleyball.jpg'), linear-gradient(135deg, #052e16, #14532d);">
             <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition group-hover:from-black/70"></span>
             <span class="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 p-4 text-center">
               <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
@@ -266,13 +267,33 @@
               <span class="text-sm font-semibold text-white drop-shadow">Volleyball</span>
             </span>
           </a>
-          <a href="#" data-modal="modal-activities" class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('https://picsum.photos/seed/sd-act-4/600/900'), linear-gradient(135deg, #1e1b4b, #4c1d95);">
+          <a href="#" data-modal="modal-activities" class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('img/videoke.jpg'), linear-gradient(135deg, #1e1b4b, #4c1d95);">
             <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition group-hover:from-black/70"></span>
             <span class="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 p-4 text-center">
               <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
                 <i class="ri-mic-fill text-xl leading-none" aria-hidden="true"></i>
               </span>
               <span class="text-sm font-semibold text-white drop-shadow">Videoke</span>
+            </span>
+          </a>
+        </div>
+        <div class="reveal mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2" style="--reveal-delay: 0.15s">
+          <a href="#" data-modal="modal-activities" class="group relative block aspect-[16/10] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('img/relax.jpg'), linear-gradient(135deg, #0c4a6e, #0369a1);">
+            <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition group-hover:from-black/70"></span>
+            <span class="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 p-4 text-center">
+              <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
+                <i class="ri-cup-fill text-xl leading-none" aria-hidden="true"></i>
+              </span>
+              <span class="text-sm font-semibold text-white drop-shadow">Relax</span>
+            </span>
+          </a>
+          <a href="#" data-modal="modal-activities" class="group relative block aspect-[16/10] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('img/swimming.jpg'), linear-gradient(135deg, #713f12, #a16207);">
+            <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition group-hover:from-black/70"></span>
+            <span class="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 p-4 text-center">
+              <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
+                <i class="ri-drop-fill text-xl leading-none" aria-hidden="true"></i>
+              </span>
+              <span class="text-sm font-semibold text-white drop-shadow">Swimming</span>
             </span>
           </a>
         </div>
@@ -287,7 +308,7 @@
         <span class="bubble" style="--size: 300px; --left: 78%; --dur: 40s; --delay: -9s;  --sway: 82px; --sway-dur: 12s;"><span></span></span>
         <span class="bubble" style="--size: 120px; --left: 90%; --dur: 22s; --delay: -13s; --sway: 38px; --sway-dur: 6s;"><span></span></span>
       </div>
-      <div class="mx-auto max-w-6xl px-6 py-24">
+      <div class="mx-auto max-w-6xl px-6 pt-10 pb-24">
         <div class="relative z-10 mb-14 text-center">
           <span class="mb-0 block text-2xl font-normal leading-none text-[#0e7490b3] sm:text-3xl" style="font-family: 'Brittany Signature', cursive">Our Location</span>
         </div>
@@ -352,7 +373,7 @@
     </section>
 
     <!-- Gallery. Thumbnails fade in on scroll; click one to open the lightbox.
-         Swap the data-img url / gradient fallbacks for real photos in images/. -->
+         Photos are pulled from img/ (see the photos[] list in the script). -->
     <section id="gallery" class="relative z-20 bg-white text-neutral-900">
       <div class="bubbles" aria-hidden="true">
         <span class="bubble" style="--size: 250px; --left: 10%; --dur: 32s; --delay: -8s;  --sway: 65px; --sway-dur: 11s;"><span></span></span>
@@ -405,7 +426,7 @@
     <!-- Facilities modal -->
     <div id="modal-facilities" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-facilities-title">
       <div class="modal-box relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white text-neutral-900 shadow-2xl sm:max-w-2xl lg:max-w-3xl">
-        <div class="h-44 bg-cover bg-center sm:h-52" style="background-image: url('https://picsum.photos/seed/sd-property/800/600'), linear-gradient(135deg, #164e63, #0e7490);"></div>
+        <div class="h-44 bg-cover bg-center sm:h-52" style="background-image: url('img/house.jpg'), linear-gradient(135deg, #164e63, #0e7490);"></div>
         <button type="button" data-close class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-2xl leading-none text-neutral-700 shadow transition hover:bg-white" aria-label="Close">&times;</button>
         <div class="modal-content p-8">
           <h3 id="modal-facilities-title" class="text-3xl font-semibold tracking-tight">The Property</h3>
@@ -483,14 +504,14 @@
       <!-- The 6 equal panels -->
       <div class="ep-grid">
         <button type="button" class="ep-panel" data-detail="ep-cottages" style="--ep: 0">
-          <span class="ep-panel__img" style="background-image: url('https://picsum.photos/seed/sd-prop-a/700/900')"></span>
+          <span class="ep-panel__img" style="background-image: url('img/cottage_1.jpg')"></span>
           <span class="ep-panel__body">
             <i class="ep-panel__icon ri-home-4-line" aria-hidden="true"></i>
             <span class="ep-panel__label">Beachfront Cottages</span>
           </span>
         </button>
         <button type="button" class="ep-panel" data-detail="ep-rooms" style="--ep: 1">
-          <span class="ep-panel__img" style="background-image: url('https://picsum.photos/seed/sd-prop-b/700/900')"></span>
+          <span class="ep-panel__img" style="background-image: url('img/room_1.jpg')"></span>
           <span class="ep-panel__body">
             <i class="ep-panel__icon ri-hotel-bed-line" aria-hidden="true"></i>
             <span class="ep-panel__label">Air-Conditioned Rooms</span>
@@ -529,7 +550,7 @@
       <!-- Detail views (one per panel) -->
       <div class="ep-detail" id="ep-cottages" role="group" aria-label="Beachfront Cottages">
         <div class="grid min-h-full lg:grid-cols-2">
-          <div class="ep-detail__media" style="background-image: url('https://picsum.photos/seed/sd-prop-a/900/1200')"></div>
+          <div class="ep-detail__media" style="background-image: url('img/cottage_1.jpg')"></div>
           <div class="ep-detail__text">
             <button type="button" data-back class="ep-back"><i class="ri-arrow-left-line" aria-hidden="true"></i> All highlights</button>
             <span class="ep-detail__eyebrow">Where you'll stay</span>
@@ -547,7 +568,7 @@
 
       <div class="ep-detail" id="ep-rooms" role="group" aria-label="Air-Conditioned Rooms">
         <div class="grid min-h-full lg:grid-cols-2">
-          <div class="ep-detail__media" style="background-image: url('https://picsum.photos/seed/sd-prop-b/900/1200')"></div>
+          <div class="ep-detail__media" style="background-image: url('img/room_2.jpg')"></div>
           <div class="ep-detail__text">
             <button type="button" data-back class="ep-back"><i class="ri-arrow-left-line" aria-hidden="true"></i> All highlights</button>
             <span class="ep-detail__eyebrow">Where you'll sleep</span>
@@ -928,15 +949,22 @@
       const lightboxImg = document.getElementById("lightbox-img");
       const closeBtn = document.getElementById("lightbox-close");
 
+      // The page scroller is <html> (overflow-x:hidden on it makes overflow-y
+      // compute to auto), so lock the documentElement — NOT <body> — whenever
+      // any overlay is open, and release only once every overlay has closed.
+      function syncScrollLock() {
+        const open = document.querySelector(".modal.is-open, .modal-full.is-open, .lightbox.is-open");
+        document.documentElement.style.overflow = open ? "hidden" : "";
+      }
+
       function openLightbox(bg) {
         lightboxImg.style.backgroundImage = bg;
         lightbox.classList.add("is-open");
-        document.body.style.overflow = "hidden";
+        syncScrollLock();
       }
       function closeLightbox() {
         lightbox.classList.remove("is-open");
-        // Keep the page locked if a modal (e.g. the gallery) is still open.
-        document.body.style.overflow = document.querySelector(".modal.is-open") ? "hidden" : "";
+        syncScrollLock();
       }
 
       closeBtn.addEventListener("click", closeLightbox);
@@ -949,21 +977,21 @@
       // column loops seamlessly; modal tiles open the lightbox on click.
       (function () {
         const photos = [
-          { seed: "sd-g1",  grad: "linear-gradient(135deg, #0f172a, #334155)" },
-          { seed: "sd-g2",  grad: "linear-gradient(135deg, #431407, #7c2d12)" },
-          { seed: "sd-g3",  grad: "linear-gradient(135deg, #052e16, #14532d)" },
-          { seed: "sd-g4",  grad: "linear-gradient(135deg, #1e1b4b, #4c1d95)" },
-          { seed: "sd-g5",  grad: "linear-gradient(135deg, #164e63, #0e7490)" },
-          { seed: "sd-g6",  grad: "linear-gradient(135deg, #713f12, #a16207)" },
-          { seed: "sd-g7",  grad: "linear-gradient(135deg, #0c4a6e, #0369a1)" },
-          { seed: "sd-g8",  grad: "linear-gradient(135deg, #7c2d12, #b45309)" },
-          { seed: "sd-g9",  grad: "linear-gradient(135deg, #14532d, #15803d)" },
-          { seed: "sd-g10", grad: "linear-gradient(135deg, #4c1d95, #6d28d9)" },
-          { seed: "sd-g11", grad: "linear-gradient(135deg, #0e7490, #0891b2)" },
-          { seed: "sd-g12", grad: "linear-gradient(135deg, #a16207, #ca8a04)" },
+          { src: "img/gallery_1.jpg",  grad: "linear-gradient(135deg, #0f172a, #334155)" },
+          { src: "img/gallery_2.jpg",  grad: "linear-gradient(135deg, #431407, #7c2d12)" },
+          { src: "img/gallery_3.jpg",  grad: "linear-gradient(135deg, #052e16, #14532d)" },
+          { src: "img/gallery_4.jpg",  grad: "linear-gradient(135deg, #1e1b4b, #4c1d95)" },
+          { src: "img/gallery_5.jpg",  grad: "linear-gradient(135deg, #164e63, #0e7490)" },
+          { src: "img/gallery_6.jpg",  grad: "linear-gradient(135deg, #713f12, #a16207)" },
+          { src: "img/house.jpg",      grad: "linear-gradient(135deg, #0c4a6e, #0369a1)" },
+          { src: "img/cottage_1.jpg",  grad: "linear-gradient(135deg, #7c2d12, #b45309)" },
+          { src: "img/swimming.jpg",   grad: "linear-gradient(135deg, #14532d, #15803d)" },
+          { src: "img/volleyball.jpg", grad: "linear-gradient(135deg, #4c1d95, #6d28d9)" },
+          { src: "img/banana.jpg",     grad: "linear-gradient(135deg, #0e7490, #0891b2)" },
+          { src: "img/banana_2.jpg",   grad: "linear-gradient(135deg, #a16207, #ca8a04)" },
         ];
-        const thumbUrl = (p) => `url('https://picsum.photos/seed/${p.seed}/800/600'), ${p.grad}`;
-        const zoomUrl = (p) => `url('https://picsum.photos/seed/${p.seed}/1400/1000'), ${p.grad}`;
+        const thumbUrl = (p) => `url('${p.src}'), ${p.grad}`;
+        const zoomUrl = (p) => `url('${p.src}'), ${p.grad}`;
 
         function tile(p, className) {
           const el = document.createElement("div");
@@ -1008,7 +1036,7 @@
       function openModal(modal, trigger) {
         const box = modal.querySelector(".modal-box");
         modal.classList.add("is-open");
-        document.body.style.overflow = "hidden";
+        syncScrollLock();
         box.scrollTop = 0;
 
         if (!trigger || reduceMotion) return;
@@ -1041,7 +1069,7 @@
       }
       function closeModals() {
         document.querySelectorAll(".modal.is-open").forEach((m) => m.classList.remove("is-open"));
-        document.body.style.overflow = "";
+        syncScrollLock();
       }
 
       document.querySelectorAll("[data-modal]").forEach((trigger) => {
@@ -1088,12 +1116,12 @@
         if (!explore) return;
         showExploreGrid();          // always start on the grid
         explore.classList.add("is-open");
-        document.body.style.overflow = "hidden";
+        syncScrollLock();
       }
       function closeExplore() {
         if (!explore) return;
         explore.classList.remove("is-open");
-        document.body.style.overflow = "";
+        syncScrollLock();
       }
       document.querySelectorAll("[data-explore]").forEach((t) => {
         t.addEventListener("click", (e) => {
