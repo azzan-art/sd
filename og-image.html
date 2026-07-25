@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>S&D — Share Card (1200×630)</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0b1220;
+        font-family: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif;
+        padding: 24px;
+      }
+
+      /* Exact Open Graph frame: 1200 × 630 (1.91:1). Screenshot THIS box. */
+      .card {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        border-radius: 8px;
+        color: #fff;
+        background: #0b1220;
+      }
+
+      /* Photo collage layer: a full-bleed grid of resort photos. */
+      .collage {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 6px;
+        z-index: 0;
+      }
+      .collage span {
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* Readability overlay: darker on the left where the text sits, plus an
+         overall wash so the wordmark always reads over the collage. */
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background:
+          linear-gradient(90deg, rgba(3, 20, 28, 0.94) 0%, rgba(3, 20, 28, 0.78) 42%, rgba(3, 20, 28, 0.5) 70%, rgba(3, 20, 28, 0.5) 100%),
+          linear-gradient(to top, rgba(3, 20, 28, 0.6) 0%, rgba(3, 20, 28, 0.15) 55%);
+        pointer-events: none;
+      }
+
+      .inner {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 72px 80px;
+        max-width: 780px;
+      }
+
+      .script {
+        font-family: "Alex Brush", cursive;
+        font-size: 62px;
+        line-height: 1;
+        color: #7dd3e8;
+        margin-bottom: 8px;
+      }
+
+      .title {
+        font-size: 68px;
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+      }
+
+      .title .sea { color: #7dd3e8; }
+
+      .tagline {
+        margin-top: 22px;
+        font-size: 26px;
+        font-weight: 400;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 620px;
+        text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      .meta {
+        margin-top: 34px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 22px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .meta .dot { opacity: 0.5; }
+
+      .hint {
+        position: fixed;
+        bottom: 14px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      /* Capture mode (og-image.html?shot=1): strip everything but the card so a
+         headless screenshot at 1200×630 is pixel-perfect. */
+      body.shot { padding: 0; display: block; background: transparent; }
+      body.shot .card { border-radius: 0; }
+      body.shot .hint { display: none; }
+    </style>
+    <script>
+      if (location.search.includes("shot")) {
+        document.addEventListener("DOMContentLoaded", () =>
+          document.body.classList.add("shot")
+        );
+      }
+    </script>
+  </head>
+  <body>
+    <div class="card" id="card">
+      <div class="collage" aria-hidden="true">
+        <span style="background-image: url('src/img/shoreline.jpeg')"></span>
+        <span style="background-image: url('src/img/pool.jpeg')"></span>
+        <span style="background-image: url('src/img/house.jpeg')"></span>
+        <span style="background-image: url('src/img/pavilion.jpeg')"></span>
+        <span style="background-image: url('src/img/wedding.png')"></span>
+        <span style="background-image: url('src/img/cottage.png')"></span>
+        <span style="background-image: url('src/img/room_1.jpeg')"></span>
+        <span style="background-image: url('src/img/kitchen.png')"></span>
+        <span style="background-image: url('src/img/swimming.jpg')"></span>
+        <span style="background-image: url('src/img/banana.jpg')"></span>
+        <span style="background-image: url('src/img/volleyball.jpg')"></span>
+        <span style="background-image: url('src/img/videoke.jpeg')"></span>
+        <span style="background-image: url('src/img/parking.jpeg')"></span>
+        <span style="background-image: url('src/img/gallery_1.jpg')"></span>
+        <span style="background-image: url('src/img/gallery_3.jpg')"></span>
+      </div>
+      <div class="inner">
+        <p class="script">Your spot by the sea</p>
+        <h1 class="title">S&amp;D Beach House<br />and Cottages</h1>
+        <p class="tagline">
+          A peaceful beachfront escape where fine sand meets the calm waves of San Fabian.
+        </p>
+        <div class="meta">
+          <span>San Fabian, Pangasinan</span>
+          <span class="dot">•</span>
+          <span>+63 917 557 0003</span>
+        </div>
+      </div>
+    </div>
+    <p class="hint">Screenshot the 1200×630 card above (crop to its edges) and use it as your og:image / twitter:image.</p>
+  </body>
+</html>

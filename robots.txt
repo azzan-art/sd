@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /sd/og-image.html
 
 Sitemap: https://azzan-art.github.io/sd/sitemap.xml
