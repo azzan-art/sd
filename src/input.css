@@ -540,6 +540,27 @@ html {
   }
 }
 
+/* ---- Staggered reveal for the Fun Activities tiles ---- */
+/* Tiles start hidden (opacity only, so nothing fights their hover transform).
+   JS adds .act-anim + an inline translateY for the entrance, reveals them
+   one-by-one left-to-right, then on completion removes .act-anim and clears the
+   inline transform — leaving only .act-ready (opacity) so the tiles' own hover
+   lift works cleanly afterwards. */
+.act-stagger > a {
+  opacity: 0;
+}
+.act-stagger > a.act-anim {
+  transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.act-stagger > a.act-ready {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .act-stagger > a {
+    opacity: 1;
+  }
+}
+
 /* ---- Rotating guest reviews ---- */
 /* One card at a time; JS swaps the text every few seconds. The card briefly
    fades + lifts while its content is replaced. */
@@ -685,6 +706,10 @@ html {
   min-width: 0;
   will-change: transform;
   animation: gallery-scroll 36s linear infinite;
+  /* Promote to its own layer with a clean backface so the continuous
+     transform doesn't leave sub-pixel seam lines between/around thumbs. */
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 /* Duplicated content means -50% lands exactly one set later → seamless loop.
    "down" columns just run the same keyframes in reverse. */
@@ -697,8 +722,8 @@ html {
   .gallery-marquee .gallery-col:nth-child(3) { display: none; }
 }
 @keyframes gallery-scroll {
-  from { transform: translateY(0); }
-  to   { transform: translateY(-50%); }
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(0, -50%, 0); }
 }
 .gallery-thumb {
   aspect-ratio: 4 / 3;
@@ -707,6 +732,7 @@ html {
   background-size: cover;
   background-position: center;
   box-shadow: 0 12px 24px -14px rgba(15, 23, 42, 0.45);
+  backface-visibility: hidden;
 }
 
 /* ---- Gallery modal: photo grid ---- */
@@ -1007,6 +1033,27 @@ html {
     position: sticky;
     top: 0;
     height: 100dvh;
+    min-height: 0;
+  }
+}
+/* Two stacked photos filling the same media column (e.g. the Pavilion). */
+.ep-detail__media-stack {
+  display: flex;
+  flex-direction: column;
+}
+.ep-detail__media-stack .ep-detail__media {
+  flex: 1;
+  min-height: 30vh;
+}
+@media (min-width: 1024px) {
+  .ep-detail__media-stack {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+  }
+  .ep-detail__media-stack .ep-detail__media {
+    position: static;
+    height: auto;
     min-height: 0;
   }
 }
