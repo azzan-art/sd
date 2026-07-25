@@ -101,7 +101,7 @@
 
     <main id="hero" class="relative z-20 mx-auto flex min-h-screen max-w-2xl flex-col items-center justify-center gap-8 px-6 text-center">
       <h1 class="flex flex-col items-center gap-2 drop-shadow-lg">
-        <img src="./logo.png" alt="S&D Beach House and Cottages" class="h-32 w-auto sm:h-44" />
+        <img src="./logo.png" alt="S&D Beach House and Cottages" class="h-32 w-auto sm:h-44" fetchpriority="high" decoding="async" />
         <span class="text-6xl leading-none sm:text-7xl" style="font-family: 'Alex Brush', cursive">
           S <span class="text-4xl sm:text-5xl">&amp;</span> D
         </span>
@@ -245,7 +245,7 @@
           </p>
         </div>
         <div class="act-stagger mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
-          <a href="#" data-modal="modal-activities" data-title="Banana Boat Rides" data-img="img/banana.jpg" data-desc="Hold on tight! Get towed across the bay on our banana boat for a splash-packed ride the whole barkada will be laughing about." class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-bottom shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('img/banana.jpg'), linear-gradient(135deg, #164e63, #0e7490);">
+          <a href="#" data-modal="modal-activities" data-title="Banana Boat Rides" data-img="img/banana.jpg" data-desc="Hold on tight! Get towed across the bay on our banana boat for a splash-packed ride the whole barkada will be laughing about." class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-bottom shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" data-bg="url('img/banana.jpg'), linear-gradient(135deg, #164e63, #0e7490)" style="background-image: linear-gradient(135deg, #164e63, #0e7490);">
             <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition group-hover:from-black/70"></span>
             <span class="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 p-4 text-center">
               <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
@@ -254,7 +254,7 @@
               <span class="text-sm font-semibold text-white drop-shadow">Banana Boat</span>
             </span>
           </a>
-          <a href="#" data-modal="modal-activities" data-title="Swimming" data-img="img/swimming.jpg" data-desc="Take a dip in the calm sea or cool off in the pool — both just steps from your cottage, perfect for kids and grown-ups alike." class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('img/swimming.jpg'), linear-gradient(135deg, #713f12, #a16207);">
+          <a href="#" data-modal="modal-activities" data-title="Swimming" data-img="img/swimming.jpg" data-desc="Take a dip in the calm sea or cool off in the pool — both just steps from your cottage, perfect for kids and grown-ups alike." class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" data-bg="url('img/swimming.jpg'), linear-gradient(135deg, #713f12, #a16207)" style="background-image: linear-gradient(135deg, #713f12, #a16207);">
             <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition group-hover:from-black/70"></span>
             <span class="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 p-4 text-center">
               <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
@@ -263,7 +263,7 @@
               <span class="text-sm font-semibold text-white drop-shadow">Swimming</span>
             </span>
           </a>
-          <a href="#" data-modal="modal-activities" data-title="Beach Volleyball" data-img="img/volleyball.jpg" data-desc="Bump, set, spike on the sand. Rally up a game with friends and family right on our fine-sand shoreline." class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('img/volleyball.jpg'), linear-gradient(135deg, #052e16, #14532d);">
+          <a href="#" data-modal="modal-activities" data-title="Beach Volleyball" data-img="img/volleyball.jpg" data-desc="Bump, set, spike on the sand. Rally up a game with friends and family right on our fine-sand shoreline." class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" data-bg="url('img/volleyball.jpg'), linear-gradient(135deg, #052e16, #14532d)" style="background-image: linear-gradient(135deg, #052e16, #14532d);">
             <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition group-hover:from-black/70"></span>
             <span class="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 p-4 text-center">
               <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
@@ -272,7 +272,7 @@
               <span class="text-sm font-semibold text-white drop-shadow">Volleyball</span>
             </span>
           </a>
-          <a href="#" data-modal="modal-activities" data-title="Videoke" data-img="img/videoke.jpeg" data-desc="Grab the mic and sing your heart out. Our videoke and sound system keep the good vibes going all night long." class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-left shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('img/videoke.jpeg'), linear-gradient(135deg, #1e1b4b, #4c1d95);">
+          <a href="#" data-modal="modal-activities" data-title="Videoke" data-img="img/videoke.jpeg" data-desc="Grab the mic and sing your heart out. Our videoke and sound system keep the good vibes going all night long." class="group relative block aspect-[3/4] overflow-hidden rounded-2xl bg-cover bg-left shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" data-bg="url('img/videoke.jpeg'), linear-gradient(135deg, #1e1b4b, #4c1d95)" style="background-image: linear-gradient(135deg, #1e1b4b, #4c1d95);">
             <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition group-hover:from-black/70"></span>
             <span class="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 p-4 text-center">
               <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
@@ -283,7 +283,7 @@
           </a>
         </div>
         <div class="act-stagger mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <a href="#" data-modal="modal-activities" data-title="Special Events" data-img="img/wedding.png" data-desc="Say &quot;I do&quot; by the sea or celebrate any milestone — our pavilion and beachfront make an unforgettable backdrop for weddings, birthdays, and gatherings." class="group relative block aspect-[16/7] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('img/wedding.png'), linear-gradient(135deg, #831843, #be185d);">
+          <a href="#" data-modal="modal-activities" data-title="Special Events" data-img="img/wedding.png" data-desc="Say &quot;I do&quot; by the sea or celebrate any milestone — our pavilion and beachfront make an unforgettable backdrop for weddings, birthdays, and gatherings." class="group relative block aspect-[16/7] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" data-bg="url('img/wedding.png'), linear-gradient(135deg, #831843, #be185d)" style="background-image: linear-gradient(135deg, #831843, #be185d);">
             <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition group-hover:from-black/70"></span>
             <span class="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 p-4 text-center">
               <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
@@ -292,7 +292,7 @@
               <span class="text-sm font-semibold text-white drop-shadow">Special Events</span>
             </span>
           </a>
-          <a href="#" data-modal="modal-activities" data-title="Cooking &amp; Grilling" data-img="img/cooking.jpg" data-desc="Fire up the grill and cook your fresh catch. Our kitchen and grill area let you feast on home-cooked meals with an ocean view." class="group relative block aspect-[16/7] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" style="background-image: url('img/cooking.jpg'), linear-gradient(135deg, #713f12, #a16207);">
+          <a href="#" data-modal="modal-activities" data-title="Cooking &amp; Grilling" data-img="img/cooking.jpg" data-desc="Fire up the grill and cook your fresh catch. Our kitchen and grill area let you feast on home-cooked meals with an ocean view." class="group relative block aspect-[16/7] overflow-hidden rounded-2xl bg-cover bg-center shadow-md ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl" data-bg="url('img/cooking.jpg'), linear-gradient(135deg, #713f12, #a16207)" style="background-image: linear-gradient(135deg, #713f12, #a16207);">
             <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition group-hover:from-black/70"></span>
             <span class="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 p-4 text-center">
               <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#F48E26] text-white shadow-lg transition group-hover:scale-110">
@@ -434,7 +434,7 @@
     <!-- Facilities modal -->
     <div id="modal-facilities" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-facilities-title">
       <div class="modal-box relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white text-neutral-900 shadow-2xl sm:max-w-2xl lg:max-w-3xl">
-        <div class="h-44 bg-cover bg-center sm:h-52" style="background-image: url('img/house.jpg'), linear-gradient(135deg, #164e63, #0e7490);"></div>
+        <div class="h-44 bg-cover bg-center sm:h-52" data-bg="url('img/house.jpg'), linear-gradient(135deg, #164e63, #0e7490)" style="background-image: linear-gradient(135deg, #164e63, #0e7490);"></div>
         <button type="button" data-close class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-2xl leading-none text-neutral-700 shadow transition hover:bg-white" aria-label="Close">&times;</button>
         <div class="modal-content p-8">
           <h3 id="modal-facilities-title" class="text-3xl font-semibold tracking-tight">The Property</h3>
@@ -506,42 +506,42 @@
       <!-- The 6 equal panels -->
       <div class="ep-grid">
         <button type="button" class="ep-panel" data-detail="ep-cottages" style="--ep: 0">
-          <span class="ep-panel__img" style="background-image: url('img/cottage.png')"></span>
+          <span class="ep-panel__img" data-bg="url('img/cottage.png')"></span>
           <span class="ep-panel__body">
             <i class="ep-panel__icon ri-home-4-line" aria-hidden="true"></i>
             <span class="ep-panel__label">Cottages</span>
           </span>
         </button>
         <button type="button" class="ep-panel" data-detail="ep-rooms" style="--ep: 1">
-          <span class="ep-panel__img" style="background-image: url('img/room_1.jpeg')"></span>
+          <span class="ep-panel__img" data-bg="url('img/room_1.jpeg')"></span>
           <span class="ep-panel__body">
             <i class="ep-panel__icon ri-hotel-bed-line" aria-hidden="true"></i>
             <span class="ep-panel__label">Air-Conditioned Rooms</span>
           </span>
         </button>
         <button type="button" class="ep-panel" data-detail="ep-pool" style="--ep: 2">
-          <span class="ep-panel__img" style="background-image: url('img/pool.jpeg')"></span>
+          <span class="ep-panel__img" data-bg="url('img/pool.jpeg')"></span>
           <span class="ep-panel__body">
             <i class="ep-panel__icon ri-drop-line" aria-hidden="true"></i>
             <span class="ep-panel__label">Swimming Pool</span>
           </span>
         </button>
         <button type="button" class="ep-panel" data-detail="ep-kitchen" style="--ep: 3">
-          <span class="ep-panel__img" style="background-image: url('img/kitchen.png')"></span>
+          <span class="ep-panel__img" data-bg="url('img/kitchen.png')"></span>
           <span class="ep-panel__body">
             <i class="ep-panel__icon ri-restaurant-line" aria-hidden="true"></i>
             <span class="ep-panel__label">Kitchen &amp; Grilling</span>
           </span>
         </button>
         <button type="button" class="ep-panel" data-detail="ep-pavilion" style="--ep: 4">
-          <span class="ep-panel__img" style="background-image: url('img/pavilion.jpeg')"></span>
+          <span class="ep-panel__img" data-bg="url('img/pavilion.jpeg')"></span>
           <span class="ep-panel__body">
             <i class="ep-panel__icon ri-community-line" aria-hidden="true"></i>
             <span class="ep-panel__label">Pavilion</span>
           </span>
         </button>
         <button type="button" class="ep-panel" data-detail="ep-shore" style="--ep: 5">
-          <span class="ep-panel__img" style="background-image: url('img/shoreline.jpeg')"></span>
+          <span class="ep-panel__img" data-bg="url('img/shoreline.jpeg')"></span>
           <span class="ep-panel__body">
             <i class="ep-panel__icon ri-sun-line" aria-hidden="true"></i>
             <span class="ep-panel__label">The Shoreline</span>
@@ -552,7 +552,7 @@
       <!-- Detail views (one per panel) -->
       <div class="ep-detail" id="ep-cottages" role="group" aria-label="Cottages">
         <div class="grid min-h-full lg:grid-cols-2">
-          <div class="ep-detail__media" style="background-image: url('img/cottage.png')"></div>
+          <div class="ep-detail__media" data-bg="url('img/cottage.png')"></div>
           <div class="ep-detail__text">
             <button type="button" data-back class="ep-back"><i class="ri-arrow-left-line" aria-hidden="true"></i> All highlights</button>
             <span class="ep-detail__eyebrow">Where you'll stay</span>
@@ -570,7 +570,7 @@
 
       <div class="ep-detail" id="ep-rooms" role="group" aria-label="Air-Conditioned Rooms">
         <div class="grid min-h-full lg:grid-cols-2">
-          <div class="ep-detail__media" style="background-image: url('img/room_1.jpeg')"></div>
+          <div class="ep-detail__media" data-bg="url('img/room_1.jpeg')"></div>
           <div class="ep-detail__text">
             <button type="button" data-back class="ep-back"><i class="ri-arrow-left-line" aria-hidden="true"></i> All highlights</button>
             <span class="ep-detail__eyebrow">Where you'll sleep</span>
@@ -588,7 +588,7 @@
 
       <div class="ep-detail" id="ep-pool" role="group" aria-label="Swimming Pool">
         <div class="grid min-h-full lg:grid-cols-2">
-          <div class="ep-detail__media" style="background-image: url('img/pool.jpeg')"></div>
+          <div class="ep-detail__media" data-bg="url('img/pool.jpeg')"></div>
           <div class="ep-detail__text">
             <button type="button" data-back class="ep-back"><i class="ri-arrow-left-line" aria-hidden="true"></i> All highlights</button>
             <span class="ep-detail__eyebrow">For the kids</span>
@@ -606,7 +606,7 @@
 
       <div class="ep-detail" id="ep-kitchen" role="group" aria-label="Kitchen and Grilling">
         <div class="grid min-h-full lg:grid-cols-2">
-          <div class="ep-detail__media" style="background-image: url('img/kitchen.png')"></div>
+          <div class="ep-detail__media" data-bg="url('img/kitchen.png')"></div>
           <div class="ep-detail__text">
             <button type="button" data-back class="ep-back"><i class="ri-arrow-left-line" aria-hidden="true"></i> All highlights</button>
             <span class="ep-detail__eyebrow">For the food</span>
@@ -625,8 +625,8 @@
       <div class="ep-detail" id="ep-pavilion" role="group" aria-label="Pavilion">
         <div class="grid min-h-full lg:grid-cols-2">
           <div class="ep-detail__media-stack">
-            <div class="ep-detail__media" style="background-image: url('img/pavilion.jpeg')"></div>
-            <div class="ep-detail__media" style="background-image: url('img/pavilion_2.jpeg')"></div>
+            <div class="ep-detail__media" data-bg="url('img/pavilion.jpeg')"></div>
+            <div class="ep-detail__media" data-bg="url('img/pavilion_2.jpeg')"></div>
           </div>
           <div class="ep-detail__text">
             <button type="button" data-back class="ep-back"><i class="ri-arrow-left-line" aria-hidden="true"></i> All highlights</button>
@@ -645,7 +645,7 @@
 
       <div class="ep-detail" id="ep-shore" role="group" aria-label="The Shoreline">
         <div class="grid min-h-full lg:grid-cols-2">
-          <div class="ep-detail__media" style="background-image: url('img/shoreline.jpeg')"></div>
+          <div class="ep-detail__media" data-bg="url('img/shoreline.jpeg')"></div>
           <div class="ep-detail__text">
             <button type="button" data-back class="ep-back"><i class="ri-arrow-left-line" aria-hidden="true"></i> All highlights</button>
             <span class="ep-detail__eyebrow">The main event</span>
@@ -889,6 +889,21 @@
         document.querySelectorAll(".act-stagger").forEach((el) => staggerIO.observe(el));
       }
 
+      // Lazy-load the activity tile photos (deferred via data-bg) as they near
+      // the viewport, so they download in scroll order instead of all at once.
+      // Independent of the reveal animation, so it works with reduced motion too.
+      const actImgIO = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.style.backgroundImage = entry.target.dataset.bg;
+            obs.unobserve(entry.target);
+          });
+        },
+        { rootMargin: "300px" }
+      );
+      document.querySelectorAll(".act-stagger > a[data-bg]").forEach((el) => actImgIO.observe(el));
+
       // Sticky section nav: reveal it once the hero has scrolled out of view,
       // and light up the link whose section is currently centred (scrollspy).
       const sectionNav = document.getElementById("section-nav");
@@ -1044,16 +1059,31 @@
         const thumbUrl = (p) => `url('${p.src}'), ${p.grad}`;
         const zoomUrl = (p) => `url('${p.src}'), ${p.grad}`;
 
+        // Priority loading: gallery photos are the last thing the page needs, so
+        // tiles are built WITHOUT their background-image and the actual fetch is
+        // deferred — the preview loads only when it nears the viewport, and the
+        // modal grid only on first open. Until then the gradient placeholder (a
+        // cheap CSS fill) stands in, so nothing above the gallery competes with
+        // these downloads.
         function tile(p, className) {
           const el = document.createElement("div");
           el.className = className;
-          el.style.backgroundImage = thumbUrl(p);
+          el.style.backgroundImage = p.grad;       // placeholder only
+          el.dataset.bg = thumbUrl(p);             // real image, loaded later
           el.dataset.zoom = zoomUrl(p);
           return el;
+        }
+        function loadTiles(container) {
+          if (!container || container.dataset.loaded) return;
+          container.dataset.loaded = "1";
+          container.querySelectorAll("[data-bg]").forEach((el) => {
+            el.style.backgroundImage = el.dataset.bg;
+          });
         }
 
         // Fill the drifting preview columns (each set duplicated to loop).
         const preview = document.getElementById("galleryPreview");
+        const galleryModal = document.getElementById("modal-gallery");
         if (preview) {
           const cols = preview.querySelectorAll(".gallery-col");
           const spread = [[0, 3, 6, 9], [1, 4, 7, 10], [2, 5, 8, 11]];
@@ -1063,13 +1093,28 @@
               idxs.forEach((k) => col.appendChild(tile(photos[k], "gallery-thumb")));
             }
           });
-          const galleryModal = document.getElementById("modal-gallery");
           preview.addEventListener("click", () => {
-            if (galleryModal) openModal(galleryModal);
+            if (galleryModal) {
+              loadTiles(document.getElementById("galleryGrid"));
+              openModal(galleryModal);
+            }
           });
+          // Load the preview images only once the gallery scrolls near view.
+          const previewIO = new IntersectionObserver(
+            (entries, obs) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                loadTiles(preview);
+                obs.disconnect();
+              });
+            },
+            { rootMargin: "300px" }
+          );
+          previewIO.observe(preview);
         }
 
         // Fill the modal grid; each photo zooms into the lightbox on click.
+        // Background images stay deferred until the modal is opened (loadTiles).
         const grid = document.getElementById("galleryGrid");
         if (grid) {
           photos.forEach((p) => {
@@ -1187,8 +1232,18 @@
         detail.scrollTop = 0;
         explore.classList.add("ep--detail");
       }
+      // Property images are deferred (data-bg) so they don't download while the
+      // panel is hidden — they load the first time Explore is opened.
+      function loadExploreImages() {
+        if (!explore || explore.dataset.imgLoaded) return;
+        explore.dataset.imgLoaded = "1";
+        explore.querySelectorAll("[data-bg]").forEach((el) => {
+          el.style.backgroundImage = el.dataset.bg;
+        });
+      }
       function openExplore() {
         if (!explore) return;
+        loadExploreImages();        // fetch the property photos on first open
         showExploreGrid();          // always start on the grid
         explore.classList.add("is-open");
         syncScrollLock();
