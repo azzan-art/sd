@@ -21,6 +21,12 @@ body {
 
 html {
   scroll-behavior: smooth;
+  /* Kill the macOS/iOS rubber-band bounce. The page scroller is <html>, and
+     during an overscroll the document rubber-bands while position:fixed layers
+     stay pinned to the viewport — so at the very bottom the opaque sections
+     slide up and expose the fixed hero video in the gap. No bounce, no gap.
+     (Also disables pull-to-refresh on Android Chrome, which we don't want.) */
+  overscroll-behavior-y: none;
 }
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -111,6 +117,291 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
   .bubbles { display: none; }
+}
+
+/* ---- Wind-blown palm (Fun Activities background) ---- */
+/* A faint palm silhouette in the bottom-left corner, behind the activity
+   tiles. Two clocks, same as the bubbles: the whole tree bends from its
+   trunk base on a gusty (uneven-keyframe) rhythm, and each frond flutters
+   around the crown on its own duration/delay/amplitude so the crown never
+   moves as one rigid piece. Same z-index:-1 trick as .bubbles — above the
+   section's white background, behind all of its in-flow content. */
+.palm-scene {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;         /* never let a frond widen the document */
+  pointer-events: none;
+}
+
+.palm-scene__tree {
+  position: absolute;
+  bottom: 0;
+  color: #0f766e;           /* teal-700 silhouette */
+  opacity: 0.13;            /* barely there — texture, not a focal point */
+  /* Dissolve the trunk into the section: fully transparent at the base,
+     reaching full strength up around the crown. Hides the hard cut where the
+     trunk meets the section edge, so the tree reads as growing out of nothing
+     instead of being clipped. */
+  -webkit-mask-image: linear-gradient(to top, transparent 0, #000 55%);
+  mask-image: linear-gradient(to top, transparent 0, #000 55%);
+}
+
+.palm-scene__tree--left {
+  left: -3%;
+  width: clamp(200px, 30vw, 380px);
+}
+
+/* Mirrored, smaller, and slower so the pair reads as two trees rather than a
+   copy-paste. scaleX(-1) lives on the wrapper — the <svg> inside owns the
+   bend animation, so the two transforms never fight over the same property. */
+.palm-scene__tree--right {
+  right: -4%;
+  width: clamp(160px, 24vw, 300px);
+  opacity: 0.1;
+  transform: scaleX(-1);
+}
+.palm-scene__tree--right svg {
+  animation-name: palm-bend-mirror;
+  animation-duration: 8.5s;
+}
+
+.palm-scene__tree svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Bend from where the trunk meets the ground, so the tree pivots like it's
+     rooted instead of sliding. Percentages, not viewBox units: the root <svg>
+     is a replaced element, so its origin resolves against its border box. */
+  transform-origin: 43% 93%;
+  animation: palm-bend 7s ease-in-out infinite;
+}
+
+/* Same-colour stroke fattens trunk & fronds, matching the .book-palm treatment
+   so the two palms on the page read as the same tree. */
+.palm-scene__tree path,
+.palm-scene__tree circle {
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+/* Fronds pivot around the crown. SVG's default transform-box is view-box, so
+   this origin is in viewBox units — the same point every frond attaches to. */
+.palm-frond {
+  transform-origin: 70px 58px;
+  animation: frond-flutter var(--dur, 3.4s) ease-in-out var(--delay, 0s) infinite alternate;
+}
+
+@keyframes palm-bend {
+  0%   { transform: rotate(-1.2deg); }
+  22%  { transform: rotate(2.4deg); }
+  38%  { transform: rotate(1deg); }
+  60%  { transform: rotate(3.6deg); }   /* the gust */
+  78%  { transform: rotate(0.3deg); }
+  100% { transform: rotate(-1.2deg); }
+}
+
+/* Same gust, negated — cancels the wrapper's scaleX(-1) so the mirrored tree
+   still leans downwind with its neighbour. */
+@keyframes palm-bend-mirror {
+  0%   { transform: rotate(1.2deg); }
+  22%  { transform: rotate(-2.4deg); }
+  38%  { transform: rotate(-1deg); }
+  60%  { transform: rotate(-3.6deg); }
+  78%  { transform: rotate(-0.3deg); }
+  100% { transform: rotate(1.2deg); }
+}
+
+@keyframes frond-flutter {
+  from { transform: rotate(calc(var(--amp, 2deg) * -1)); }
+  to   { transform: rotate(var(--amp, 2deg)); }
+}
+
+/* ---- Bouncing volleyball ---- */
+/* Two nested elements on one 1.6s clock: the wrapper owns the arc (fall
+   accelerates, rise decelerates — per-keyframe easing, since gravity isn't
+   symmetric), the inner element owns squash & stretch. Splitting them keeps
+   both animations on `transform` without either overwriting the other. */
+/* Unclipped sibling of .palm-scene — see the note in the markup. */
+.ball-scene {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.palm-scene__ball {
+  position: absolute;
+  right: 15%;
+  top: 7%;                  /* up beside the "Fun Activities" heading */
+  width: clamp(44px, 6vw, 78px);
+  color: #0f766e;           /* same teal as the palms */
+  opacity: 0.12;
+  animation: ball-bounce 1.6s infinite;
+}
+
+.palm-scene__ball svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform-origin: 50% 100%;   /* flatten against the ground, not the middle */
+  animation: ball-squash 1.6s infinite;
+}
+
+.palm-scene__ball path,
+.palm-scene__ball circle {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+@keyframes ball-bounce {
+  0%   { transform: translateY(-150%); animation-timing-function: cubic-bezier(0.4, 0, 1, 1); }
+  50%  { transform: translateY(0);     animation-timing-function: cubic-bezier(0, 0, 0.4, 1); }
+  100% { transform: translateY(-150%); }
+}
+
+@keyframes ball-squash {
+  0%, 38%   { transform: scale(1, 1); }
+  46%       { transform: scale(1.06, 0.94); }   /* stretched, about to land */
+  50%       { transform: scale(1.3, 0.72); }    /* impact */
+  57%       { transform: scale(0.92, 1.1); }    /* rebound */
+  66%, 100% { transform: scale(1, 1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Keep the scenery, drop the motion. */
+  .palm-scene__tree svg,
+  .palm-frond,
+  .palm-scene__ball,
+  .palm-scene__ball svg { animation: none; }
+}
+
+/* ---- Shore wash (The Property panel) ---- */
+/* Top-down view of water running up wet sand and draining back. Each sheet is
+   an ellipse far wider than the panel, so only its curved leading edge reads —
+   that's the wave front. Five of them overlap on different reaches, speeds and
+   delays, which is what sells it: a real swash is never one clean edge, it's
+   several thin sheets sliding over each other at different rates.
+   No `filter: blur()` anywhere — the softness is baked into the gradients, so
+   the foam dots stay crisp and the panel doesn't get its own raster layer. */
+.shore-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: inherit;   /* stay inside the panel's rounded-3xl corners */
+  pointer-events: none;
+}
+
+/* Each sheet is a wavy-edged SVG, not a shape — a rounded box reads as a
+   circle however you tilt it, and the whole point is an irregular waterline.
+   The path's top edge IS the crest; everything below it is the water body,
+   which runs to the bottom of the viewBox so the trailing side never opens a
+   gap as the sheet advances. */
+.wash {
+  position: absolute;
+  /* Oversized because the rotation swings the band's corners outside the
+     panel: it must span the panel's DIAGONAL, not its width, in both axes.
+     --scale multiplies the height; because the crest sits ~10% down the band,
+     growing the height also pushes the waterline down, so --lift (= 0.1 ×
+     (scale - 1)) pulls `top` back up by exactly that much and each crest stays
+     where it was placed. */
+  --scale: 2.8;
+  --lift: 0.18;              /* = 0.1 x (scale - 1); keeps every crest put */
+  top: calc(var(--top) - var(--h, 80%) * var(--lift));
+  height: calc(var(--h, 80%) * var(--scale));
+  /* Width is derived from the band's own HEIGHT, not the panel's width. A
+     percentage width resolves against the panel width (~330px on a phone)
+     while the length a rotated band must span is driven by the panel HEIGHT
+     (~1100px) — so a percentage can never track it, and the band's square ends
+     showed as straight cut-offs. aspect-ratio ties the two together at every
+     screen size. 2.2 is the worst case measured across a 300–1100 x 300–1700
+     sweep (1.93) plus margin. */
+  aspect-ratio: 2.2;
+  width: auto;
+  /* Definite width + left/right 0 + auto inline margins = centred, whatever
+     the computed width turns out to be. */
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  /* Pivot on the crest rather than the band's centre: several bands sit far
+     below the panel, and rotating about a distant centre swings their ends
+     across it. This also makes the waterline turn in place. */
+  transform-origin: 50% 10%;
+  opacity: 0;
+  animation: wash-run var(--dur, 9s) var(--delay, 0s) infinite;
+}
+
+.wash svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Low per-sheet alpha on purpose: five overlapping bodies accumulate toward
+   the bottom-left, which is where the water is deepest. That build-up is the
+   "layered" read — one sheet at full strength would just look like a panel. */
+.wash__body {
+  fill: rgba(255, 255, 255, 0.1);
+}
+
+.wash__crest {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.42);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;   /* stays a hairline however it's stretched */
+}
+
+
+/* Point field, drawn over the sheets: an evenly spaced grid where each dot's
+   size, opacity and lift encode the local wave height, so peaks read as rows
+   of bigger, brighter, slightly raised dots travelling up the diagonal and
+   troughs nearly vanish. Canvas rather than DOM — this is ~1500 points redrawn
+   every frame, which is nothing for a canvas and far too much for elements. */
+.wash-dots {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* The sheet is rotated once, up front, then travels along its OWN -y axis. Its
+   crest is the top edge, so moving "up" in local space keeps the waterline
+   perpendicular to the run. A +38deg rotation points local-up at the top-right
+   corner, which is the direction the water washes in from the bottom-left. */
+/* Orientation: --tilt is NEGATIVE, so the crest line runs up to the right and
+   the water body hangs down-RIGHT of it. The sheets therefore stack toward the
+   bottom-right corner while still travelling bottom-left -> top-right, which
+   is along the crest line (local +x) rather than perpendicular to it.
+   (Rotating the other way makes the crest lead the motion, which is tidier
+   geometrically but piles the water into the bottom-LEFT instead.)
+
+   Travel is in PIXELS, deliberately. A percentage translate resolves against
+   the band's own size, so every time a band grew to cover more of the panel
+   its travel grew with it and swept its straight edge into view — which is
+   what was showing up as a cut-off. Fixed px keeps the swash the same distance
+   at every screen size, independent of coverage. */
+@keyframes wash-run {
+  /* Run-up: quick, then settling — the sheet decelerates as it loses energy. */
+  0%   { transform: rotate(var(--tilt, -38deg)) translateX(-90px); opacity: 0;
+         animation-timing-function: cubic-bezier(0.12, 0.72, 0.3, 1); }
+  14%  { opacity: var(--peak, 0.75); }
+  42%  { transform: rotate(var(--tilt, -38deg)) translateX(var(--reach, 130px));
+         opacity: var(--peak, 0.75);
+         animation-timing-function: cubic-bezier(0.5, 0, 0.6, 1); }
+  58%  { opacity: calc(var(--peak, 0.75) * 0.8); }   /* hangs at the top of the swash */
+  /* Backwash: slower and fading as the sand drinks it. */
+  100% { transform: rotate(var(--tilt, -38deg)) translateX(-100px); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shore-wash { display: none; }
 }
 
 /* ---- Shore wave (whole-page tide) ---- */
@@ -512,8 +803,10 @@ html {
   border-radius: 1rem;      /* match the card's rounded-2xl */
   border: 4px solid #fff;   /* white frame → reads as a printed photo card */
   background-color: #e2e8f0;      /* soft tint while the photo loads */
-  background-size: cover;
-  background-position: center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
   transform: rotate(var(--r, 0deg)) translate(var(--x, 0px), var(--y, 0px));
 }
@@ -603,6 +896,13 @@ html {
   overflow: hidden;
   pointer-events: none;
 }
+/* Each svg holds TWO identical 1440-unit tiles in a 2880 viewBox, so -50% lands
+   tile 2 exactly where tile 1 was. The tile is 1440 = 3 full wave periods (a
+   period is 480: `t` reflects the previous control point, so segments alternate
+   crest/trough in pairs). Before, a single 12-segment path was shifted 720
+   units — 1.5 periods — which put a crest where a trough had been and snapped
+   on every loop. Two separate <path> elements also restart the dash pattern
+   identically, which keeps the dashed .sea-surface lines seamless too. */
 .sea-waves svg {
   position: absolute;
   bottom: 0;
@@ -726,21 +1026,35 @@ html {
   to   { transform: translate3d(0, -50%, 0); }
 }
 .gallery-thumb {
+  position: relative;
+  overflow: hidden;
   aspect-ratio: 4 / 3;
   margin-bottom: 1rem;      /* on every tile (incl. last) so -50% stays exact */
   border-radius: 0.9rem;
-  background-size: cover;
-  background-position: center;
   box-shadow: 0 12px 24px -14px rgba(15, 23, 42, 0.45);
   backface-visibility: hidden;
 }
 
+/* The photos are real <img> children rather than background-image so Google
+   Images can index them — a background-image is invisible to image search.
+   The wrapper still owns the size, rounding, shadow and animation; the img
+   only paints the pixels, cropping exactly as background-size:cover did. The
+   element's own gradient stays behind it as the loading placeholder. */
+.gallery-thumb img,
+.gallery-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* ---- Gallery modal: photo grid ---- */
 .gallery-photo {
+  position: relative;
+  overflow: hidden;
   aspect-ratio: 4 / 3;
   border-radius: 0.75rem;
-  background-size: cover;
-  background-position: center;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
   transition: transform 0.25s ease;
@@ -943,12 +1257,18 @@ html {
   transform: none;
 }
 /* The zooming photo layer. */
+/* A real <img> now, not a background-image, so Google Images can index it.
+   inset:0 alone won't stretch a replaced element — an absolutely positioned
+   img with width:auto falls back to its intrinsic size — hence the explicit
+   100%/100% plus object-fit to reproduce background-size:cover. */
 .ep-panel__img {
   position: absolute;
   inset: 0;
   z-index: -2;
-  background-size: cover;
-  background-position: center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 /* Dark wash so the label always reads; warms toward the brand teal on hover. */
@@ -1024,9 +1344,11 @@ html {
   transform: none;
 }
 .ep-detail__media {
+  display: block;
+  width: 100%;
   min-height: 40vh;
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
+  object-position: center;
 }
 @media (min-width: 1024px) {
   .ep-detail__media {

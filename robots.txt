@@ -1,5 +1,10 @@
 User-agent: *
 Allow: /
-Disallow: /sd/og-image.html
+
+# og-image.html is intentionally NOT disallowed here. It already carries
+# <meta name="robots" content="noindex, nofollow">, and robots.txt controls
+# crawling, not indexing — blocking it would stop Google from ever crawling
+# the page to see that noindex, and a blocked URL can still be indexed
+# (URL-only) if something links to it.
 
 Sitemap: https://sndbeachhouse.com/sitemap.xml
