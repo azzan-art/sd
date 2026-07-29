@@ -75,7 +75,7 @@
             "latitude": 16.1209699,
             "longitude": 120.3867486
           },
-          "hasMap": "https://www.google.com/maps/place/S%26D+BEACH+HOUSE+AND+COTTAGES/@16.121176,120.3843668,17z/data=!4m6!3m5!1s0x33916f00018f7d5d:0x932e7df3fb436750!8m2!3d16.1209699!4d120.3867486!16s%2Fg%2F11vrb10vwf",
+          "hasMap": "https://www.google.com/maps/search/?api=1&query=S%26D+BEACH+HOUSE+AND+COTTAGES+San+Fabian+Pangasinan",
           "sameAs": [
             "https://www.facebook.com/profile.php?id=100094234307971"
           ],
@@ -522,6 +522,76 @@
         <span class="bubble" style="--size: 300px; --left: 78%; --dur: 40s; --delay: -9s;  --sway: 82px; --sway-dur: 12s;"><span></span></span>
         <span class="bubble" style="--size: 120px; --left: 90%; --dur: 22s; --delay: -13s; --sway: 38px; --sway-dur: 6s;"><span></span></span>
       </div>
+
+      <!-- A jeepney-ish bus chugging across the bottom of the section. Three
+           clocks so it never reads as one rigid sprite sliding: the outer layer
+           drives left-to-right, the inner one bobs/rocks on the fast engine
+           chug, and the wheels spin on their own. Exhaust puffs trail behind. -->
+      <div class="bus-scene" aria-hidden="true">
+        <div class="bus">
+          <div class="bus__chug">
+            <svg viewBox="0 0 200 108" fill="none">
+              <!-- Exhaust puffs, off the tailpipe at the back -->
+              <g class="bus__smoke">
+                <circle class="bus__puff" style="--delay: 0s;"    cx="4" cy="80" r="5" />
+                <circle class="bus__puff" style="--delay: -0.7s;" cx="4" cy="80" r="5" />
+                <circle class="bus__puff" style="--delay: -1.4s;" cx="4" cy="80" r="5" />
+              </g>
+              <!-- Body: boxy back, sloped nose over the front wheel -->
+              <path d="M14,28 Q14,20 22,20 H150 Q158,20 163,27 L177,48 Q181,54 181,61 V78 Q181,86 173,86 H22 Q14,86 14,78 Z" />
+              <!-- Side windows -->
+              <path d="M26,34 H70 V56 H26 Z" />
+              <path d="M80,34 H124 V56 H80 Z" />
+              <!-- Windshield, following the nose slope -->
+              <path d="M134,34 H152 L166,56 H134 Z" />
+              <!-- Tailpipe -->
+              <path d="M14,80 H6" />
+              <!-- Wheels: tyre + hub, with spokes so the spin is readable -->
+              <g class="bus__wheel" style="--wheel-x: 56px; --wheel-y: 88px;">
+                <circle cx="56" cy="88" r="12" />
+                <circle cx="56" cy="88" r="4" />
+                <path d="M56,76 V100 M44,88 H68 M47.5,79.5 L64.5,96.5 M64.5,79.5 L47.5,96.5" />
+              </g>
+              <g class="bus__wheel" style="--wheel-x: 152px; --wheel-y: 88px;">
+                <circle cx="152" cy="88" r="12" />
+                <circle cx="152" cy="88" r="4" />
+                <path d="M152,76 V100 M140,88 H164 M143.5,79.5 L160.5,96.5 M160.5,79.5 L143.5,96.5" />
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Outrigger banca sailing the other way, above the bus. Opposite
+           direction and a slower clock than the bus, so the two never read as
+           one convoy. On small screens it moves up into the Location Facts
+           half — the map is opaque and would otherwise cover it. -->
+      <div class="boat-scene" aria-hidden="true">
+        <div class="boat">
+          <div class="boat__bob">
+            <svg viewBox="0 0 200 116" fill="none">
+              <!-- Hull -->
+              <path d="M28,74 H172 L156,96 Q153,100 147,100 H53 Q47,100 44,96 Z" />
+              <!-- Mast and pennant -->
+              <path d="M100,74 V14" />
+              <path d="M100,14 L120,20 L100,26" />
+              <!-- Mainsail, aft — flutters on its own clock -->
+              <g class="boat__sail">
+                <path d="M106,26 Q140,48 136,70 H106 Z" />
+              </g>
+              <!-- Jib, forward -->
+              <g class="boat__sail" style="--delay: -0.9s;">
+                <path d="M94,30 L64,70 H94 Z" />
+              </g>
+              <!-- Outrigger float and the two arms that carry it -->
+              <path d="M36,86 H14 M164,86 H186" />
+              <path d="M2,84 Q16,79 30,84 Q16,89 2,84 Z" />
+              <path d="M170,84 Q184,79 198,84 Q184,89 170,84 Z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
       <div class="mx-auto max-w-6xl px-6 pt-10 pb-24">
         <div class="relative z-10 mb-14 text-center">
           <span class="mb-0 block text-2xl font-normal leading-none text-[#0e7490b3] sm:text-3xl" style="font-family: 'Brittany Signature', cursive">Our Location</span>
@@ -575,7 +645,12 @@
             ></iframe>
           </div>
           <div id="location-map-cta" class="mt-6 flex justify-center">
-            <a href="https://www.google.com/maps/place/S%26D+BEACH+HOUSE+AND+COTTAGES/@16.121176,120.3843668,17z/data=!4m6!3m5!1s0x33916f00018f7d5d:0x932e7df3fb436750!8m2!3d16.1209699!4d120.3867486!16s%2Fg%2F11vrb10vwf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-[#0e7490] px-6 py-3 text-sm font-semibold text-white shadow transition hover:bg-[#0b5f78]">
+            <!-- Google's documented Maps URLs API (api=1). The old
+                 /maps/place/…/data=!4m6!3m5!… form carries an internal protobuf
+                 blob that the Android/iOS Maps app can't always parse — those
+                 links open to "can't find that place" on some phones. This form
+                 is the supported one and hands off to the app cleanly. -->
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=S%26D+BEACH+HOUSE+AND+COTTAGES+San+Fabian+Pangasinan" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-[#0e7490] px-6 py-3 text-sm font-semibold text-white shadow transition hover:bg-[#0b5f78]">
               <i class="ri-map-pin-fill text-lg leading-none" aria-hidden="true"></i>
               Open in Google Maps
             </a>
@@ -594,6 +669,32 @@
         <span class="bubble" style="--size: 160px; --left: 46%; --dur: 26s; --delay: -20s; --sway: 45px; --sway-dur: 7s;"><span></span></span>
         <span class="bubble" style="--size: 300px; --left: 80%; --dur: 40s; --delay: -3s;  --sway: 85px; --sway-dur: 13s;"><span></span></span>
       </div>
+
+      <!-- Camera beside the "Memories" heading. Same two-clock idea as the
+           volleyball: the wrapper owns a slow hover, the lens breathes as if
+           racking focus, and every few seconds the flash pops. -->
+      <div class="camera-scene" aria-hidden="true">
+        <div class="camera">
+          <svg viewBox="0 0 130 96" fill="none">
+            <!-- Flash burst: rays that snap out and vanish -->
+            <g class="camera__flash">
+              <path d="M30,16 V4 M18,22 L8,15 M18,32 L6,32 M42,20 L50,10" />
+            </g>
+            <!-- Hot shoe / flash bulb on top of the body -->
+            <path d="M22,28 H40 V36 H22 Z" />
+            <!-- Body: taller viewfinder hump on the right shoulder -->
+            <path d="M8,36 H84 L92,24 H116 L124,36 Q128,36 128,42 V80 Q128,88 120,88 H16 Q8,88 8,80 Z" />
+            <!-- Lens: barrel, focus ring, and the glass that breathes -->
+            <circle cx="68" cy="60" r="22" />
+            <circle class="camera__lens" cx="68" cy="60" r="13" />
+            <circle cx="68" cy="60" r="5" />
+            <!-- Shutter button and the little status lamp -->
+            <path d="M104,44 H116" />
+            <circle cx="24" cy="52" r="4" />
+          </svg>
+        </div>
+      </div>
+
       <div class="mx-auto max-w-5xl px-6 pt-8 pb-0 text-center">
         <div class="reveal">
           <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">
